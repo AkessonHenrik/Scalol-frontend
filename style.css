@@ -1,0 +1,51 @@
+.thing {
+    background-color: black;
+    color: white !important;
+    margin: 0;
+    width: 100% !important;
+}
+
+.header {
+    color: white !important;
+    font-size: 30px;
+}
+
+#user {
+    float: right;
+}
+
+#searcher {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0px;
+    float: right !important;
+    margin: 18px 3px 3px;
+    background-color: transparent;
+}
+
+#login, #signup {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0px;
+    margin: 10px 3px 3px;
+    float: right !important;
+}
+#wrapper {
+    background-color: lightgray;
+    margin-top: 20%;
+    width: fit-content;
+    height: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+#password, #repeatPassword, #username {
+    margin: 10px;
+    width: 500px;
+}
+
+#submitButton {
+    margin-left: 50%;
+    transform: translate(-50%, 0%);
+}
