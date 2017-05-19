@@ -6,7 +6,7 @@ scalaVersion := "2.12.2"
 
 enablePlugins(ScalaJSPlugin)
 
-name := "Scala.js Tutorial"
+name := "Scalol"
 scalaVersion := "2.12.2" // or any other Scala version >= 2.10.2
 
 // This is an application with a main method
@@ -23,3 +23,5 @@ libraryDependencies += "com.lihaoyi" %%% "scalatags" % "0.6.2"
 libraryDependencies ++= Seq(
   "org.scala-js" %%% "scalajs-dom" % "0.9.2"
 )
+libraryDependencies +=  "org.scalaj" %% "scalaj-http" % "2.3.0"
+libraryDependencies +=  "com.google.code.gson" % "gson" % "2.6"

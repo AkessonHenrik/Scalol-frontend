@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Scalol</title>
+    <title>Sign up</title>
 
     <!-- Include Scala.js compiled code -->
     <script type="text/javascript" src="./target/scala-2.12/scala-js-tutorial-jsdeps.js"></script>
@@ -24,5 +24,16 @@
 </head>
 <body>
 <div id="scalolNavbar"></div>
+<div id="wrapper">
+    <input id="email" class="form-control" placeholder="Email" type="text" aria-describedby="basic-addon1">
+
+    <input id="username" class="form-control" placeholder="Username" type="text" aria-describedby="basic-addon1">
+
+    <input id="password" class="form-control" placeholder="Password" type="password">
+
+    <input id="repeatPassword" class="form-control" placeholder="Repeat Password" type="password">
+
+    <button id="submitButton" class="btn btn-success">Submit</button>
+</div>
 </body>
 </html>

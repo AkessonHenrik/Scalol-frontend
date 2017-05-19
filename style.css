@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+* {
+    font-family: 'Josefin Sans', sans-serif;
+}
 .thing {
     background-color: black;
     color: white !important;
@@ -32,7 +36,7 @@
 }
 #wrapper {
     background-color: lightgray;
-    margin-top: 20%;
+    margin-top: 15%;
     width: fit-content;
     height: 70%;
     margin-left: auto;
@@ -40,7 +44,7 @@
     padding: 20px;
 }
 
-#password, #repeatPassword, #username {
+#password, #repeatPassword, #username, #email {
     margin: 10px;
     width: 500px;
 }

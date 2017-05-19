@@ -2,15 +2,16 @@ package tutorial.webapp
 
 
 import org.scalajs._
+import org.scalajs.dom.ext.Ajax
 import org.scalajs.jquery.jQuery
 
 import scala.scalajs.js
+import scala.scalajs.js.annotation.{JSGlobal, ScalaJSDefined}
+import scalaj.http.Http
 
-import scala.scalajs.js.annotation.{JSExport, JSGlobal, ScalaJSDefined}
-
-object TutorialApp extends js.JSApp {
+object Main extends js.JSApp {
   lazy val emailElement = jQuery("#email")
-  lazy val phoneElement = jQuery("#phone")
+  lazy val usernameElement = jQuery("#username")
   lazy val passwordElement = jQuery("#password")
   lazy val repeatPasswordElement = jQuery("#repeatPassword")
   lazy val submitElement = jQuery("#submitButton")
@@ -21,20 +22,31 @@ object TutorialApp extends js.JSApp {
   @js.native
   def main(): Unit = {
     jQuery(() => {
-      jQuery("#user").append("<p>Signed in as " + emailElement.value + "</p>")
+      Util.loadNavbar
+
+      jQuery("#user").append("<p>Signed in as " + usernameElement.value + "</p>")
       searchElement.click {
         (_: JQueryEvent) => {
           if (!searching) {
             searching = true
             searchElement.append(searchField)
           } else {
-//            searchElement.remove(searchField)
+            //            searchElement.remove(searchField)
           }
         }
       }
       submitElement.click {
         (_: JQueryEvent) => {
-          println(emailElement.value)
+          println(usernameElement.value)
+          dom.window.localStorage.setItem("scalol_username", usernameElement.value.toString)
+          val credentials = new SignupData(emailElement.value.toString, usernameElement.value.toString, passwordElement.value.toString)
+          println("==========")
+          println(credentials)
+          println("==========")
+          Ajax.post(Util.url, credentials.toString).foreach(e => {
+            case xhr =>
+              println(xhr)
+          })
         }
       }
     })
