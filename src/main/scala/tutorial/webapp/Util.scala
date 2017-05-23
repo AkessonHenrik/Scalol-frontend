@@ -15,6 +15,11 @@ import scala.scalajs.js
   */
 object Util {
   val url: String = "http://nixme.ddns.net:9000"
+  val userUrl: String = url + "/user"
+  val postUrl: String = url + "/posts"
+  val authUrl: String = url + "/auth"
+  val commentUrl: String = url + "/comment"
+  val messageUrl: String = url + "/message"
   def loadNavbar: Unit = {
     println("loadNavbar")
     jQuery("#scalolNavbar").load("./navbar.html")

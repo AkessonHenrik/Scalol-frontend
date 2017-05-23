@@ -4,6 +4,7 @@ version := "1.0"
 
 scalaVersion := "2.12.2"
 
+
 enablePlugins(ScalaJSPlugin)
 
 name := "Scalol"
@@ -24,4 +25,3 @@ libraryDependencies ++= Seq(
   "org.scala-js" %%% "scalajs-dom" % "0.9.2"
 )
 libraryDependencies +=  "org.scalaj" %% "scalaj-http" % "2.3.0"
-libraryDependencies +=  "com.google.code.gson" % "gson" % "2.6"

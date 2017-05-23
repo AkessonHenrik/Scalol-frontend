@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300');
+
 * {
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
+
 .thing {
     background-color: black;
     color: white !important;
@@ -27,13 +30,16 @@
     background-color: transparent;
 }
 
-#login, #signup {
+#login, #signup, #signupButton, #loginButton {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0px;
+}
+#login, #signup {
     margin: 10px 3px 3px;
     float: right !important;
 }
+
 #wrapper {
     background-color: lightgray;
     margin-top: 15%;
@@ -49,7 +55,17 @@
     width: 500px;
 }
 
-#submitButton {
+#loginButton, #signupButton {
     margin-left: 50%;
     transform: translate(-50%, 0%);
+}
+
+
+#posts {
+    margin-top: 100px;
+}
+
+.post {
+    margin-left: 50%;
+    transform: translate(-25%, 0);
 }

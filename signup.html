@@ -5,7 +5,7 @@
     <title>Sign up</title>
 
     <!-- Include Scala.js compiled code -->
-    <script type="text/javascript" src="./target/scala-2.12/scala-js-tutorial-jsdeps.js"></script>
+    <script type="text/javascript" src="./target/scala-2.12/scalol-jsdeps.js"></script>
     <script type="text/javascript" src="target/scala-2.12/scalol-fastopt.js"></script>
 
     <!-- Latest compiled and minified CSS -->
@@ -25,6 +25,7 @@
 <body>
 <div id="scalolNavbar"></div>
 <div id="wrapper">
+    <div id="error"></div>
     <input id="email" class="form-control" placeholder="Email" type="text" aria-describedby="basic-addon1">
 
     <input id="username" class="form-control" placeholder="Username" type="text" aria-describedby="basic-addon1">
@@ -33,7 +34,7 @@
 
     <input id="repeatPassword" class="form-control" placeholder="Repeat Password" type="password">
 
-    <button id="submitButton" class="btn btn-success">Submit</button>
+    <button id="signupButton" class="btn btn-success">Submit</button>
 </div>
 </body>
 </html>

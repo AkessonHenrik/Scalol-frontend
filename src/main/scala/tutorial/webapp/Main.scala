@@ -2,12 +2,13 @@ package tutorial.webapp
 
 
 import org.scalajs._
-import org.scalajs.dom.ext.Ajax
+import org.scalajs.dom.raw.{Blob, File, FileReader}
 import org.scalajs.jquery.jQuery
 
 import scala.scalajs.js
+import js.Dynamic._
+import scala.scalajs.js.JSON
 import scala.scalajs.js.annotation.{JSGlobal, ScalaJSDefined}
-import scalaj.http.Http
 
 object Main extends js.JSApp {
   lazy val emailElement = jQuery("#email")
@@ -19,36 +20,29 @@ object Main extends js.JSApp {
   var searching = false
   lazy val searchField = dom.document.createElement("input")
 
+  var posts: js.Array[Post] = new js.Array[Post]()
+
   @js.native
   def main(): Unit = {
     jQuery(() => {
       Util.loadNavbar
+      new Signup().start()
+      new Login().start()
 
-      jQuery("#user").append("<p>Signed in as " + usernameElement.value + "</p>")
-      searchElement.click {
-        (_: JQueryEvent) => {
-          if (!searching) {
-            searching = true
-            searchElement.append(searchField)
-          } else {
-            //            searchElement.remove(searchField)
+      val xhr = new dom.XMLHttpRequest()
+      xhr.open("GET",
+        "src/main/resources/posts.json"
+      )
+      xhr.onload = { (e: dom.Event) =>
+        if (xhr.status == 200) {
+          val jsonposts: js.Array[js.Dynamic] = JSON.parse(xhr.response.toString).asInstanceOf[js.Array[js.Dynamic]]
+          for (post <- jsonposts) {
+            val j = new Post(post.id, 0, post.title, 0, post.tags, true, post.image)
+            jQuery("#posts").append(j.toHtml)
           }
         }
       }
-      submitElement.click {
-        (_: JQueryEvent) => {
-          println(usernameElement.value)
-          dom.window.localStorage.setItem("scalol_username", usernameElement.value.toString)
-          val credentials = new SignupData(emailElement.value.toString, usernameElement.value.toString, passwordElement.value.toString)
-          println("==========")
-          println(credentials)
-          println("==========")
-          Ajax.post(Util.url, credentials.toString).foreach(e => {
-            case xhr =>
-              println(xhr)
-          })
-        }
-      }
+      xhr.send()
     })
   }
 }
@@ -61,4 +55,15 @@ trait JQuery extends js.Object {
 @js.native
 @JSGlobal("jQuery.Event")
 class JQueryEvent(name: String) extends js.Object {
+}
+
+class Post(id: js.Dynamic, score: Int, title: js.Dynamic, owner_id: Integer, tags: js.Dynamic, nsfw: Boolean, image: js.Dynamic) {
+  def toHtml: String = {
+    var stringToBuild: String = "<div class=\"post\">"
+    stringToBuild += "<h1>" + title + "</h1><br>"
+    stringToBuild += "<img src=\"" + image + "\">"
+
+    stringToBuild += "</div>"
+    stringToBuild
+  }
 }
