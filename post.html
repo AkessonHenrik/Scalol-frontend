@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up</title>
+
+    <!-- Include Scala.js compiled code -->
+    <script type="text/javascript" src="./target/scala-2.12/scalol-jsdeps.js"></script>
+    <script type="text/javascript" src="target/scala-2.12/scalol-fastopt.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="scalolNavbar"></div>
+<div id="wrapper">
+    <input id="postTitle" class="form-control" placeholder="Title" type="text" aria-describedby="basic-addon1">
+
+    <input id="file" class="form-control" placeholder="Browse" type="file" aria-describedby="basic-addon1">
+
+    <input id="tags" class="form-control" placeholder="Tags in format ['tag 1', 'tag 2',...]" type="text">
+
+    <button id="postButton" class="btn btn-success">Submit</button>
+</div>
+<script type="text/javascript">
+    $('#postButton').on('click', function () {
+        console.log("HEYEY")
+        var thisData = new FormData();
+        thisData.append( 'picture', $( '#file' )[0].files[0] );
+
+        $.ajax({
+            // Your server script to process the upload
+            url: 'http://nixme.ddns.net:9000/upload',
+            type: 'POST',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('auth', localStorage["scalol_token"]);
+            },
+
+            // Form data
+            data: thisData,
+
+            // Tell jQuery not to process data or worry about content-type
+            // You *must* include these options!
+            cache: false,
+            contentType: false,
+            processData: false,
+
+            // Custom XMLHttpRequest
+            xhr: function () {
+                var myXhr = $.ajaxSettings.xhr();
+                if (myXhr.upload) {
+                    // For handling the progress of the upload
+                    myXhr.upload.addEventListener('progress', function (e) {
+                        if (e.lengthComputable) {
+                            $('progress').attr({
+                                value: e.loaded,
+                                max: e.total,
+                            });
+                        }
+                    }, false);
+                }
+                return myXhr;
+            }
+        });
+    });
+</script>
+</body>
+
+</html>

@@ -20,8 +20,12 @@ object Util {
   val authUrl: String = url + "/auth"
   val commentUrl: String = url + "/comment"
   val messageUrl: String = url + "/message"
+
   def loadNavbar: Unit = {
-    println("loadNavbar")
-    jQuery("#scalolNavbar").load("./navbar.html")
+    if(dom.window.localStorage.getItem("scalol_token") == null) {
+      jQuery("#scalolNavbar").load("./navbar.html")
+    } else {
+      jQuery("#scalolNavbar").load("./loggednavbar.html")
+    }
   }
 }

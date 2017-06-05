@@ -4,6 +4,7 @@ package tutorial.webapp
 import org.scalajs._
 import org.scalajs.dom.raw.{Blob, File, FileReader}
 import org.scalajs.jquery.jQuery
+import tutorial.webapp.Main.nextElement
 
 import scala.scalajs.js
 import js.Dynamic._
@@ -11,6 +12,7 @@ import scala.scalajs.js.JSON
 import scala.scalajs.js.annotation.{JSGlobal, ScalaJSDefined}
 
 object Main extends js.JSApp {
+  lazy val nextElement = jQuery("#next")
   lazy val emailElement = jQuery("#email")
   lazy val usernameElement = jQuery("#username")
   lazy val passwordElement = jQuery("#password")
@@ -28,7 +30,13 @@ object Main extends js.JSApp {
       Util.loadNavbar
       new Signup().start()
       new Login().start()
+      new newPost().start()
 
+      nextElement.click {
+        (_: JQueryEvent) => {
+          println("Next page")
+        }
+      }
       val xhr = new dom.XMLHttpRequest()
       xhr.open("GET",
         "src/main/resources/posts.json"
@@ -37,7 +45,7 @@ object Main extends js.JSApp {
         if (xhr.status == 200) {
           val jsonposts: js.Array[js.Dynamic] = JSON.parse(xhr.response.toString).asInstanceOf[js.Array[js.Dynamic]]
           for (post <- jsonposts) {
-            val j = new Post(post.id, 0, post.title, 0, post.tags, true, post.image)
+            val j = parse(post, "post")
             jQuery("#posts").append(j.toHtml)
           }
         }
@@ -45,6 +53,26 @@ object Main extends js.JSApp {
       xhr.send()
     })
   }
+
+
+  def parse(obj: js.Dynamic, typeOfObject: String): HtmlObject = {
+    typeOfObject match {
+      case "post" => {
+        new Post(obj.id, 0, obj.title, 0, obj.tags, true, obj.image)
+      }
+      case "user" => {
+        new User()
+      }
+      case "comment" => {
+        new Comment()
+      }
+      case "message" => {
+        new Message()
+      }
+
+    }
+  }
+
 }
 
 @ScalaJSDefined
@@ -57,13 +85,59 @@ trait JQuery extends js.Object {
 class JQueryEvent(name: String) extends js.Object {
 }
 
-class Post(id: js.Dynamic, score: Int, title: js.Dynamic, owner_id: Integer, tags: js.Dynamic, nsfw: Boolean, image: js.Dynamic) {
-  def toHtml: String = {
-    var stringToBuild: String = "<div class=\"post\">"
-    stringToBuild += "<h1>" + title + "</h1><br>"
-    stringToBuild += "<img src=\"" + image + "\">"
+trait HtmlObject {
+  def toHtml: String
+}
 
+class Post(argId: js.Dynamic, argScore: Int, argTitle: js.Dynamic, argOwner_id: Integer, argTags: js.Dynamic, argNsfw: Boolean, argImage: js.Dynamic) extends HtmlObject {
+  def id = argId
+
+  def score = argScore
+
+  def title = argTitle
+
+  def args = argTags
+
+  def nsfw = argNsfw
+
+  def image = argImage
+
+  lazy val upvote = jQuery("#updvote" + id)
+
+  lazy val downvote = jQuery("#downdvote" + id)
+
+  def activate(): Unit = {
+    downvote.click {
+      (_: JQueryEvent) => {
+        println("Downvote " + id)
+      }
+    }
+  }
+
+  this.activate()
+
+  override def toHtml: String = {
+
+    var stringToBuild: String = "<div class=\"post\">"
+    stringToBuild += "<h1 class=\"postTitle\">" + title + "</h1>"
+    stringToBuild += "<h2>Score: " + score + "</h2>"
+    stringToBuild += "<img src=\"" + image + "\"><br>"
+    stringToBuild += "<button id=\"upvote" + id + "\" style=\"margin-left: 100px\" type=\"button\" class=\"btn btn-default btn-lg\"><span class=\"glyphicon glyphicon-thumbs-up\" aria-hidden=\"true\"></span>Upvote</button>"
+    stringToBuild += "<button id=\"downvote" + id + "\" type=\"button\" class=\"btn btn-default btn-lg\"><span class=\"glyphicon glyphicon-thumbs-down\" aria-hidden=\"true\"></span>Downvote</button>"
     stringToBuild += "</div>"
+
     stringToBuild
   }
+}
+
+class User extends HtmlObject {
+  override def toHtml: String = ???
+}
+
+class Comment extends HtmlObject {
+  override def toHtml: String = ???
+}
+
+class Message extends HtmlObject {
+  override def toHtml: String = ???
 }

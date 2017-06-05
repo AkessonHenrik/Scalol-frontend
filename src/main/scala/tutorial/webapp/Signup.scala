@@ -46,8 +46,20 @@ class Signup {
             println("==========")
             println(credentials)
             println("==========")
-            val thing = ("name" -> "thing")
 
+            dom.ext.Ajax.post(
+              url = "http://nixme.ddns.net:9000/user",
+              data = credentials.toString,
+              headers = Map("Content-Type" -> "application/json")
+            ).foreach { xhr =>
+              if (xhr.status == 200) {
+                val x = JSON.parse(xhr.responseText)
+                println(x.token)
+                dom.window.localStorage.setItem(
+                  "scalol_token", x.token.toString
+                )
+              }
+            }
           } else if (!alert) {
             alert = true
             jQuery("#error").append("<div class=\"alert alert-danger\" role=\"alert\">" + "Passwords don't match, try again" + "</div>")
@@ -60,5 +72,5 @@ class Signup {
 }
 
 class SignupData(email: String, username: String, password: String) {
-  override def toString: String = "{\"email\":\"" + email + "\",\"username\":\"" + username + "\",\"password\":\"" + password + "\"}"
+  override def toString: String = "{\"mail\":\"" + email + "\",\"username\":\"" + username + "\",\"password\":\"" + password + "\"}"
 }

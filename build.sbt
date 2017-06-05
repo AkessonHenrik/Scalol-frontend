@@ -25,3 +25,6 @@ libraryDependencies ++= Seq(
   "org.scala-js" %%% "scalajs-dom" % "0.9.2"
 )
 libraryDependencies +=  "org.scalaj" %% "scalaj-http" % "2.3.0"
+libraryDependencies += "io.scalajs.npm" %%% "form-data" % "0.4.0-pre5"
+
+jsDependencies += RuntimeDOM

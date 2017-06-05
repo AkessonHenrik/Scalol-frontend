@@ -30,12 +30,13 @@
     background-color: transparent;
 }
 
-#login, #signup, #signupButton, #loginButton {
+#login, #signup, #signupButton, #loginButton, #newPost, #modifyProfile, #postButton {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0px;
 }
-#login, #signup {
+
+#login, #signup, #newPost, #modifyProfile, #postButton {
     margin: 10px 3px 3px;
     float: right !important;
 }
@@ -50,16 +51,15 @@
     padding: 20px;
 }
 
-#password, #repeatPassword, #username, #email {
+#password, #repeatPassword, #username, #email, #postTitle, #file, #tags {
     margin: 10px;
     width: 500px;
 }
 
-#loginButton, #signupButton {
+#loginButton, #signupButton, #newPost, #modifyProfile, #postButton {
     margin-left: 50%;
     transform: translate(-50%, 0%);
 }
-
 
 #posts {
     margin-top: 100px;
@@ -67,5 +67,31 @@
 
 .post {
     margin-left: 50%;
-    transform: translate(-25%, 0);
+    transform: translate(-50%, 0);
+    border: 1px solid gray;
+}
+
+#loggedUsername {
+    color: white;
+    float: right;
+}
+
+.glyphicon {
+    margin: 10px;
+}
+
+.btn {
+    width: 155px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.post img {
+    width: 70%;
+    left: 50%;
+}
+
+#next {
+    margin-left: 50%;
+    transform: translate(-50%, 0%);
 }
