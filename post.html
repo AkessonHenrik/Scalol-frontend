@@ -29,50 +29,65 @@
 
     <input id="file" class="form-control" placeholder="Browse" type="file" aria-describedby="basic-addon1">
 
-    <input id="tags" class="form-control" placeholder="Tags in format ['tag 1', 'tag 2',...]" type="text">
+    <!--<input id="tags" class="form-control" placeholder="Tags in format ['tag 1', 'tag 2',...]" type="text">-->
 
     <button id="postButton" class="btn btn-success">Submit</button>
 </div>
 <script type="text/javascript">
-    $('#postButton').on('click', function () {
-        console.log("HEYEY")
-        var thisData = new FormData();
-        thisData.append( 'picture', $( '#file' )[0].files[0] );
+    $("#postButton").on('click', function () {
+        if ($("#postTitle").val() === "") {
+            console.log("Empty title")
+        } else {
+            var thisData = new FormData();
+            thisData.append('picture', $('#file')[0].files[0]);
 
-        $.ajax({
-            // Your server script to process the upload
-            url: 'http://nixme.ddns.net:9000/upload',
-            type: 'POST',
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader('auth', localStorage["scalol_token"]);
-            },
+            $.ajax({
+                url: 'http://nixme.ddns.net:9000/upload',
+                type: 'POST',
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('auth', localStorage["scalol_token"]);
+                },
 
-            // Form data
-            data: thisData,
+                data: thisData,
 
-            // Tell jQuery not to process data or worry about content-type
-            // You *must* include these options!
-            cache: false,
-            contentType: false,
-            processData: false,
+                cache: false,
+                contentType: false,
+                processData: false,
 
-            // Custom XMLHttpRequest
-            xhr: function () {
-                var myXhr = $.ajaxSettings.xhr();
-                if (myXhr.upload) {
-                    // For handling the progress of the upload
-                    myXhr.upload.addEventListener('progress', function (e) {
-                        if (e.lengthComputable) {
-                            $('progress').attr({
-                                value: e.loaded,
-                                max: e.total,
-                            });
-                        }
-                    }, false);
+                xhr: function () {
+                    var myXhr = $.ajaxSettings.xhr();
+                    if (myXhr.upload) {
+                        myXhr.upload.addEventListener('progress', function (e) {
+                            if (e.lengthComputable) {
+                                $('progress').attr({
+                                    value: e.loaded,
+                                    max: e.total
+                                });
+                            }
+                        }, false);
+                    }
+                    return myXhr;
                 }
-                return myXhr;
-            }
-        });
+            }).then(function (xhr) {
+                $.ajax({
+                    type: "POST",
+                    beforeSend: function (request) {
+                        request.setRequestHeader("auth", localStorage["scalol_token"]);
+                        request.setRequestHeader("Content-Type", "application/json");
+                    },
+                    url: "http://nixme.ddns.net:9000/posts",
+                    data: JSON.stringify({
+                        "title": $("#postTitle").val(),
+                        "image_path": xhr.location,
+                        "nsfw": false
+                    }),
+                    processData: false,
+                    success: function (msg) {
+                        $("#results").append("The result =" + msg);
+                    }
+                });
+            });
+        }
     });
 </script>
 </body>

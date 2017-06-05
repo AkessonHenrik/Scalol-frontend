@@ -39,7 +39,7 @@ object Main extends js.JSApp {
       }
       val xhr = new dom.XMLHttpRequest()
       xhr.open("GET",
-        "src/main/resources/posts.json"
+        Util.postUrl
       )
       xhr.onload = { (e: dom.Event) =>
         if (xhr.status == 200) {
@@ -58,7 +58,7 @@ object Main extends js.JSApp {
   def parse(obj: js.Dynamic, typeOfObject: String): HtmlObject = {
     typeOfObject match {
       case "post" => {
-        new Post(obj.id, 0, obj.title, 0, obj.tags, true, obj.image)
+        new Post(obj.id, obj.score.asInstanceOf[Int], obj.title, obj.owner_id.asInstanceOf[Int], obj.nsfw.asInstanceOf[Boolean], obj.image_path)
       }
       case "user" => {
         new User()
@@ -89,18 +89,16 @@ trait HtmlObject {
   def toHtml: String
 }
 
-class Post(argId: js.Dynamic, argScore: Int, argTitle: js.Dynamic, argOwner_id: Integer, argTags: js.Dynamic, argNsfw: Boolean, argImage: js.Dynamic) extends HtmlObject {
+class Post(argId: js.Dynamic, argScore: Int, argTitle: js.Dynamic, argOwner_id: Integer, argNsfw: Boolean, argImage: js.Dynamic) extends HtmlObject {
   def id = argId
 
   def score = argScore
 
   def title = argTitle
 
-  def args = argTags
-
   def nsfw = argNsfw
 
-  def image = argImage
+  def image_path = argImage
 
   lazy val upvote = jQuery("#updvote" + id)
 
@@ -121,7 +119,7 @@ class Post(argId: js.Dynamic, argScore: Int, argTitle: js.Dynamic, argOwner_id: 
     var stringToBuild: String = "<div class=\"post\">"
     stringToBuild += "<h1 class=\"postTitle\">" + title + "</h1>"
     stringToBuild += "<h2>Score: " + score + "</h2>"
-    stringToBuild += "<img src=\"" + image + "\"><br>"
+    stringToBuild += "<img src=\"" + image_path + "\"><br>"
     stringToBuild += "<button id=\"upvote" + id + "\" style=\"margin-left: 100px\" type=\"button\" class=\"btn btn-default btn-lg\"><span class=\"glyphicon glyphicon-thumbs-up\" aria-hidden=\"true\"></span>Upvote</button>"
     stringToBuild += "<button id=\"downvote" + id + "\" type=\"button\" class=\"btn btn-default btn-lg\"><span class=\"glyphicon glyphicon-thumbs-down\" aria-hidden=\"true\"></span>Downvote</button>"
     stringToBuild += "</div>"
