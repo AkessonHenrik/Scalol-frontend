@@ -5,8 +5,8 @@
     <title>Log in</title>
 
     <!-- Include Scala.js compiled code -->
-    <script type="text/javascript" src="./target/scala-2.12/scala-js-tutorial-jsdeps.js"></script>
-    <script type="text/javascript" src="target/scala-2.12/scalol-fastopt.js"></script>
+    <script type="text/javascript" src="./target/scala-2.12/scalol-jsdeps.js"></script>
+    <script type="text/javascript" src="./target/scala-2.12/scalol-fastopt.js"></script>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -29,7 +29,11 @@
 
     <input id="password" class="form-control" placeholder="Password" type="password">
 
-    <button id="loginButton" class="btn btn-success">Log in</button>
+    <button id="loginButton" onclick="Login.login()" class="btn btn-success">Log in</button>
 </div>
+<script>
+    Util.loadNavbar()
+//    Login.start()
+</script>
 </body>
 </html>

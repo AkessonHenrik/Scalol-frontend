@@ -30,15 +30,18 @@
     background-color: transparent;
 }
 
-#login, #signup, #signupButton, #loginButton, #newPost, #modifyProfile, #postButton {
+#login, #signup, #signupButton, #loginButton, #newPost, #modifyProfile, #postButton, #logout, #submitComment {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0px;
 }
 
-#login, #signup, #newPost, #modifyProfile, #postButton {
+#login, #signup, #newPost, #modifyProfile, #logout {
     margin: 10px 3px 3px;
     float: right !important;
+}
+#post {
+    margin-top: 100px;
 }
 
 #wrapper {
@@ -50,19 +53,27 @@
     margin-right: auto;
     padding: 20px;
 }
-
+#commentBox {
+    background-color: lightgray;
+    margin-top: 15%;
+    width: fit-content;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
 #password, #repeatPassword, #username, #email, #postTitle, #file, #tags {
     margin: 10px;
     width: 500px;
 }
 
-#loginButton, #signupButton, #newPost, #modifyProfile, #postButton {
+#loginButton, #signupButton, #postButton, #submitComment {
     margin-left: 50%;
     transform: translate(-50%, 0%);
 }
 
 #posts {
-    margin-top: 100px;
+    margin-top: 200px;
 }
 
 .post {
@@ -94,4 +105,18 @@
 #next {
     margin-left: 50%;
     transform: translate(-50%, 0%);
+}
+
+#comment {
+    width: 500px;
+    height: 50px;
+    margin-top: 100px;
+
+    margin-left: 50%;
+    transform: translate(-50%, 0);
+}
+#commentInput {
+    width: 100%;
+    height: 200px;
+    font-size: 30px;
 }

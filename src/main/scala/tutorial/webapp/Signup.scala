@@ -58,6 +58,10 @@ class Signup {
                 dom.window.localStorage.setItem(
                   "scalol_token", x.token.toString
                 )
+                dom.window.localStorage.setItem(
+                  "scalol_username", usernameElement.value.toString
+                )
+                dom.window.location.href = "./index.html"
               }
             }
           } else if (!alert) {

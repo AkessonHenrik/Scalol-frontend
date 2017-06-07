@@ -8,10 +8,11 @@ import tutorial.webapp.Main.nextElement
 
 import scala.scalajs.js
 import js.Dynamic._
+import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel, JSGlobal, ScalaJSDefined}
 import scala.scalajs.js.JSON
-import scala.scalajs.js.annotation.{JSGlobal, ScalaJSDefined}
 
-object Main extends js.JSApp {
+@JSExportTopLevel("Main")
+object Main {
   lazy val nextElement = jQuery("#next")
   lazy val emailElement = jQuery("#email")
   lazy val usernameElement = jQuery("#username")
@@ -21,58 +22,103 @@ object Main extends js.JSApp {
   lazy val searchElement = jQuery("#searcher")
   var searching = false
   lazy val searchField = dom.document.createElement("input")
-
+  var lowestId: Int = -1
   var posts: js.Array[Post] = new js.Array[Post]()
+  val loggedIn: Boolean = dom.window.localStorage.getItem("scalol_token") != null
 
   @js.native
+  @JSExport
   def main(): Unit = {
-    jQuery(() => {
-      Util.loadNavbar
-      new Signup().start()
-      new Login().start()
-      new newPost().start()
-
-      nextElement.click {
-        (_: JQueryEvent) => {
-          println("Next page")
-        }
-      }
-      val xhr = new dom.XMLHttpRequest()
-      xhr.open("GET",
-        Util.postUrl
-      )
-      xhr.onload = { (e: dom.Event) =>
-        if (xhr.status == 200) {
-          val jsonposts: js.Array[js.Dynamic] = JSON.parse(xhr.response.toString).asInstanceOf[js.Array[js.Dynamic]]
-          for (post <- jsonposts) {
-            val j = parse(post, "post")
-            jQuery("#posts").append(j.toHtml)
-          }
-        }
-      }
-      xhr.send()
-    })
+//    jQuery(() => {
+//      Util.loadNavbar
+//      new PostView().start()
+      loadmore()
+//    })
   }
 
+  @JSExportTopLevel("logout")
+  def logout(): Unit = {
+    dom.window.localStorage.removeItem("scalol_token")
+    dom.window.localStorage.removeItem("scalol_username")
+//    dom.window.location = "./index.html"
+    Util.loadNavbar()
+  }
+
+  @JSExportTopLevel("upvote")
+  def upvote(id: Int): Unit = {
+    println("Upvote " + id)
+    val xhr = new dom.XMLHttpRequest()
+    xhr.open("GET",
+      Util.upvoteUrl + "/" + id
+    )
+    xhr.setRequestHeader("auth", dom.window.localStorage.getItem("scalol_token"))
+    xhr.onload = { (e: dom.Event) =>
+      if (xhr.status == 200) {
+        println(xhr.response.toString)
+      }
+    }
+    xhr.send()
+  }
+
+  @JSExportTopLevel("downvote")
+  def downvote(id: Int): Unit = {
+    println("Downvote: " + id)
+    var xhr = new dom.XMLHttpRequest()
+    println(xhr)
+    xhr.open("GET",
+      Util.downvoteUrl + "/" + id
+    )
+    xhr.setRequestHeader("auth", dom.window.localStorage.getItem("scalol_token"))
+    xhr.onload = { (e: dom.Event) =>
+      if (xhr.status == 200) {
+        println(xhr.response.toString)
+      }
+    }
+    xhr.send()
+  }
+
+  @JSExportTopLevel("loadmore")
+  def loadmore(): Unit = {
+    //    http://nixme.ddns.net/posts?offset=6&number=2
+    println("HELLELELE")
+    var xhr = new dom.XMLHttpRequest()
+    var url = ""
+    if (this.lowestId == -1) {
+      url = Util.postUrl
+    } else {
+      url = Util.postUrl + "?offset=" + (this.lowestId - 1) + "&number=2"
+    }
+    xhr.open("GET",
+      url
+    )
+    xhr.onload = { (e: dom.Event) =>
+      if (xhr.status == 200) {
+        val jsPosts: js.Array[js.Dynamic] = JSON.parse(xhr.response.toString).asInstanceOf[js.Array[js.Dynamic]]
+        println("Lowest id is = " + this.lowestId)
+        if (this.lowestId == -1) this.lowestId = jsPosts.apply(0).id.asInstanceOf[Int]
+        println("Now lowest id is " + this.lowestId)
+        for (jsPost <- jsPosts) {
+          if (jsPost.id.asInstanceOf[Int] < this.lowestId) {
+            this.lowestId = jsPost.id.asInstanceOf[Int]
+            println("Now lowest id is " + this.lowestId)
+          }
+          val postToAdd = parse(jsPost, "post")
+          jQuery("#posts").append(postToAdd.toHtml)
+        }
+      }
+    }
+    xhr.send()
+
+  }
 
   def parse(obj: js.Dynamic, typeOfObject: String): HtmlObject = {
     typeOfObject match {
-      case "post" => {
-        new Post(obj.id, obj.score.asInstanceOf[Int], obj.title, obj.owner_id.asInstanceOf[Int], obj.nsfw.asInstanceOf[Boolean], obj.image_path)
-      }
-      case "user" => {
-        new User()
-      }
-      case "comment" => {
-        new Comment()
-      }
-      case "message" => {
-        new Message()
-      }
-
+      case "post" => new Post(obj.id, obj.score.asInstanceOf[Int], obj.title, obj.owner_id.asInstanceOf[Int], obj.nsfw.asInstanceOf[Boolean], obj.image_path)
+      case "user" => new User()
+      case "comment" => new Comment()
+      case "message" => new Message()
     }
   }
-
 }
 
 @ScalaJSDefined
@@ -100,30 +146,18 @@ class Post(argId: js.Dynamic, argScore: Int, argTitle: js.Dynamic, argOwner_id: 
 
   def image_path = argImage
 
-  lazy val upvote = jQuery("#updvote" + id)
-
-  lazy val downvote = jQuery("#downdvote" + id)
-
-  def activate(): Unit = {
-    downvote.click {
-      (_: JQueryEvent) => {
-        println("Downvote " + id)
-      }
-    }
-  }
-
-  this.activate()
 
   override def toHtml: String = {
 
     var stringToBuild: String = "<div class=\"post\">"
-    stringToBuild += "<h1 class=\"postTitle\">" + title + "</h1>"
+    stringToBuild += "<a href=\"./posts.html?" + id + "\"><h1 class=\"postTitle\">" + title + "</h1></a>"
     stringToBuild += "<h2>Score: " + score + "</h2>"
     stringToBuild += "<img src=\"" + image_path + "\"><br>"
-    stringToBuild += "<button id=\"upvote" + id + "\" style=\"margin-left: 100px\" type=\"button\" class=\"btn btn-default btn-lg\"><span class=\"glyphicon glyphicon-thumbs-up\" aria-hidden=\"true\"></span>Upvote</button>"
-    stringToBuild += "<button id=\"downvote" + id + "\" type=\"button\" class=\"btn btn-default btn-lg\"><span class=\"glyphicon glyphicon-thumbs-down\" aria-hidden=\"true\"></span>Downvote</button>"
+    if (dom.window.localStorage.getItem("scalol_token") != null) {
+      stringToBuild += "<button id=\"upvote" + id + "\" onclick=upvote(" + id + ") style=\"margin-left: 100px\" type=\"button\" class=\"btn btn-default btn-lg\"><span class=\"glyphicon glyphicon-thumbs-up\" aria-hidden=\"true\"></span>Upvote</button>"
+      stringToBuild += "<button id=\"downvote" + id + "\" onclick=downvote(" + id + ") type=\"button\" class=\"btn btn-default btn-lg\"><span class=\"glyphicon glyphicon-thumbs-down\" aria-hidden=\"true\"></span>Downvote</button>"
+    }
     stringToBuild += "</div>"
-
     stringToBuild
   }
 }
