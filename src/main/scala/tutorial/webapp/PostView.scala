@@ -33,7 +33,7 @@ object PostView {
     if (dom.window.localStorage.getItem("scalol_token") != null) {
       jQuery("#comment").append(
         "<textarea rows=\"4\" cols=\"50\" id=\"commentInput\" placeholder=\"Enter comment\"></textarea>"
-        + "<button id=\"submitComment\" onclick=PostView.postComment() type=\"button\" class=\"btn btn-default btn-lg\">Submit</button>"
+          + "<button id=\"submitComment\" onclick=PostView.postComment() type=\"button\" class=\"btn btn-default btn-lg\">Submit</button>"
       )
     } else {
       jQuery("#comment").append(
@@ -63,10 +63,8 @@ object PostView {
 
   def getComments(postId: String): Unit = {
     // Get comments
-    println("getComments of " + postId)
     val xhr = new dom.XMLHttpRequest()
     val url = Util.commentUrl + "/" + postId
-    println(url)
     xhr.open("GET",
       url
     )
@@ -74,19 +72,21 @@ object PostView {
       if (xhr.status == 200) {
         val jsComments: js.Array[js.Dynamic] = JSON.parse(xhr.response.toString).asInstanceOf[js.Array[js.Dynamic]]
         println(JSON.stringify(jsComments))
-        //        val postToAdd = parse(jsPost, "post")
-        //        jQuery("#post").append(postToAdd.toHtml)
+        for (jsComment <- jsComments) {
+          jQuery("#comments").append(parse(jsComment, "comment").toHtml)
+        }
       } else {
         println("Comments response: " + xhr.response.toString)
       }
     }
     xhr.send()
   }
+
   @JSExport
   def postComment(): Unit = {
     println("getComments of " + postId)
-    var commentData = jQuery("#commentInput").value
-    val dataString = new CommentData("1", postId, commentData.toString).toString;
+    val commentData = jQuery("#commentInput").value
+    val dataString = new CommentData(postId, commentData.toString).toString;
     println("Data string = " + dataString)
     dom.ext.Ajax.post(
       url = Util.commentUrl, // + "/" + postId,
@@ -95,14 +95,13 @@ object PostView {
     ).foreach { xhr =>
       if (xhr.status == 200) {
         val x = JSON.parse(xhr.responseText)
-        println("comment")
         println(x)
-//        dom.window.location.href = "./posts.html/" + postId
+        dom.window.location.href = "./posts.html?" + postId
       }
     }
   }
 }
 
-class CommentData(userId: String, postId: String, content: String) {
+class CommentData(postId: String, content: String) {
   override def toString: String = "{\"content\": \"" + content + "\", \"post_id\": " + postId + "}"
 }

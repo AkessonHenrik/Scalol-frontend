@@ -24,23 +24,24 @@ object Main {
   lazy val searchField = dom.document.createElement("input")
   var lowestId: Int = -1
   var posts: js.Array[Post] = new js.Array[Post]()
-  val loggedIn: Boolean = dom.window.localStorage.getItem("scalol_token") != null
+
+  def loggedIn(): Boolean = dom.window.localStorage.getItem("scalol_token") != null
 
   @js.native
   @JSExport
   def main(): Unit = {
-//    jQuery(() => {
-//      Util.loadNavbar
-//      new PostView().start()
-      loadmore()
-//    })
+    //    jQuery(() => {
+    //      Util.loadNavbar
+    //      new PostView().start()
+    loadmore()
+    //    })
   }
 
   @JSExportTopLevel("logout")
   def logout(): Unit = {
     dom.window.localStorage.removeItem("scalol_token")
     dom.window.localStorage.removeItem("scalol_username")
-//    dom.window.location = "./index.html"
+    dom.window.location.href = "./index.html"
     Util.loadNavbar()
   }
 
@@ -102,8 +103,10 @@ object Main {
             this.lowestId = jsPost.id.asInstanceOf[Int]
             println("Now lowest id is " + this.lowestId)
           }
+
           val postToAdd = parse(jsPost, "post")
-          jQuery("#posts").append(postToAdd.toHtml)
+          if (!(!loggedIn() && jsPost.nsfw.asInstanceOf[Boolean]))
+            jQuery("#posts").append(postToAdd.toHtml)
         }
       }
     }
@@ -115,10 +118,11 @@ object Main {
     typeOfObject match {
       case "post" => new Post(obj.id, obj.score.asInstanceOf[Int], obj.title, obj.owner_id.asInstanceOf[Int], obj.nsfw.asInstanceOf[Boolean], obj.image_path)
       case "user" => new User()
-      case "comment" => new Comment()
+      case "comment" => new Comment(obj.username.asInstanceOf[String], obj.content.asInstanceOf[String])
       case "message" => new Message()
     }
   }
+
 }
 
 @ScalaJSDefined
@@ -166,8 +170,8 @@ class User extends HtmlObject {
   override def toHtml: String = ???
 }
 
-class Comment extends HtmlObject {
-  override def toHtml: String = ???
+class Comment(username: String, content: String) extends HtmlObject {
+  override def toHtml: String = "<div class=\"othercomment\"><h2>" + username + ": </h2><p>" + content + "</p></div>"
 }
 
 class Message extends HtmlObject {

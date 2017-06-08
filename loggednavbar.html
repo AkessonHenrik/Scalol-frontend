@@ -23,15 +23,14 @@
             </a>
         </div>
         <!--<button id="searcher" type="button" class="btn btn-default" aria-label="Right Align">-->
-        <span id="searcher" class="glyphicon glyphicon-search" aria-hidden="false"></span>
         <!--</button>-->
         <button id="newPost" type="button" onclick="window.location='./post.html';" class="btn btn-success"
                 aria-label="Right Align">
             Create post
         </button>
-        <button id="modifyProfile" type="button" onclick="window.location='';" class="btn btn-info"
+        <button id="modifyProfile" type="button" onclick="window.location='./editProfile.html';" class="btn btn-info"
                 aria-label="Right Align">
-            Edit Profile
+            <span id="cog" class="glyphicon glyphicon-cog" aria-hidden="false"></span>
         </button>
         <button id="logout" type="button" onclick="logout()" class="btn btn-info"
                 aria-label="Right Align">
@@ -39,3 +38,6 @@
         </button>
     </div>
 </nav>
+<script>
+    Util.insertUsername()
+</script>

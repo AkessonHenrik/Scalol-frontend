@@ -30,7 +30,7 @@
     background-color: transparent;
 }
 
-#login, #signup, #signupButton, #loginButton, #newPost, #modifyProfile, #postButton, #logout, #submitComment {
+#login, #signup, #signupButton, #loginButton, #newPost, #modifyProfile, #postButton, #logout, #submitComment, #deleteButton {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0px;
@@ -53,27 +53,22 @@
     margin-right: auto;
     padding: 20px;
 }
-#commentBox {
-    background-color: lightgray;
-    margin-top: 15%;
-    width: fit-content;
-    height: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 20px;
-}
-#password, #repeatPassword, #username, #email, #postTitle, #file, #tags {
+#password, #repeatPassword, #username, #email, #postTitle, #file, #tags, .newPassword, #newEmail, #newUsername {
     margin: 10px;
     width: 500px;
 }
 
-#loginButton, #signupButton, #postButton, #submitComment {
+#loginButton, #signupButton, #postButton, #submitComment, #deleteButton {
     margin-left: 50%;
     transform: translate(-50%, 0%);
 }
 
 #posts {
     margin-top: 200px;
+}
+#cog {
+    padding: 0px;
+    margin: 0px;
 }
 
 .post {
@@ -108,15 +103,43 @@
 }
 
 #comment {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
     width: 500px;
     height: 50px;
-    margin-top: 100px;
-
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#commentBox {
+    background-color: #EEEEEE;
+    margin-top: 15%;
+    width: 100%;
+    height: 220px;
+    border-top: 1px solid lightgray;
+    margin-left: auto;
+    margin-right: auto;
+    position: fixed;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 20px;
+}
+#commentInput {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 100%;
+    height: 100px;
+    font-size: 20px;
+}
+.othercomment {
+    border: 1px solid gray;
+    width: 792px;
+    height: fit-content;
     margin-left: 50%;
     transform: translate(-50%, 0);
 }
-#commentInput {
-    width: 100%;
-    height: 200px;
-    font-size: 30px;
+#comments {
+    margin-bottom: 300px;
 }

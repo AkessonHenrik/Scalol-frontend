@@ -38,4 +38,10 @@ object Util {
       jQuery("#scalolNavbar").load("./loggednavbar.html")
     }
   }
+
+  @JSExport
+  def insertUsername(): Unit = {
+    jQuery("#modifyProfile").append(dom.window.localStorage.getItem("scalol_username"))
+  }
+
 }

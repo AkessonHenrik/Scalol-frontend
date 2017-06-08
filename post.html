@@ -28,13 +28,14 @@
     <input id="postTitle" class="form-control" placeholder="Title" type="text" aria-describedby="basic-addon1">
 
     <input id="file" class="form-control" placeholder="Browse" type="file" aria-describedby="basic-addon1">
-
+    <h2><input id="nsfw" type="checkbox" name="nsfw" value="nsfw">Nsfw<br></h2>
     <!--<input id="tags" class="form-control" placeholder="Tags in format ['tag 1', 'tag 2',...]" type="text">-->
 
     <button id="postButton" class="btn btn-success">Submit</button>
 </div>
 <script type="text/javascript">
     $("#postButton").on('click', function () {
+
         if ($("#postTitle").val() === "") {
             console.log("Empty title")
         } else {
@@ -69,6 +70,7 @@
                     return myXhr;
                 }
             }).then(function (xhr) {
+                console.log($("#radio_1").prop("checked", true))
                 $.ajax({
                     type: "POST",
                     beforeSend: function (request) {
@@ -79,14 +81,15 @@
                     data: JSON.stringify({
                         "title": $("#postTitle").val(),
                         "image_path": xhr.location,
-                        "nsfw": false
+                        "nsfw": $("#nsfw").is(":checked")
+
                     }),
                     processData: false,
                     success: function (msg) {
                         $("#results").append("The result =" + msg);
                     }
                 });
-//                window.location = "./index.html"
+//                window.location.href = "./index.html"
             });
         }
     });

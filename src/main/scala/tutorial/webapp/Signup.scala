@@ -8,11 +8,13 @@ import scala.scalajs.js
 import scala.util.{Failure, Success}
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.runNow
 import scala.scalajs.js.JSON
+import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel}
 
 /**
   * Created by henrik on 19/05/17.
   */
-class Signup {
+@JSExportTopLevel("Signup")
+object Signup {
   lazy val emailElement = jQuery("#email")
   lazy val usernameElement = jQuery("#username")
   lazy val passwordElement = jQuery("#password")
@@ -28,7 +30,8 @@ class Signup {
 
   var alert: Boolean = false;
 
-  def start() = {
+  @JSExport
+  def signup() = {
     jQuery(() => {
 
       jQuery("#user").append("<p>Signed in as " + usernameElement.value + "</p>")

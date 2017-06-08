@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign up</title>
+    <title>Scalol</title>
 
     <!-- Include Scala.js compiled code -->
     <script type="text/javascript" src="./target/scala-2.12/scalol-jsdeps.js"></script>
@@ -26,18 +26,24 @@
 <div id="scalolNavbar"></div>
 <div id="wrapper">
     <div id="error"></div>
-    <input id="email" class="form-control" placeholder="Email" type="text" aria-describedby="basic-addon1">
+    <input id="newUsername" class="form-control" placeholder="New username" type="text" aria-describedby="basic-addon1">
 
-    <input id="username" class="form-control" placeholder="Username" type="text" aria-describedby="basic-addon1">
+    <input id="newEmail" class="form-control" placeholder="New email address" type="text"
+           aria-describedby="basic-addon1">
 
-    <input id="password" class="form-control" placeholder="Password" type="password">
+    <input id="password" class="form-control" placeholder="New password" type="password"
+           aria-describedby="basic-addon1">
 
-    <input id="repeatPassword" class="form-control" placeholder="Repeat Password" type="password">
+    <input id="repeatPassword" class="form-control" placeholder="Repeat new password" type="password"
+           aria-describedby="basic-addon1">
 
-    <button id="signupButton" onclick="Signup.signup()" class="btn btn-success">Submit</button>
+    <button id="postButton" class="btn btn-success" onclick="EditProfile.update()">Update profile</button>
+    <button id="deleteButton" class="btn btn-danger" onclick="EditProfile.delete()">Delete profile</button>
+
 </div>
 <script>
     Util.loadNavbar()
+
 </script>
 </body>
 </html>
