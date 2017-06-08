@@ -5,6 +5,11 @@
     font-family: 'Open Sans', sans-serif;
 }
 
+#scalol {
+    border: none;
+    margin: 0;
+    box-shadow: 0 2px 5px #888888;
+}
 .thing {
     background-color: black;
     color: white !important;
@@ -64,7 +69,7 @@
 }
 
 #posts {
-    margin-top: 200px;
+    margin-top: 100px;
 }
 #cog {
     padding: 0px;
@@ -73,8 +78,9 @@
 
 .post {
     margin-left: 50%;
+    margin-bottom: 20px;
     transform: translate(-50%, 0);
-    border: 1px solid gray;
+    border-bottom: 1px solid lightgray;
 }
 
 #loggedUsername {
@@ -106,8 +112,8 @@
     position: relative;
     left: 50%;
     transform: translate(-50%, 0);
-    width: 500px;
-    height: 50px;
+    width: 800px;
+    height: 100px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -115,7 +121,7 @@
     background-color: #EEEEEE;
     margin-top: 15%;
     width: 100%;
-    height: 220px;
+    height: 150px;
     border-top: 1px solid lightgray;
     margin-left: auto;
     margin-right: auto;
@@ -123,14 +129,15 @@
     bottom: 0%;
     left: 50%;
     transform: translate(-50%, 0);
-    padding: 20px;
+    padding: 0px;
 }
 #commentInput {
     position: relative;
     left: 50%;
+    margin: 5px;
     transform: translate(-50%, 0);
-    width: 100%;
-    height: 100px;
+    width: 70%;
+    height: 60px;
     font-size: 20px;
 }
 .othercomment {
@@ -142,4 +149,7 @@
 }
 #comments {
     margin-bottom: 300px;
+}
+#submitComment {
+    margin-top: 5px!important;
 }

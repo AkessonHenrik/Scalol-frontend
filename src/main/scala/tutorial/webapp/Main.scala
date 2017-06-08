@@ -30,19 +30,15 @@ object Main {
   @js.native
   @JSExport
   def main(): Unit = {
-    //    jQuery(() => {
-    //      Util.loadNavbar
-    //      new PostView().start()
     loadmore()
-    //    })
   }
 
   @JSExportTopLevel("logout")
   def logout(): Unit = {
     dom.window.localStorage.removeItem("scalol_token")
     dom.window.localStorage.removeItem("scalol_username")
-    dom.window.location.href = "./index.html"
     Util.loadNavbar()
+    dom.window.location.href = "./index.html"
   }
 
   @JSExportTopLevel("upvote")
@@ -154,14 +150,17 @@ class Post(argId: js.Dynamic, argScore: Int, argTitle: js.Dynamic, argOwner_id: 
   override def toHtml: String = {
 
     var stringToBuild: String = "<div class=\"post\">"
+    stringToBuild += "<div class=\"postContent\">"
     stringToBuild += "<a href=\"./posts.html?" + id + "\"><h1 class=\"postTitle\">" + title + "</h1></a>"
     stringToBuild += "<h2>Score: " + score + "</h2>"
-    stringToBuild += "<img src=\"" + image_path + "\"><br>"
+    stringToBuild += "<img src=\"" + image_path + "\" style=\"margin-left: 50%; transform: translate(-50%, 0%)\"><br>"
     if (dom.window.localStorage.getItem("scalol_token") != null) {
-      stringToBuild += "<button id=\"upvote" + id + "\" onclick=upvote(" + id + ") style=\"margin-left: 100px\" type=\"button\" class=\"btn btn-default btn-lg\"><span class=\"glyphicon glyphicon-thumbs-up\" aria-hidden=\"true\"></span>Upvote</button>"
+      stringToBuild += "<div style=\"position: relative; margin-left: 50%; transform: translate(-50%, 0%)\" >"
+      stringToBuild += "<button id=\"upvote" + id + "\" onclick=upvote(" + id + ") type=\"button\" class=\"btn btn-default btn-lg\"><span class=\"glyphicon glyphicon-thumbs-up\" aria-hidden=\"true\"></span>Upvote</button>"
       stringToBuild += "<button id=\"downvote" + id + "\" onclick=downvote(" + id + ") type=\"button\" class=\"btn btn-default btn-lg\"><span class=\"glyphicon glyphicon-thumbs-down\" aria-hidden=\"true\"></span>Downvote</button>"
+      stringToBuild += "</div>"
     }
-    stringToBuild += "</div>"
+    stringToBuild += "</div></div>"
     stringToBuild
   }
 }
