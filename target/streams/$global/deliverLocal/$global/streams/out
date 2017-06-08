@@ -1,0 +1,4 @@
+[0m[[0minfo[0m] [0m:: delivering :: scalol#scalol_sjs0.6_2.12;1.0 :: 1.0 :: release :: Sun Jun 04 22:54:17 CEST 2017[0m
+[0m[[0mdebug[0m] [0m	options = status=release pubdate=Sun Jun 04 22:54:17 CEST 2017 validate=true resolveDynamicRevisions=true merge=true resolveId=null pubBranch=null[0m
+[0m[[0minfo[0m] [0m	delivering ivy file to /home/henrik/Documents/Scalol-frontend/target/scala-2.12/ivy-1.0.xml[0m
+[0m[[0mdebug[0m] [0m	deliver done (41ms)[0m

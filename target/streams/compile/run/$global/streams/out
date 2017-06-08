@@ -1,0 +1,24 @@
+[0m[[0minfo[0m] [0mRunning tutorial.webapp.Main[0m
+[0m[[0mdebug[0m] [0mwith JSEnv ExternalJSEnv for Node.js with JSDOM[0m
+[0m[[0mdebug[0m] [0mStarting process: node[0m
+[0m[[31merror[0m] [0mError: Uncaught [TypeError: Cannot read property 'getItem' of undefined][0m
+[0m[[31merror[0m] [0m    at reportException (/home/henrik/Documents/Scalol-frontend/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:63:24)[0m
+[0m[[31merror[0m] [0m    at processJavaScript (/home/henrik/Documents/Scalol-frontend/node_modules/jsdom/lib/jsdom/living/nodes/HTMLScriptElement-impl.js:130:7)[0m
+[0m[[31merror[0m] [0m    at HTMLScriptElementImpl._eval (/home/henrik/Documents/Scalol-frontend/node_modules/jsdom/lib/jsdom/living/nodes/HTMLScriptElement-impl.js:65:7)[0m
+[0m[[31merror[0m] [0m    at /home/henrik/Documents/Scalol-frontend/node_modules/jsdom/lib/jsdom/browser/resource-loader.js:31:22[0m
+[0m[[31merror[0m] [0m    at Object.check (/home/henrik/Documents/Scalol-frontend/node_modules/jsdom/lib/jsdom/living/nodes/Document-impl.js:91:11)[0m
+[0m[[31merror[0m] [0m    at /home/henrik/Documents/Scalol-frontend/node_modules/jsdom/lib/jsdom/living/nodes/Document-impl.js:110:12[0m
+[0m[[31merror[0m] [0m    at wrappedEnqueued (/home/henrik/Documents/Scalol-frontend/node_modules/jsdom/lib/jsdom/browser/resource-loader.js:255:16)[0m
+[0m[[31merror[0m] [0m    at ReadStream.readableStream.on (/home/henrik/Documents/Scalol-frontend/node_modules/jsdom/lib/jsdom/browser/resource-loader.js:76:7)[0m
+[0m[[31merror[0m] [0m    at emitNone (events.js:91:20)[0m
+[0m[[31merror[0m] [0m    at ReadStream.emit (events.js:188:7) TypeError: Cannot read property 'getItem' of undefined[0m
+[0m[[31merror[0m] [0m    at $c_Ltutorial_webapp_Util$.loadNavbar__V (/home/henrik/Documents/Scalol-frontend/target/scala-2.12/scalol-fastopt.js:1858:95)[0m
+[0m[[31merror[0m] [0m    at Document.<anonymous> (/home/henrik/Documents/Scalol-frontend/target/scala-2.12/scalol-fastopt.js:4198:35)[0m
+[0m[[31merror[0m] [0m    at fire (/tmp/1496612278263-0/jquery.js:3099:30)[0m
+[0m[[31merror[0m] [0m    at Object.add [as done] (/tmp/1496612278263-0/jquery.js:3145:7)[0m
+[0m[[31merror[0m] [0m    at jQuery.fn.init.jQuery.fn.ready (/tmp/1496612278263-0/jquery.js:3378:25)[0m
+[0m[[31merror[0m] [0m    at jQuery.fn.init (/tmp/1496612278263-0/jquery.js:2821:16)[0m
+[0m[[31merror[0m] [0m    at jQuery (/tmp/1496612278263-0/jquery.js:76:10)[0m
+[0m[[31merror[0m] [0m    at $c_Ltutorial_webapp_Main$.main__V (/home/henrik/Documents/Scalol-frontend/target/scala-2.12/scalol-fastopt.js:4196:50)[0m
+[0m[[31merror[0m] [0m    at /home/henrik/Documents/Scalol-frontend/target/scala-2.12/scalol-fastopt.js:12795:29[0m
+[0m[[31merror[0m] [0m    at /home/henrik/Documents/Scalol-frontend/target/scala-2.12/scalol-fastopt.js:12796:4[0m

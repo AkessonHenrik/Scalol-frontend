@@ -1,0 +1,17 @@
+[0m[[0minfo[0m] [0mPackaging /home/henrik/Documents/Scalol-frontend/target/scala-2.12/scalol_sjs0.6_2.12-1.0-sources.jar ...[0m
+[0m[[0mdebug[0m] [0mInput file mappings:[0m
+[0m[[0mdebug[0m] [0m	tutorial/webapp/Login.scala[0m
+[0m[[0mdebug[0m] [0m	  /home/henrik/Documents/Scalol-frontend/src/main/scala/tutorial/webapp/Login.scala[0m
+[0m[[0mdebug[0m] [0m	tutorial/webapp/Util.scala[0m
+[0m[[0mdebug[0m] [0m	  /home/henrik/Documents/Scalol-frontend/src/main/scala/tutorial/webapp/Util.scala[0m
+[0m[[0mdebug[0m] [0m	tutorial/webapp/Signup.scala[0m
+[0m[[0mdebug[0m] [0m	  /home/henrik/Documents/Scalol-frontend/src/main/scala/tutorial/webapp/Signup.scala[0m
+[0m[[0mdebug[0m] [0m	tutorial/webapp/TutorialTest.scala[0m
+[0m[[0mdebug[0m] [0m	  /home/henrik/Documents/Scalol-frontend/src/main/scala/tutorial/webapp/TutorialTest.scala[0m
+[0m[[0mdebug[0m] [0m	tutorial/webapp/newPost.scala[0m
+[0m[[0mdebug[0m] [0m	  /home/henrik/Documents/Scalol-frontend/src/main/scala/tutorial/webapp/newPost.scala[0m
+[0m[[0mdebug[0m] [0m	posts.json[0m
+[0m[[0mdebug[0m] [0m	  /home/henrik/Documents/Scalol-frontend/src/main/resources/posts.json[0m
+[0m[[0mdebug[0m] [0m	tutorial/webapp/Main.scala[0m
+[0m[[0mdebug[0m] [0m	  /home/henrik/Documents/Scalol-frontend/src/main/scala/tutorial/webapp/Main.scala[0m
+[0m[[0minfo[0m] [0mDone packaging.[0m
