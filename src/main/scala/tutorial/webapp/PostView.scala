@@ -37,7 +37,7 @@ object PostView {
       )
     } else {
       jQuery("#comment").append(
-        "<div class=\"alert alert-info\">\n  <strong>You cannot comment!</strong> Login or Sign up to comment.\n</div>"
+        "<div class=\"alert alert-danger\">\n  <strong>You cannot comment!</strong> Login or Sign up to comment.\n</div>"
       )
     }
   }

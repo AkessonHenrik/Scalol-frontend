@@ -17,24 +17,29 @@
 <link rel="stylesheet" href="./style.css">
 <nav id="scalol" class="navbar navbar-default navbar-fixed-top">
     <div class="container thing">
-        <div class="navbar-header">
-            <a class="navbar-brand header" href="./index.html">
-                Scalol
-            </a>
-        </div>
+        <a href="./index.html">
+            <img src="nyan.png" style="width: 50px; height: 50px">
+            <div class="navbar-header">
+                <div class="navbar-brand header">Scalol</div>
+            </div>
+        </a>
         <!--<button id="searcher" type="button" class="btn btn-default" aria-label="Right Align">-->
         <!--</button>-->
-        <button id="newPost" type="button" onclick="window.location='./post.html';" class="btn btn-success"
+        <button id="logout" type="button" onclick="logout()" class="btn btn-danger"
                 aria-label="Right Align">
-            Create post
+            Sign out
         </button>
         <button id="modifyProfile" type="button" onclick="window.location='./editProfile.html';" class="btn btn-info"
                 aria-label="Right Align">
             <span id="cog" class="glyphicon glyphicon-cog" aria-hidden="false"></span>
         </button>
-        <button id="logout" type="button" onclick="logout()" class="btn btn-info"
+        <button id="chat" type="button" onclick="window.location='./chat.html';" class="btn btn-info"
                 aria-label="Right Align">
-            Sign out
+            <span id="chatIcon" class="glyphicon glyphicon-comment" aria-hidden="false"></span>
+        </button>
+        <button id="newPost" type="button" onclick="window.location='./post.html';" class="btn btn-success"
+                aria-label="Right Align">
+            Create post
         </button>
     </div>
 </nav>

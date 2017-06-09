@@ -35,13 +35,13 @@
     background-color: transparent;
 }
 
-#login, #signup, #signupButton, #loginButton, #newPost, #modifyProfile, #postButton, #logout, #submitComment, #deleteButton {
+#login, #signup, #signupButton, #loginButton, #newPost, #modifyProfile, #chat, #postButton, #logout, #submitComment, #deleteButton {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0px;
 }
 
-#login, #signup, #newPost, #modifyProfile, #logout {
+#login, #signup, #newPost, #modifyProfile, #chat, #logout {
     margin: 10px 3px 3px;
     float: right !important;
 }
@@ -71,9 +71,17 @@
 #posts {
     margin-top: 100px;
 }
-#cog {
-    padding: 0px;
-    margin: 0px;
+#info {
+    margin-left: 50%;
+    margin-top: 80px;
+    transform: translate(-50%, 0%);
+    margin-bottom: 50px;
+}
+#cog, #chatIcon {
+    height: 6px;
+    width: 6px;
+    padding: 0;
+    margin: 0 5px 0 0!important;
 }
 
 .post {

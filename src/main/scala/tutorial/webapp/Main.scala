@@ -113,7 +113,7 @@ object Main {
   def parse(obj: js.Dynamic, typeOfObject: String): HtmlObject = {
     typeOfObject match {
       case "post" => new Post(obj.id, obj.score.asInstanceOf[Int], obj.title, obj.owner_id.asInstanceOf[Int], obj.nsfw.asInstanceOf[Boolean], obj.image_path)
-      case "user" => new User()
+      // case "user" => new User()
       case "comment" => new Comment(obj.username.asInstanceOf[String], obj.content.asInstanceOf[String])
       case "message" => new Message()
     }
@@ -165,8 +165,8 @@ class Post(argId: js.Dynamic, argScore: Int, argTitle: js.Dynamic, argOwner_id: 
   }
 }
 
-class User extends HtmlObject {
-  override def toHtml: String = ???
+class User(username: String, mail: String) extends HtmlObject {
+  override def toHtml: String = "<h1>" + username + "'s posts:</h1>"
 }
 
 class Comment(username: String, content: String) extends HtmlObject {

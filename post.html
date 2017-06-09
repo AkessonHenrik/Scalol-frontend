@@ -25,23 +25,27 @@
 <body>
 <div id="scalolNavbar"></div>
 <div id="wrapper">
-    <input id="postTitle" class="form-control" placeholder="Title" type="text" aria-describedby="basic-addon1">
 
-    <input id="file" class="form-control" placeholder="Browse" type="file" aria-describedby="basic-addon1">
-    <h2><input id="nsfw" type="checkbox" name="nsfw" value="nsfw">Nsfw<br></h2>
-    <!--<input id="tags" class="form-control" placeholder="Tags in format ['tag 1', 'tag 2',...]" type="text">-->
-
-    <button id="postButton" class="btn btn-success">Submit</button>
 </div>
 <script type="text/javascript">
+    if (localStorage.getItem("scalol_token") === null) {
+        jQuery("#wrapper").append(
+            "<div class=\"alert alert-danger\">\n  <strong>You cannot create posts!</strong> Login or Sign up to do so.\n</div>"
+        )
+    } else {
+        $("#wrapper").append(
+            "<input id=\"postTitle\" class=\"form-control\" placeholder=\"Title\" type=\"text\" aria-describedby=\"basic-addon1\">"
+            + "<input id =\"file\" class=\"form-control\" placeholder=\"Browse\" type=\"file\" aria-describedby=\"basic-addon1\">"
+            + "<h2><input id =\"nsfw\" type=\"checkbox\" name=\"nsfw\" value=\"nsfw\">Nsfw<br></h2>"
+            + "<button id =\"postButton\" class=\"btn btn-success\">Submit</button>"
+        )
+    }
     $("#postButton").on('click', function () {
-
         if ($("#postTitle").val() === "") {
             console.log("Empty title")
         } else {
             var thisData = new FormData();
             thisData.append('picture', $('#file')[0].files[0]);
-
             $.ajax({
                 url: 'http://nixme.ddns.net:9000/upload',
                 type: 'POST',
