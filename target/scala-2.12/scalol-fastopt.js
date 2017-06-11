@@ -1530,30 +1530,17 @@ $h_Ltutorial_webapp_Chat$.prototype = $c_Ltutorial_webapp_Chat$.prototype;
 $c_Ltutorial_webapp_Chat$.prototype.init___ = (function() {
   return this
 });
-$c_Ltutorial_webapp_Chat$.prototype.tutorial$webapp$Chat$$$anonfun$main$1__Lorg_scalajs_dom_raw_Event__Lorg_scalajs_dom_raw_XMLHttpRequest__O = (function(e, xhr$1) {
-  if (($uI(xhr$1.status) === 200)) {
-    var x = $g.JSON.parse($objectToString(xhr$1.response));
-    var this$2 = $m_s_Console$();
-    var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-    this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
-    return (void 0)
-  } else {
-    return (void 0)
-  }
+$c_Ltutorial_webapp_Chat$.prototype.$$js$exported$meth$startTalking__O = (function() {
+  this.startTalking__V()
+});
+$c_Ltutorial_webapp_Chat$.prototype.startTalking__V = (function() {
+  /*<skip>*/
 });
 $c_Ltutorial_webapp_Chat$.prototype.$$js$exported$meth$main__Lorg_scalajs_dom_raw_HTMLInputElement__Lorg_scalajs_dom_raw_HTMLPreElement__O = (function($in, pre) {
-  this.main__Lorg_scalajs_dom_raw_HTMLInputElement__Lorg_scalajs_dom_raw_HTMLPreElement__V($in, pre)
+  return (void 0)
 });
-$c_Ltutorial_webapp_Chat$.prototype.main__Lorg_scalajs_dom_raw_HTMLInputElement__Lorg_scalajs_dom_raw_HTMLPreElement__V = (function($in, pre) {
-  var xhr = new $g.XMLHttpRequest();
-  var url = ((($m_Ltutorial_webapp_Util$().url$1 + "/connect?token=") + $as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token"))) + "&to=yee");
-  xhr.open("GET", url);
-  xhr.onload = (function(xhr$1) {
-    return (function(arg1$2) {
-      return $m_Ltutorial_webapp_Chat$().tutorial$webapp$Chat$$$anonfun$main$1__Lorg_scalajs_dom_raw_Event__Lorg_scalajs_dom_raw_XMLHttpRequest__O(arg1$2, xhr$1)
-    })
-  })(xhr);
-  xhr.send()
+$c_Ltutorial_webapp_Chat$.prototype.startTalking = (function() {
+  return this.$$js$exported$meth$startTalking__O()
 });
 $c_Ltutorial_webapp_Chat$.prototype.main = (function(arg$1, arg$2) {
   var prep0 = arg$1;
@@ -1617,7 +1604,7 @@ $c_Ltutorial_webapp_EditProfile$.prototype.init___ = (function() {
   return this
 });
 $c_Ltutorial_webapp_EditProfile$.prototype.$delete__V = (function() {
-  var x$7 = $m_Ltutorial_webapp_Util$().userUrl$1;
+  var x$7 = $m_Ltutorial_webapp_Util$().userUrl__T();
   var y = $as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token"));
   var array = [new $c_T2().init___O__O("auth", y)];
   var this$4 = new $c_scm_MapBuilder().init___sc_GenMap($m_sci_Map$EmptyMap$());
@@ -1666,7 +1653,7 @@ $c_Ltutorial_webapp_EditProfile$.prototype.update__V = (function() {
     var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
     this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((newUsername + "\n"));
     var newEmail = $objectToString((0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#newEmail").val());
-    var x$1 = $m_Ltutorial_webapp_Util$().userUrl$1;
+    var x$1 = $m_Ltutorial_webapp_Util$().userUrl__T();
     var s = new $c_Ltutorial_webapp_SignupData().init___T__T__T(newEmail, newUsername, newPassword).toString__T();
     var jsx$1 = new $c_T2().init___O__O("Content-Type", "application/json");
     var y = $as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token"));
@@ -1770,7 +1757,7 @@ $c_Ltutorial_webapp_Login$.prototype.start__V = (function() {
 });
 $c_Ltutorial_webapp_Login$.prototype.login__V = (function() {
   var credentials = new $c_Ltutorial_webapp_LoginData().init___T__T($objectToString(this.usernameElement__Lorg_scalajs_jquery_JQuery().val()), $objectToString(this.passwordElement__Lorg_scalajs_jquery_JQuery().val()));
-  var x$2 = $m_Ltutorial_webapp_Util$().authUrl$1;
+  var x$2 = $m_Ltutorial_webapp_Util$().authUrl__T();
   var s = credentials.toString__T();
   var array = [new $c_T2().init___O__O("Content-Type", "application/json")];
   var this$5 = new $c_scm_MapBuilder().init___sc_GenMap($m_sci_Map$EmptyMap$());
@@ -1906,7 +1893,7 @@ $c_Ltutorial_webapp_Main$.prototype.upvote__I__V = (function(id) {
   var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
   this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
   var xhr = new $g.XMLHttpRequest();
-  xhr.open("GET", (($m_Ltutorial_webapp_Util$().upvoteUrl$1 + "/") + id));
+  xhr.open("GET", (($m_Ltutorial_webapp_Util$().upvoteUrl__T() + "/") + id));
   xhr.setRequestHeader("auth", $as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token")));
   xhr.onload = (function(xhr$1) {
     return (function(arg1$2) {
@@ -1980,7 +1967,7 @@ $c_Ltutorial_webapp_Main$.prototype.downvote__I__V = (function(id) {
   var this$7 = $as_Ljava_io_PrintStream(this$6.outVar$2.v$1);
   this$7.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x$1 + "\n"));
   var qual$1 = xhr.elem$1;
-  var x$2 = (($m_Ltutorial_webapp_Util$().downvoteUrl$1 + "/") + id);
+  var x$2 = (($m_Ltutorial_webapp_Util$().downvoteUrl__T() + "/") + id);
   qual$1.open("GET", x$2);
   xhr.elem$1.setRequestHeader("auth", $as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token")));
   xhr.elem$1.onload = (function(xhr$2) {
@@ -1999,9 +1986,9 @@ $c_Ltutorial_webapp_Main$.prototype.loadmore__V = (function() {
   var xhr = new $c_sr_ObjectRef().init___O(elem);
   var url = "";
   if ((this.lowestId$1 === (-1))) {
-    url = $m_Ltutorial_webapp_Util$().postUrl$1
+    url = $m_Ltutorial_webapp_Util$().postUrl__T()
   } else {
-    url = ((($m_Ltutorial_webapp_Util$().postUrl$1 + "?offset=") + (((-1) + this.lowestId$1) | 0)) + "&number=2")
+    url = ((($m_Ltutorial_webapp_Util$().postUrl__T() + "?offset=") + (((-1) + this.lowestId$1) | 0)) + "&number=2")
   };
   var qual$3 = xhr.elem$1;
   var x$8 = url;
@@ -2036,11 +2023,7 @@ $c_Ltutorial_webapp_Main$.prototype.$$js$exported$meth$main__O = (function() {
 });
 $c_Ltutorial_webapp_Main$.prototype.parse__sjs_js_Dynamic__T__Ltutorial_webapp_HtmlObject = (function(obj, typeOfObject) {
   if ((typeOfObject === "post")) {
-    var jsx$3 = obj.id;
-    var jsx$2 = $uI(obj.score);
-    var jsx$1 = obj.title;
-    var x = $uI(obj.owner_id);
-    return new $c_Ltutorial_webapp_Post().init___sjs_js_Dynamic__I__sjs_js_Dynamic__jl_Integer__Z__sjs_js_Dynamic(jsx$3, jsx$2, jsx$1, x, $uZ(obj.nsfw), obj.image_path)
+    return new $c_Ltutorial_webapp_Post().init___sjs_js_Dynamic__I__sjs_js_Dynamic__sjs_js_Dynamic__Z__sjs_js_Dynamic(obj.id, $uI(obj.score), obj.title, obj.owner, $uZ(obj.nsfw), obj.image_path)
   } else if ((typeOfObject === "comment")) {
     return new $c_Ltutorial_webapp_Comment().init___T__T($as_T(obj.username), $as_T(obj.content))
   } else if ((typeOfObject === "message")) {
@@ -2104,7 +2087,7 @@ $c_Ltutorial_webapp_PostView$.prototype.postComment__V = (function() {
   var this$5 = $m_s_Console$();
   var this$6 = $as_Ljava_io_PrintStream(this$5.outVar$2.v$1);
   this$6.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x$1 + "\n"));
-  var x$1$1 = $m_Ltutorial_webapp_Util$().commentUrl$1;
+  var x$1$1 = $m_Ltutorial_webapp_Util$().commentUrl__T();
   var jsx$1 = new $c_T2().init___O__O("Content-Type", "application/json");
   var y = $as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token"));
   var array = [jsx$1, new $c_T2().init___O__O("auth", y)];
@@ -2136,7 +2119,7 @@ $c_Ltutorial_webapp_PostView$.prototype.postComment__V = (function() {
 });
 $c_Ltutorial_webapp_PostView$.prototype.getComments__T__V = (function(postId) {
   var xhr = new $g.XMLHttpRequest();
-  var url = (($m_Ltutorial_webapp_Util$().commentUrl$1 + "/") + postId);
+  var url = (($m_Ltutorial_webapp_Util$().commentUrl__T() + "/") + postId);
   xhr.open("GET", url);
   xhr.onload = (function(xhr$2) {
     return (function(arg1$2) {
@@ -2156,7 +2139,7 @@ $c_Ltutorial_webapp_PostView$.prototype.start__V = (function() {
 });
 $c_Ltutorial_webapp_PostView$.prototype.getPost__T__V = (function(postId) {
   var xhr = new $g.XMLHttpRequest();
-  var url = (($m_Ltutorial_webapp_Util$().postUrl$1 + "/") + postId);
+  var url = (($m_Ltutorial_webapp_Util$().postUrl__T() + "/") + postId);
   xhr.open("GET", url);
   xhr.onload = (function(xhr$1) {
     return (function(arg1$2) {
@@ -2275,6 +2258,7 @@ $c_Ltutorial_webapp_Signup$.prototype.signup__Lorg_scalajs_jquery_JQuery = (func
             var this$13 = $m_s_Console$();
             var this$14 = $as_Ljava_io_PrintStream(this$13.outVar$2.v$1);
             this$14.java$lang$JSConsoleBasedPrintStream$$printString__T__V("==========\n");
+            var x$2 = $m_Ltutorial_webapp_Util$().userUrl__T();
             var s$1 = credentials.toString__T();
             var array = [new $c_T2().init___O__O("Content-Type", "application/json")];
             var this$19 = new $c_scm_MapBuilder().init___sc_GenMap($m_sci_Map$EmptyMap$());
@@ -2288,15 +2272,15 @@ $c_Ltutorial_webapp_Signup$.prototype.signup__Lorg_scalajs_jquery_JQuery = (func
             };
             var x$4 = $as_sci_Map(this$19.elems$1);
             var this$20 = $m_Lorg_scalajs_dom_ext_Ajax$();
-            var this$24 = this$20.apply__T__T__Lorg_scalajs_dom_ext_Ajax$InputData__I__sci_Map__Z__T__s_concurrent_Future("POST", "http://nixme.ddns.net:9000/user", s$1, 0, x$4, false, "");
+            var this$24 = this$20.apply__T__T__Lorg_scalajs_dom_ext_Ajax$InputData__I__sci_Map__Z__T__s_concurrent_Future("POST", x$2, s$1, 0, x$4, false, "");
             var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this$2) {
               return (function(xhr$2) {
                 if (($uI(xhr$2.status) === 200)) {
                   var x$1 = $g.JSON.parse($as_T(xhr$2.responseText));
-                  var x$2 = x$1.token;
+                  var x$3 = x$1.token;
                   var this$22 = $m_s_Console$();
                   var this$23 = $as_Ljava_io_PrintStream(this$22.outVar$2.v$1);
-                  this$23.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x$2 + "\n"));
+                  this$23.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x$3 + "\n"));
                   $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.setItem("scalol_token", $objectToString(x$1.token));
                   $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.setItem("scalol_username", $objectToString($this$2.usernameElement__Lorg_scalajs_jquery_JQuery().val()));
                   $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().location.href = "./index.html"
@@ -2451,6 +2435,10 @@ $c_Ltutorial_webapp_UserView$.prototype.$$js$exported$meth$start__O = (function(
 });
 $c_Ltutorial_webapp_UserView$.prototype.tutorial$webapp$UserView$$$anonfun$getUser$1__Lorg_scalajs_dom_raw_Event__Lorg_scalajs_dom_raw_XMLHttpRequest__O = (function(e, xhr$1) {
   if (($uI(xhr$1.status) === 200)) {
+    var x = $as_T($g.JSON.stringify(xhr$1.response));
+    var this$2 = $m_s_Console$();
+    var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
+    this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
     var response = $g.JSON.parse($objectToString(xhr$1.response));
     var jsx$1 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#info");
     var s = new $c_Ltutorial_webapp_User().init___T__T($as_T(response.user.username), $as_T(response.user.mail)).toHtml__T();
@@ -2483,7 +2471,7 @@ $c_Ltutorial_webapp_UserView$.prototype.start__V = (function() {
 });
 $c_Ltutorial_webapp_UserView$.prototype.getUser__T__V = (function(username) {
   var xhr = new $g.XMLHttpRequest();
-  var url = (($m_Ltutorial_webapp_Util$().userUrl$1 + "/") + username);
+  var url = (($m_Ltutorial_webapp_Util$().userUrl__T() + "/") + username);
   xhr.open("GET", url);
   xhr.onload = (function(xhr$1) {
     return (function(arg1$2) {
@@ -2511,15 +2499,7 @@ function $m_Ltutorial_webapp_UserView$() {
 }
 /** @constructor */
 function $c_Ltutorial_webapp_Util$() {
-  $c_O.call(this);
-  this.url$1 = null;
-  this.userUrl$1 = null;
-  this.postUrl$1 = null;
-  this.authUrl$1 = null;
-  this.commentUrl$1 = null;
-  this.messageUrl$1 = null;
-  this.upvoteUrl$1 = null;
-  this.downvoteUrl$1 = null
+  $c_O.call(this)
 }
 $c_Ltutorial_webapp_Util$.prototype = new $h_O();
 $c_Ltutorial_webapp_Util$.prototype.constructor = $c_Ltutorial_webapp_Util$;
@@ -2529,19 +2509,25 @@ function $h_Ltutorial_webapp_Util$() {
 }
 $h_Ltutorial_webapp_Util$.prototype = $c_Ltutorial_webapp_Util$.prototype;
 $c_Ltutorial_webapp_Util$.prototype.init___ = (function() {
-  $n_Ltutorial_webapp_Util$ = this;
-  this.url$1 = "http://nixme.ddns.net:9000";
-  this.userUrl$1 = (this.url$1 + "/user");
-  this.postUrl$1 = (this.url$1 + "/posts");
-  this.authUrl$1 = (this.url$1 + "/auth");
-  this.commentUrl$1 = (this.url$1 + "/comments");
-  this.messageUrl$1 = (this.url$1 + "/message");
-  this.upvoteUrl$1 = (this.url$1 + "/upvote");
-  this.downvoteUrl$1 = (this.url$1 + "/downvote");
   return this
+});
+$c_Ltutorial_webapp_Util$.prototype.userUrl__T = (function() {
+  return "https://nixme.ddns.net/user"
+});
+$c_Ltutorial_webapp_Util$.prototype.upvoteUrl__T = (function() {
+  return "https://nixme.ddns.net/upvote"
+});
+$c_Ltutorial_webapp_Util$.prototype.$$js$exported$prop$postUrl__O = (function() {
+  return this.postUrl__T()
 });
 $c_Ltutorial_webapp_Util$.prototype.$$js$exported$meth$insertUsername__O = (function() {
   this.insertUsername__V()
+});
+$c_Ltutorial_webapp_Util$.prototype.postUrl__T = (function() {
+  return "https://nixme.ddns.net/posts"
+});
+$c_Ltutorial_webapp_Util$.prototype.commentUrl__T = (function() {
+  return "https://nixme.ddns.net/comments"
 });
 $c_Ltutorial_webapp_Util$.prototype.loadNavbar__V = (function() {
   if (($as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token")) === null)) {
@@ -2560,6 +2546,12 @@ $c_Ltutorial_webapp_Util$.prototype.loadNavbar__V = (function() {
     (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#scalolNavbar").load("./loggednavbar.html")
   }
 });
+$c_Ltutorial_webapp_Util$.prototype.downvoteUrl__T = (function() {
+  return "https://nixme.ddns.net/downvote"
+});
+$c_Ltutorial_webapp_Util$.prototype.authUrl__T = (function() {
+  return "https://nixme.ddns.net/auth"
+});
 $c_Ltutorial_webapp_Util$.prototype.insertUsername__V = (function() {
   var jsx$1 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#modifyProfile");
   var s = $as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_username"));
@@ -2573,6 +2565,12 @@ $c_Ltutorial_webapp_Util$.prototype.insertUsername = (function() {
 });
 $c_Ltutorial_webapp_Util$.prototype.loadNavbar = (function() {
   return this.$$js$exported$meth$loadNavbar__O()
+});
+Object.defineProperty($c_Ltutorial_webapp_Util$.prototype, "postUrl", {
+  "get": (function() {
+    return this.$$js$exported$prop$postUrl__O()
+  }),
+  "configurable": true
 });
 var $d_Ltutorial_webapp_Util$ = new $TypeData().initClass({
   Ltutorial_webapp_Util$: 0
@@ -4809,6 +4807,7 @@ function $c_Ltutorial_webapp_Post() {
   this.argId$1 = null;
   this.argScore$1 = 0;
   this.argTitle$1 = null;
+  this.argOwner$1 = null;
   this.argNsfw$1 = false;
   this.argImage$1 = null
 }
@@ -4819,10 +4818,22 @@ function $h_Ltutorial_webapp_Post() {
   /*<skip>*/
 }
 $h_Ltutorial_webapp_Post.prototype = $c_Ltutorial_webapp_Post.prototype;
+$c_Ltutorial_webapp_Post.prototype.init___sjs_js_Dynamic__I__sjs_js_Dynamic__sjs_js_Dynamic__Z__sjs_js_Dynamic = (function(argId, argScore, argTitle, argOwner, argNsfw, argImage) {
+  this.argId$1 = argId;
+  this.argScore$1 = argScore;
+  this.argTitle$1 = argTitle;
+  this.argOwner$1 = argOwner;
+  this.argNsfw$1 = argNsfw;
+  this.argImage$1 = argImage;
+  return this
+});
 $c_Ltutorial_webapp_Post.prototype.toHtml__T = (function() {
   var stringToBuild = "<div class=\"post\">";
   stringToBuild = (stringToBuild + "<div class=\"postContent\">");
   stringToBuild = ((stringToBuild + ((("<a href=\"./posts.html?" + this.argId$1) + "\"><h1 class=\"postTitle\">") + this.argTitle$1)) + "</h1></a>");
+  if ($is_T(this.argOwner$1)) {
+    stringToBuild = ((stringToBuild + ((("<h2>Posted by: <a href=\"./user.html?" + this.argOwner$1) + "\">") + this.argOwner$1)) + "</a></h2>")
+  };
   stringToBuild = ((stringToBuild + ("<h2>Score: " + this.argScore$1)) + "</h2>");
   stringToBuild = ((stringToBuild + ("<img src=\"" + this.argImage$1)) + "\" style=\"margin-left: 50%; transform: translate(-50%, 0%)\"><br>");
   if (($as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token")) !== null)) {
@@ -4833,14 +4844,6 @@ $c_Ltutorial_webapp_Post.prototype.toHtml__T = (function() {
   };
   stringToBuild = (stringToBuild + "</div></div>");
   return stringToBuild
-});
-$c_Ltutorial_webapp_Post.prototype.init___sjs_js_Dynamic__I__sjs_js_Dynamic__jl_Integer__Z__sjs_js_Dynamic = (function(argId, argScore, argTitle, argOwner_id, argNsfw, argImage) {
-  this.argId$1 = argId;
-  this.argScore$1 = argScore;
-  this.argTitle$1 = argTitle;
-  this.argNsfw$1 = argNsfw;
-  this.argImage$1 = argImage;
-  return this
 });
 var $d_Ltutorial_webapp_Post = new $TypeData().initClass({
   Ltutorial_webapp_Post: 0

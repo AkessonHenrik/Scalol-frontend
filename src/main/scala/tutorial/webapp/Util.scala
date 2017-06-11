@@ -13,14 +13,16 @@ import scala.scalajs.js
   */
 @JSExportTopLevel("Util")
 object Util {
-  val url: String = "http://nixme.ddns.net:9000"
-  val userUrl: String = url + "/user"
-  val postUrl: String = url + "/posts"
-  val authUrl: String = url + "/auth"
-  val commentUrl: String = url + "/comments"
-  val messageUrl: String = url + "/message"
-  val upvoteUrl: String = url + "/upvote"
-  val downvoteUrl: String = url + "/downvote"
+  def url: String = "https://nixme.ddns.net"
+  def userUrl: String = url + "/user"
+  @JSExport
+  def postUrl: String = url + "/posts"
+  def authUrl: String = url + "/auth"
+  def commentUrl: String = url + "/comments"
+  def messageUrl: String = url + "/message"
+  def upvoteUrl: String = url + "/upvote"
+  def downvoteUrl: String = url + "/downvote"
+  def uploadUrl: String = url + "/upload"
 
   @JSExport
   def loadNavbar(): Unit = {

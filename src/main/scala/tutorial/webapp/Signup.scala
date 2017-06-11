@@ -51,7 +51,7 @@ object Signup {
             println("==========")
 
             dom.ext.Ajax.post(
-              url = "http://nixme.ddns.net:9000/user",
+              url = Util.userUrl,
               data = credentials.toString,
               headers = Map("Content-Type" -> "application/json")
             ).foreach { xhr =>

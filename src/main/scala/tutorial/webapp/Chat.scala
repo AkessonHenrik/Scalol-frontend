@@ -15,11 +15,17 @@ import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel}
 @JSExportTopLevel("Chat")
 object Chat {
   @JSExport
-  def main(in: html.Input,
-           pre: html.Pre) = {
-//    val echo = "ws://echo.websocket.org"
+  def main(in: html.Input, pre: html.Pre) = {
+  }
+
+  @JSExport
+  def startTalking(): Unit = {
+//    val in = jQuery("#inputBox").asInstanceOf[html.Input]
+//    val pre = jQuery("#outputBox").asInstanceOf[html.Pre]
+//    println(jQuery("#dest").value)
+//    val url = "ws://nixme.ddns.net/connect?token=" + dom.window.localStorage.getItem("scalol_token") + "&to=" + jQuery("#dest").value
 //
-//    val socket = new dom.WebSocket(echo)
+//    val socket = new dom.WebSocket(url)
 //    socket.onmessage = {
 //      (e: dom.MessageEvent) =>
 //        pre.textContent +=
@@ -30,17 +36,5 @@ object Chat {
 //        socket.send(in.value)
 //      }
 //    }
-val xhr = new dom.XMLHttpRequest()
-    val url = Util.url + "/connect?token=" + dom.window.localStorage.getItem("scalol_token") + "&to=yee"
-    xhr.open("GET",
-      url
-    )
-    xhr.onload = { (e: dom.Event) =>
-      if (xhr.status == 200) {
-        println(JSON.parse(xhr.response.toString))
-      }
-    }
-
-    xhr.send()
   }
 }

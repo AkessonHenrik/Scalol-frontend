@@ -31,6 +31,7 @@ object UserView {
     )
     xhr.onload = { (e: dom.Event) =>
       if (xhr.status == 200) {
+        println(JSON.stringify(xhr.response))
         val response = JSON.parse(xhr.response.toString)
         jQuery("#info").append(new User(response.user.username.asInstanceOf[String], response.user.mail.asInstanceOf[String]).toHtml)
         val jsPosts: js.Array[js.Dynamic] = response.posts.asInstanceOf[js.Array[js.Dynamic]]

@@ -47,7 +47,7 @@
             var thisData = new FormData();
             thisData.append('picture', $('#file')[0].files[0]);
             $.ajax({
-                url: 'http://nixme.ddns.net:9000/upload',
+                url: 'https://nixme.ddns.net/upload',
                 type: 'POST',
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader('auth', localStorage["scalol_token"]);
@@ -81,7 +81,7 @@
                         request.setRequestHeader("auth", localStorage["scalol_token"]);
                         request.setRequestHeader("Content-Type", "application/json");
                     },
-                    url: "http://nixme.ddns.net:9000/posts",
+                    url: "https://nixme.ddns.net/posts",
                     data: JSON.stringify({
                         "title": $("#postTitle").val(),
                         "image_path": xhr.location,
@@ -91,10 +91,12 @@
                     processData: false,
                     success: function (msg) {
                         $("#results").append("The result =" + msg);
+
                     }
                 });
-//                window.location.href = "./index.html"
-            });
+            }).then(function () {
+                window.location.href = "./index.html"
+            })
         }
     });
 </script>

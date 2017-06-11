@@ -24,13 +24,15 @@
 </head>
 <body>
 <div id="scalolNavbar"></div>
+
+<input style="margin-top: 100px" id="dest" placeholder="User to chat with">
+<button id="submitChat" onclick="Chat.startTalking()">Start chatting</button>
 <input id="inputBox" style="margin-top: 100px" type="text">
 <pre id="outputBox">
 
 </pre>
 <script>
     Util.loadNavbar()
-    Chat.main(document.getElementById("inputBox"), document.getElementById("outputBox"))
 </script>
 </body>
 </html>

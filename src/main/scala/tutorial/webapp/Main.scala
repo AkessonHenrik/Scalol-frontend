@@ -112,7 +112,7 @@ object Main {
 
   def parse(obj: js.Dynamic, typeOfObject: String): HtmlObject = {
     typeOfObject match {
-      case "post" => new Post(obj.id, obj.score.asInstanceOf[Int], obj.title, obj.owner_id.asInstanceOf[Int], obj.nsfw.asInstanceOf[Boolean], obj.image_path)
+      case "post" => new Post(obj.id, obj.score.asInstanceOf[Int], obj.title, obj.owner, obj.nsfw.asInstanceOf[Boolean], obj.image_path)
       // case "user" => new User()
       case "comment" => new Comment(obj.username.asInstanceOf[String], obj.content.asInstanceOf[String])
       case "message" => new Message()
@@ -135,7 +135,7 @@ trait HtmlObject {
   def toHtml: String
 }
 
-class Post(argId: js.Dynamic, argScore: Int, argTitle: js.Dynamic, argOwner_id: Integer, argNsfw: Boolean, argImage: js.Dynamic) extends HtmlObject {
+class Post(argId: js.Dynamic, argScore: Int, argTitle: js.Dynamic, argOwner: js.Dynamic, argNsfw: Boolean, argImage: js.Dynamic) extends HtmlObject {
   def id = argId
 
   def score = argScore
@@ -146,12 +146,15 @@ class Post(argId: js.Dynamic, argScore: Int, argTitle: js.Dynamic, argOwner_id: 
 
   def image_path = argImage
 
+  def owner = argOwner
 
   override def toHtml: String = {
 
     var stringToBuild: String = "<div class=\"post\">"
     stringToBuild += "<div class=\"postContent\">"
     stringToBuild += "<a href=\"./posts.html?" + id + "\"><h1 class=\"postTitle\">" + title + "</h1></a>"
+    if (owner.isInstanceOf[String])
+      stringToBuild += "<h2>Posted by: <a href=\"./user.html?" + owner + "\">" + owner + "</a></h2>"
     stringToBuild += "<h2>Score: " + score + "</h2>"
     stringToBuild += "<img src=\"" + image_path + "\" style=\"margin-left: 50%; transform: translate(-50%, 0%)\"><br>"
     if (dom.window.localStorage.getItem("scalol_token") != null) {
