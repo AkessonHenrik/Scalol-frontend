@@ -1539,7 +1539,8 @@ $c_Ltutorial_webapp_Chat$.prototype.tutorial$webapp$Chat$$$anonfun$startTalking$
   var thiz = $objectToString(e.data);
   var beginIndex = ((1 + $uI(thiz.indexOf("]"))) | 0);
   var s = (((("<span class=\"otherMessage\">" + recipient$1) + ":  </span><span>") + $as_T(thiz$1.substring(beginIndex))) + "</span><br>");
-  return jsx$1.append(s)
+  jsx$1.append(s);
+  return (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent").scrollTop($uI((0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent")[0].scrollHeight))
 });
 $c_Ltutorial_webapp_Chat$.prototype.startTalking__V = (function() {
   var recipient = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#dest").val();
@@ -1582,7 +1583,10 @@ $c_Ltutorial_webapp_Chat$.prototype.startTalking__V = (function() {
             jsx$3.append(s$1)
           };
           i$1 = ((1 + i$1) | 0)
-        }
+        };
+        return (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent").scrollTop($uI((0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent")[0].scrollHeight))
+      } else {
+        return (void 0)
       }
     })
   })(this, recipient));
@@ -1603,7 +1607,8 @@ $c_Ltutorial_webapp_Chat$.prototype.startTalking__V = (function() {
       $in$1.val("");
       var jsx$4 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent");
       var s$2 = (("<span class=\"userMessage\">You: </span><span>" + newMessage) + "</span><br>");
-      return jsx$4.append(s$2)
+      jsx$4.append(s$2);
+      return (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent").scrollTop($uI((0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent")[0].scrollHeight))
     })
   })(this, $in, socket))
 });

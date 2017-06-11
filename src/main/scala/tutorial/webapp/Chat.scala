@@ -25,14 +25,15 @@ object Chat {
     ).foreach { xhr =>
       if (xhr.status == 200) {
         val messages: js.Array[js.Dynamic] = JSON.parse(xhr.responseText).asInstanceOf[js.Array[js.Dynamic]]
-        for(message <- messages) {
+        for (message <- messages) {
           println(JSON.stringify(message))
-          if(message.from == recipient) {
+          if (message.from == recipient) {
             jQuery("#chatContent").append("<span class=\"otherMessage\">" + recipient + ":  </span><span>" + message.content + "</span><br>")
           } else {
             jQuery("#chatContent").append("<span class=\"otherMessage\">" + "You:  </span><span>" + message.content + "</span><br>")
           }
         }
+        jQuery("#chatContent").scrollTop(jQuery("#chatContent").apply(0).scrollHeight)
       }
     }
 
@@ -42,6 +43,7 @@ object Chat {
     socket.onmessage = {
       (e: dom.MessageEvent) => {
         jQuery("#chatContent").append("<span class=\"otherMessage\">" + recipient + ":  </span><span>" + e.data.toString.substring(e.data.toString.indexOf("]") + 1) + "</span><br>")
+        jQuery("#chatContent").scrollTop(jQuery("#chatContent").apply(0).scrollHeight)
       }
     }
     jQuery("#sendMessage").click(() => {
@@ -49,7 +51,7 @@ object Chat {
       socket.send(newMessage)
       in.value("")
       jQuery("#chatContent").append("<span class=\"userMessage\">" + "You: </span><span>" + newMessage + "</span><br>")
-
+      jQuery("#chatContent").scrollTop(jQuery("#chatContent").apply(0).scrollHeight)
     })
   }
 }

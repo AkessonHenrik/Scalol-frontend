@@ -1,16 +1,16 @@
 [0m[[0minfo[0m] [0mFast optimizing /home/henrik/Documents/Scalol-frontend/target/scala-2.12/scalol-fastopt.js[0m
-[0m[[0mdebug[0m] [0mLinker: Compute reachability: 93338 us[0m
-[0m[[0mdebug[0m] [0mLinker: Assemble LinkedClasses: 23881 us[0m
-[0m[[0mdebug[0m] [0mBasic Linking: 119683 us[0m
+[0m[[0mdebug[0m] [0mLinker: Compute reachability: 71775 us[0m
+[0m[[0mdebug[0m] [0mLinker: Assemble LinkedClasses: 29296 us[0m
+[0m[[0mdebug[0m] [0mBasic Linking: 103397 us[0m
 [0m[[0mdebug[0m] [0mInc. optimizer: Batch mode: false[0m
-[0m[[0mdebug[0m] [0mInc. optimizer: Incremental part: 10414 us[0m
-[0m[[0mdebug[0m] [0mInc. optimizer: Optimizing 3 methods.[0m
-[0m[[0mdebug[0m] [0mInc. optimizer: Optimizer part: 42765 us[0m
-[0m[[0mdebug[0m] [0mInc. optimizer: 55631 us[0m
-[0m[[0mdebug[0m] [0mRefiner: Compute reachability: 107710 us[0m
-[0m[[0mdebug[0m] [0mRefiner: Assemble LinkedClasses: 3369 us[0m
-[0m[[0mdebug[0m] [0mRefiner: 111242 us[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: Incremental part: 13847 us[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: Optimizing 5 methods.[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: Optimizer part: 25964 us[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: 41745 us[0m
+[0m[[0mdebug[0m] [0mRefiner: Compute reachability: 86027 us[0m
+[0m[[0mdebug[0m] [0mRefiner: Assemble LinkedClasses: 4752 us[0m
+[0m[[0mdebug[0m] [0mRefiner: 90983 us[0m
 [0m[[0mdebug[0m] [0mEmitter: Class tree cache stats: reused: 537 -- invalidated: 1[0m
-[0m[[0mdebug[0m] [0mEmitter: Method tree cache stats: resued: 804 -- invalidated: 1[0m
-[0m[[0mdebug[0m] [0mEmitter (write output): 35896 us[0m
+[0m[[0mdebug[0m] [0mEmitter: Method tree cache stats: resued: 802 -- invalidated: 3[0m
+[0m[[0mdebug[0m] [0mEmitter (write output): 62422 us[0m
 [0m[[0mdebug[0m] [0mGlobal IR cache stats: reused: 30 -- invalidated: 1 -- trees read: 1[0m
