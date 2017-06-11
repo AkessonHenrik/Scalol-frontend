@@ -36,69 +36,86 @@
         $("#wrapper").append(
             "<input id=\"postTitle\" class=\"form-control\" placeholder=\"Title\" type=\"text\" aria-describedby=\"basic-addon1\">"
             + "<input id =\"file\" class=\"form-control\" placeholder=\"Browse\" type=\"file\" aria-describedby=\"basic-addon1\">"
+            + "<input id=\"imageUrl\" class=\"form-control\" placeholder=\"Image Url\" type=\"text\" aria-describedby=\"basic-addon1\">"
+            + "<h2><input id=\"fileRadio\" type=\"radio\" name=\"imageType\" value=\"from file\">From File</h2><br>"
+            + "<h2><input id=\"urlRadio\" type=\"radio\" name=\"imageType\" value=\"from url\">From Url</h2><br>"
             + "<h2><input id =\"nsfw\" type=\"checkbox\" name=\"nsfw\" value=\"nsfw\">Nsfw<br></h2>"
             + "<button id =\"postButton\" class=\"btn btn-success\">Submit</button>"
         )
     }
     $("#postButton").on('click', function () {
+
         if ($("#postTitle").val() === "") {
             console.log("Empty title")
+            alert("Please specify a title")
         } else {
-            var thisData = new FormData();
-            thisData.append('picture', $('#file')[0].files[0]);
-            $.ajax({
-                url: 'https://nixme.ddns.net/upload',
-                type: 'POST',
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader('auth', localStorage["scalol_token"]);
-                },
-
-                data: thisData,
-
-                cache: false,
-                contentType: false,
-                processData: false,
-
-                xhr: function () {
-                    var myXhr = $.ajaxSettings.xhr();
-                    if (myXhr.upload) {
-                        myXhr.upload.addEventListener('progress', function (e) {
-                            if (e.lengthComputable) {
-                                $('progress').attr({
-                                    value: e.loaded,
-                                    max: e.total
-                                });
-                            }
-                        }, false);
-                    }
-                    return myXhr;
-                }
-            }).then(function (xhr) {
-                console.log($("#radio_1").prop("checked", true))
+            if ($("#fileRadio").is(":checked")) {
+                var thisData = new FormData();
+                thisData.append('picture', $('#file')[0].files[0]);
                 $.ajax({
-                    type: "POST",
-                    beforeSend: function (request) {
-                        request.setRequestHeader("auth", localStorage["scalol_token"]);
-                        request.setRequestHeader("Content-Type", "application/json");
+                    url: 'https://nixme.ddns.net/upload',
+                    type: 'POST',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('auth', localStorage["scalol_token"]);
                     },
-                    url: "https://nixme.ddns.net/posts",
-                    data: JSON.stringify({
-                        "title": $("#postTitle").val(),
-                        "image_path": xhr.location,
-                        "nsfw": $("#nsfw").is(":checked")
 
-                    }),
+                    data: thisData,
+
+                    cache: false,
+                    contentType: false,
                     processData: false,
-                    success: function (msg) {
-                        $("#results").append("The result =" + msg);
 
+                    xhr: function () {
+                        var myXhr = $.ajaxSettings.xhr();
+                        if (myXhr.upload) {
+                            myXhr.upload.addEventListener('progress', function (e) {
+                                if (e.lengthComputable) {
+                                    $('progress').attr({
+                                        value: e.loaded,
+                                        max: e.total
+                                    });
+                                }
+                            }, false);
+                        }
+                        return myXhr;
                     }
-                });
-            }).then(function () {
+                }).then(function (xhr) {
+                    return createPost(xhr.location)
+                }).then(function () {
 //                window.location.href = "./index.html"
-            })
+                })
+            } else if ($("#urlRadio").is(":checked")) {
+                createPost($("#imageUrl").val())
+            } else {
+                alert("Please choose an upload type [image or url]")
+            }
         }
     });
+    function createPost(imageUrl) {
+        if (imageUrl == "") {
+            alert("The specified url does not exist")
+        } else {
+            $.ajax({
+                type: "POST",
+                beforeSend: function (request) {
+                    request.setRequestHeader("auth", localStorage["scalol_token"]);
+                    request.setRequestHeader("Content-Type", "application/json");
+                },
+                url: "https://nixme.ddns.net/posts",
+                data: JSON.stringify({
+                    "title": $("#postTitle").val(),
+                    "image_path": imageUrl,
+                    "nsfw": $("#nsfw").is(":checked")
+
+                }),
+                processData: false,
+                success: function (msg) {
+                    $("#results").append("The result =" + msg);
+                    return;
+                }
+            });
+        }
+    }
 </script>
 <script>
     Util.loadNavbar()

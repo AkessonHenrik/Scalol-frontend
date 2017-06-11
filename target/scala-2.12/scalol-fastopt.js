@@ -1533,19 +1533,82 @@ $c_Ltutorial_webapp_Chat$.prototype.init___ = (function() {
 $c_Ltutorial_webapp_Chat$.prototype.$$js$exported$meth$startTalking__O = (function() {
   this.startTalking__V()
 });
-$c_Ltutorial_webapp_Chat$.prototype.startTalking__V = (function() {
-  /*<skip>*/
+$c_Ltutorial_webapp_Chat$.prototype.tutorial$webapp$Chat$$$anonfun$startTalking$3__Lorg_scalajs_dom_raw_MessageEvent__sjs_js_Dynamic__Lorg_scalajs_jquery_JQuery = (function(e, recipient$1) {
+  var jsx$1 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent");
+  var thiz$1 = $objectToString(e.data);
+  var thiz = $objectToString(e.data);
+  var beginIndex = ((1 + $uI(thiz.indexOf("]"))) | 0);
+  var s = (((("<span class=\"otherMessage\">" + recipient$1) + ":  </span><span>") + $as_T(thiz$1.substring(beginIndex))) + "</span><br>");
+  return jsx$1.append(s)
 });
-$c_Ltutorial_webapp_Chat$.prototype.$$js$exported$meth$main__Lorg_scalajs_dom_raw_HTMLInputElement__Lorg_scalajs_dom_raw_HTMLPreElement__O = (function($in, pre) {
-  return (void 0)
+$c_Ltutorial_webapp_Chat$.prototype.startTalking__V = (function() {
+  var recipient = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#dest").val();
+  var ajaxUrl = (($m_Ltutorial_webapp_Util$().messageUrl__T() + "/") + recipient);
+  var jsx$1 = new $c_T2().init___O__O("Content-Type", "application/json");
+  var y = $as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token"));
+  var array = [jsx$1, new $c_T2().init___O__O("auth", y)];
+  var this$6 = new $c_scm_MapBuilder().init___sc_GenMap($m_sci_Map$EmptyMap$());
+  var i = 0;
+  var len = $uI(array.length);
+  while ((i < len)) {
+    var index = i;
+    var arg1 = array[index];
+    this$6.$$plus$eq__T2__scm_MapBuilder($as_T2(arg1));
+    i = ((1 + i) | 0)
+  };
+  var x$2 = $as_sci_Map(this$6.elems$1);
+  var this$7 = $m_Lorg_scalajs_dom_ext_Ajax$();
+  var this$14 = this$7.apply__T__T__Lorg_scalajs_dom_ext_Ajax$InputData__I__sci_Map__Z__T__s_concurrent_Future("GET", ajaxUrl, null, 0, x$2, false, "");
+  var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, recipient$1) {
+    return (function(xhr$2) {
+      if (($uI(xhr$2.status) === 200)) {
+        var messages = $g.JSON.parse($as_T(xhr$2.responseText));
+        var i$1 = 0;
+        var len$1 = $uI(messages.length);
+        while ((i$1 < len$1)) {
+          var index$1 = i$1;
+          var arg1$1 = messages[index$1];
+          var x = $as_T($g.JSON.stringify(arg1$1));
+          var this$10 = $m_s_Console$();
+          var this$11 = $as_Ljava_io_PrintStream(this$10.outVar$2.v$1);
+          this$11.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+          if ($m_sr_BoxesRunTime$().equals__O__O__Z(arg1$1.from, recipient$1)) {
+            var jsx$2 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent");
+            var s = (((("<span class=\"otherMessage\">" + recipient$1) + ":  </span><span>") + arg1$1.content) + "</span><br>");
+            jsx$2.append(s)
+          } else {
+            var jsx$3 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent");
+            var s$1 = (("<span class=\"otherMessage\">You:  </span><span>" + arg1$1.content) + "</span><br>");
+            jsx$3.append(s$1)
+          };
+          i$1 = ((1 + i$1) | 0)
+        }
+      }
+    })
+  })(this, recipient));
+  var executor = $m_sjs_concurrent_JSExecutionContext$Implicits$().runNow$1;
+  $f_s_concurrent_Future__foreach__F1__s_concurrent_ExecutionContext__V(this$14, f, executor);
+  var $in = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#inputBox");
+  var url = ((("wss://nixme.ddns.net/connect?token=" + $as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token"))) + "&to=") + recipient);
+  var socket = new $g.WebSocket(url);
+  socket.onmessage = (function(recipient$1$1) {
+    return (function(arg1$2) {
+      return $m_Ltutorial_webapp_Chat$().tutorial$webapp$Chat$$$anonfun$startTalking$3__Lorg_scalajs_dom_raw_MessageEvent__sjs_js_Dynamic__Lorg_scalajs_jquery_JQuery(arg1$2, recipient$1$1)
+    })
+  })(recipient);
+  (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#sendMessage").click((function(this$2$1, $in$1, socket$1) {
+    return (function() {
+      var newMessage = $as_T($in$1.val());
+      socket$1.send(newMessage);
+      $in$1.val("");
+      var jsx$4 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent");
+      var s$2 = (("<span class=\"userMessage\">You: </span><span>" + newMessage) + "</span><br>");
+      return jsx$4.append(s$2)
+    })
+  })(this, $in, socket))
 });
 $c_Ltutorial_webapp_Chat$.prototype.startTalking = (function() {
   return this.$$js$exported$meth$startTalking__O()
-});
-$c_Ltutorial_webapp_Chat$.prototype.main = (function(arg$1, arg$2) {
-  var prep0 = arg$1;
-  var prep1 = arg$2;
-  return this.$$js$exported$meth$main__Lorg_scalajs_dom_raw_HTMLInputElement__Lorg_scalajs_dom_raw_HTMLPreElement__O(prep0, prep1)
 });
 var $d_Ltutorial_webapp_Chat$ = new $TypeData().initClass({
   Ltutorial_webapp_Chat$: 0
@@ -1916,9 +1979,68 @@ $c_Ltutorial_webapp_Main$.prototype.tutorial$webapp$Main$$$anonfun$downvote$1__L
     return (void 0)
   }
 });
-$c_Ltutorial_webapp_Main$.prototype.tutorial$webapp$Main$$$anonfun$loadmore$1__Lorg_scalajs_dom_raw_Event__sr_ObjectRef__O = (function(e, xhr$3) {
-  if (($uI(xhr$3.elem$1.status) === 200)) {
-    var jsPosts = $g.JSON.parse($objectToString(xhr$3.elem$1.response));
+$c_Ltutorial_webapp_Main$.prototype.downvote__I__V = (function(id) {
+  var x = ("Downvote: " + id);
+  var this$2 = $m_s_Console$();
+  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
+  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+  var elem = new $g.XMLHttpRequest();
+  var xhr = new $c_sr_ObjectRef().init___O(elem);
+  var x$1 = xhr.elem$1;
+  var this$6 = $m_s_Console$();
+  var this$7 = $as_Ljava_io_PrintStream(this$6.outVar$2.v$1);
+  this$7.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x$1 + "\n"));
+  var qual$1 = xhr.elem$1;
+  var x$2 = (($m_Ltutorial_webapp_Util$().downvoteUrl__T() + "/") + id);
+  qual$1.open("GET", x$2);
+  xhr.elem$1.setRequestHeader("auth", $as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token")));
+  xhr.elem$1.onload = (function(xhr$2) {
+    return (function(arg1$2) {
+      return $m_Ltutorial_webapp_Main$().tutorial$webapp$Main$$$anonfun$downvote$1__Lorg_scalajs_dom_raw_Event__sr_ObjectRef__O(arg1$2, xhr$2)
+    })
+  })(xhr);
+  var qual$2 = xhr.elem$1;
+  qual$2.send()
+});
+$c_Ltutorial_webapp_Main$.prototype.loadmore__V = (function() {
+  var xhr = new $g.XMLHttpRequest();
+  var url = "";
+  if ((this.lowestId$1 === (-1))) {
+    url = $m_Ltutorial_webapp_Util$().postUrl__T()
+  } else {
+    url = ((($m_Ltutorial_webapp_Util$().postUrl__T() + "?offset=") + (((-1) + this.lowestId$1) | 0)) + "&number=2")
+  };
+  xhr.open("GET", url);
+  xhr.onload = (function(xhr$3) {
+    return (function(arg1$2) {
+      return $m_Ltutorial_webapp_Main$().tutorial$webapp$Main$$$anonfun$loadmore$1__Lorg_scalajs_dom_raw_Event__Lorg_scalajs_dom_raw_XMLHttpRequest__O(arg1$2, xhr$3)
+    })
+  })(xhr);
+  xhr.send()
+});
+$c_Ltutorial_webapp_Main$.prototype.tutorial$webapp$Main$$$anonfun$upvote$1__Lorg_scalajs_dom_raw_Event__Lorg_scalajs_dom_raw_XMLHttpRequest__O = (function(e, xhr$1) {
+  if (($uI(xhr$1.status) === 200)) {
+    var x = $objectToString(xhr$1.response);
+    var this$2 = $m_s_Console$();
+    var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
+    this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+    return (void 0)
+  } else {
+    return (void 0)
+  }
+});
+$c_Ltutorial_webapp_Main$.prototype.logout__V = (function() {
+  $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.removeItem("scalol_token");
+  $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.removeItem("scalol_username");
+  $m_Ltutorial_webapp_Util$().loadNavbar__V();
+  $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().location.href = "./index.html"
+});
+$c_Ltutorial_webapp_Main$.prototype.$$js$exported$meth$main__O = (function() {
+  this.loadmore__V()
+});
+$c_Ltutorial_webapp_Main$.prototype.tutorial$webapp$Main$$$anonfun$loadmore$1__Lorg_scalajs_dom_raw_Event__Lorg_scalajs_dom_raw_XMLHttpRequest__O = (function(e, xhr$3) {
+  if (($uI(xhr$3.status) === 200)) {
+    var jsPosts = $g.JSON.parse($objectToString(xhr$3.response));
     var x = ("Lowest id is = " + this.lowestId$1);
     var this$2 = $m_s_Console$();
     var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
@@ -1954,72 +2076,6 @@ $c_Ltutorial_webapp_Main$.prototype.tutorial$webapp$Main$$$anonfun$loadmore$1__L
   } else {
     return (void 0)
   }
-});
-$c_Ltutorial_webapp_Main$.prototype.downvote__I__V = (function(id) {
-  var x = ("Downvote: " + id);
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
-  var elem = new $g.XMLHttpRequest();
-  var xhr = new $c_sr_ObjectRef().init___O(elem);
-  var x$1 = xhr.elem$1;
-  var this$6 = $m_s_Console$();
-  var this$7 = $as_Ljava_io_PrintStream(this$6.outVar$2.v$1);
-  this$7.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x$1 + "\n"));
-  var qual$1 = xhr.elem$1;
-  var x$2 = (($m_Ltutorial_webapp_Util$().downvoteUrl__T() + "/") + id);
-  qual$1.open("GET", x$2);
-  xhr.elem$1.setRequestHeader("auth", $as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token")));
-  xhr.elem$1.onload = (function(xhr$2) {
-    return (function(arg1$2) {
-      return $m_Ltutorial_webapp_Main$().tutorial$webapp$Main$$$anonfun$downvote$1__Lorg_scalajs_dom_raw_Event__sr_ObjectRef__O(arg1$2, xhr$2)
-    })
-  })(xhr);
-  var qual$2 = xhr.elem$1;
-  qual$2.send()
-});
-$c_Ltutorial_webapp_Main$.prototype.loadmore__V = (function() {
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V("HELLELELE\n");
-  var elem = new $g.XMLHttpRequest();
-  var xhr = new $c_sr_ObjectRef().init___O(elem);
-  var url = "";
-  if ((this.lowestId$1 === (-1))) {
-    url = $m_Ltutorial_webapp_Util$().postUrl__T()
-  } else {
-    url = ((($m_Ltutorial_webapp_Util$().postUrl__T() + "?offset=") + (((-1) + this.lowestId$1) | 0)) + "&number=2")
-  };
-  var qual$3 = xhr.elem$1;
-  var x$8 = url;
-  qual$3.open("GET", x$8);
-  xhr.elem$1.onload = (function(xhr$3) {
-    return (function(arg1$2) {
-      return $m_Ltutorial_webapp_Main$().tutorial$webapp$Main$$$anonfun$loadmore$1__Lorg_scalajs_dom_raw_Event__sr_ObjectRef__O(arg1$2, xhr$3)
-    })
-  })(xhr);
-  var qual$4 = xhr.elem$1;
-  qual$4.send()
-});
-$c_Ltutorial_webapp_Main$.prototype.tutorial$webapp$Main$$$anonfun$upvote$1__Lorg_scalajs_dom_raw_Event__Lorg_scalajs_dom_raw_XMLHttpRequest__O = (function(e, xhr$1) {
-  if (($uI(xhr$1.status) === 200)) {
-    var x = $objectToString(xhr$1.response);
-    var this$2 = $m_s_Console$();
-    var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-    this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
-    return (void 0)
-  } else {
-    return (void 0)
-  }
-});
-$c_Ltutorial_webapp_Main$.prototype.logout__V = (function() {
-  $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.removeItem("scalol_token");
-  $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.removeItem("scalol_username");
-  $m_Ltutorial_webapp_Util$().loadNavbar__V();
-  $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().location.href = "./index.html"
-});
-$c_Ltutorial_webapp_Main$.prototype.$$js$exported$meth$main__O = (function() {
-  this.loadmore__V()
 });
 $c_Ltutorial_webapp_Main$.prototype.parse__sjs_js_Dynamic__T__Ltutorial_webapp_HtmlObject = (function(obj, typeOfObject) {
   if ((typeOfObject === "post")) {
@@ -2548,6 +2604,9 @@ $c_Ltutorial_webapp_Util$.prototype.loadNavbar__V = (function() {
 });
 $c_Ltutorial_webapp_Util$.prototype.downvoteUrl__T = (function() {
   return "https://nixme.ddns.net/downvote"
+});
+$c_Ltutorial_webapp_Util$.prototype.messageUrl__T = (function() {
+  return "https://nixme.ddns.net/messages"
 });
 $c_Ltutorial_webapp_Util$.prototype.authUrl__T = (function() {
   return "https://nixme.ddns.net/auth"

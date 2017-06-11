@@ -19,7 +19,7 @@ object Util {
   def postUrl: String = url + "/posts"
   def authUrl: String = url + "/auth"
   def commentUrl: String = url + "/comments"
-  def messageUrl: String = url + "/message"
+  def messageUrl: String = url + "/messages"
   def upvoteUrl: String = url + "/upvote"
   def downvoteUrl: String = url + "/downvote"
   def uploadUrl: String = url + "/upload"

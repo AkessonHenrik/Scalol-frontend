@@ -3939,7 +3939,7 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.eclipse.jetty#jetty-http;8.1.16.v20140903!jetty-http.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.eclipse.jetty.orbit#javax.servlet;3.0.0.v201112011016!javax.servlet.jar(orbit)[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.eclipse.jetty#jetty-continuation;8.1.16.v20140903!jetty-continuation.jar[0m
-[0m[[0mdebug[0m] [0m:: resolution report :: resolve 1080ms :: artifacts dl 23ms[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 581ms :: artifacts dl 18ms[0m
 [0m[[0mdebug[0m] [0m	report for scalol#scalol_sjs0.6_2.12;1.0 compile produced in /home/henrik/Documents/Scalol-frontend/target/resolution-cache/reports/scalol-scalol_sjs0.6_2.12-compile.xml[0m
 [0m[[0mdebug[0m] [0m	report for scalol#scalol_sjs0.6_2.12;1.0 runtime produced in /home/henrik/Documents/Scalol-frontend/target/resolution-cache/reports/scalol-scalol_sjs0.6_2.12-runtime.xml[0m
 [0m[[0mdebug[0m] [0m	report for scalol#scalol_sjs0.6_2.12;1.0 test produced in /home/henrik/Documents/Scalol-frontend/target/resolution-cache/reports/scalol-scalol_sjs0.6_2.12-test.xml[0m
@@ -3954,5 +3954,5 @@
 [0m[[0mdebug[0m] [0m	report for scalol#scalol_sjs0.6_2.12;1.0 pom produced in /home/henrik/Documents/Scalol-frontend/target/resolution-cache/reports/scalol-scalol_sjs0.6_2.12-pom.xml[0m
 [0m[[0mdebug[0m] [0m	report for scalol#scalol_sjs0.6_2.12;1.0 scala-tool produced in /home/henrik/Documents/Scalol-frontend/target/resolution-cache/reports/scalol-scalol_sjs0.6_2.12-scala-tool.xml[0m
 [0m[[0mdebug[0m] [0m	report for scalol#scalol_sjs0.6_2.12;1.0 phantom-js-jetty produced in /home/henrik/Documents/Scalol-frontend/target/resolution-cache/reports/scalol-scalol_sjs0.6_2.12-phantom-js-jetty.xml[0m
-[0m[[0mdebug[0m] [0m	resolve done (1080ms resolve - 23ms download)[0m
+[0m[[0mdebug[0m] [0m	resolve done (581ms resolve - 18ms download)[0m
 [0m[[0minfo[0m] [0mDone updating.[0m

@@ -1,16 +1,16 @@
 [0m[[0minfo[0m] [0mFast optimizing /home/henrik/Documents/Scalol-frontend/target/scala-2.12/scalol-fastopt.js[0m
-[0m[[0mdebug[0m] [0mLinker: Compute reachability: 48654 us[0m
-[0m[[0mdebug[0m] [0mLinker: Assemble LinkedClasses: 14771 us[0m
-[0m[[0mdebug[0m] [0mBasic Linking: 65712 us[0m
+[0m[[0mdebug[0m] [0mLinker: Compute reachability: 93338 us[0m
+[0m[[0mdebug[0m] [0mLinker: Assemble LinkedClasses: 23881 us[0m
+[0m[[0mdebug[0m] [0mBasic Linking: 119683 us[0m
 [0m[[0mdebug[0m] [0mInc. optimizer: Batch mode: false[0m
-[0m[[0mdebug[0m] [0mInc. optimizer: Incremental part: 11094 us[0m
-[0m[[0mdebug[0m] [0mInc. optimizer: Optimizing 1 methods.[0m
-[0m[[0mdebug[0m] [0mInc. optimizer: Optimizer part: 206 us[0m
-[0m[[0mdebug[0m] [0mInc. optimizer: 13213 us[0m
-[0m[[0mdebug[0m] [0mRefiner: Compute reachability: 42108 us[0m
-[0m[[0mdebug[0m] [0mRefiner: Assemble LinkedClasses: 4421 us[0m
-[0m[[0mdebug[0m] [0mRefiner: 46699 us[0m
-[0m[[0mdebug[0m] [0mEmitter: Class tree cache stats: reused: 536 -- invalidated: 1[0m
-[0m[[0mdebug[0m] [0mEmitter: Method tree cache stats: resued: 803 -- invalidated: 1[0m
-[0m[[0mdebug[0m] [0mEmitter (write output): 38008 us[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: Incremental part: 10414 us[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: Optimizing 3 methods.[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: Optimizer part: 42765 us[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: 55631 us[0m
+[0m[[0mdebug[0m] [0mRefiner: Compute reachability: 107710 us[0m
+[0m[[0mdebug[0m] [0mRefiner: Assemble LinkedClasses: 3369 us[0m
+[0m[[0mdebug[0m] [0mRefiner: 111242 us[0m
+[0m[[0mdebug[0m] [0mEmitter: Class tree cache stats: reused: 537 -- invalidated: 1[0m
+[0m[[0mdebug[0m] [0mEmitter: Method tree cache stats: resued: 804 -- invalidated: 1[0m
+[0m[[0mdebug[0m] [0mEmitter (write output): 35896 us[0m
 [0m[[0mdebug[0m] [0mGlobal IR cache stats: reused: 30 -- invalidated: 1 -- trees read: 1[0m

@@ -76,9 +76,7 @@ object Main {
 
   @JSExportTopLevel("loadmore")
   def loadmore(): Unit = {
-    //    http://nixme.ddns.net/posts?offset=6&number=2
-    println("HELLELELE")
-    var xhr = new dom.XMLHttpRequest()
+    val xhr = new dom.XMLHttpRequest()
     var url = ""
     if (this.lowestId == -1) {
       url = Util.postUrl

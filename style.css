@@ -10,6 +10,7 @@
     margin: 0;
     box-shadow: 0 2px 5px #888888;
 }
+
 .thing {
     background-color: black;
     color: white !important;
@@ -45,6 +46,7 @@
     margin: 10px 3px 3px;
     float: right !important;
 }
+
 #post {
     margin-top: 100px;
 }
@@ -58,7 +60,8 @@
     margin-right: auto;
     padding: 20px;
 }
-#password, #repeatPassword, #username, #email, #postTitle, #file, #tags, .newPassword, #newEmail, #newUsername {
+
+#password, #repeatPassword, #username, #email, #postTitle, #file, .newPassword, #newEmail, #newUsername, #imageUrl {
     margin: 10px;
     width: 500px;
 }
@@ -71,17 +74,19 @@
 #posts {
     margin-top: 100px;
 }
+
 #info {
     margin-left: 50%;
     margin-top: 80px;
     transform: translate(-50%, 0%);
     margin-bottom: 50px;
 }
+
 #cog, #chatIcon {
     height: 6px;
     width: 6px;
     padding: 0;
-    margin: 0 5px 0 0!important;
+    margin: 0 5px 0 0 !important;
 }
 
 .post {
@@ -125,6 +130,7 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
 #commentBox {
     background-color: #EEEEEE;
     margin-top: 15%;
@@ -134,12 +140,13 @@
     margin-left: auto;
     margin-right: auto;
     position: fixed;
-    bottom: 0%;
+    bottom: 0;
     left: 50%;
     transform: translate(-50%, 0);
-    padding: 0px;
+    padding: 0;
 }
-#commentInput {
+
+#commentInput, #userInputElems {
     position: relative;
     left: 50%;
     margin: 5px;
@@ -148,6 +155,7 @@
     height: 60px;
     font-size: 20px;
 }
+
 .othercomment {
     border: 1px solid gray;
     width: 792px;
@@ -155,9 +163,68 @@
     margin-left: 50%;
     transform: translate(-50%, 0);
 }
+
 #comments {
     margin-bottom: 300px;
 }
+
 #submitComment {
-    margin-top: 5px!important;
+    margin-top: 5px !important;
+}
+
+.otherMessage, .userMessage {
+    word-wrap: break-word;
+    display:block;
+
+    margin: 2px;
+}
+
+.otherMessage {
+    color: #00695C;
+}
+
+.userMessage {
+    color: #039BE5;
+}
+
+#chatContent {
+    position: relative;
+    left: 50%;
+    top: 10%;
+    transform: translate(-50%, 0%);
+    width: 500px;
+    height: 500px;
+    border: 1px solid lightgray;
+    overflow-y: scroll;
+}
+
+#recipient {
+    position: relative;
+    left: 50%;
+    top: 5%;
+    width: 500px;
+    text-align: center;
+    transform: translate(-50%, 0%);
+}
+
+#userInput {
+    height: 200px;
+}
+
+#userInput textarea {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    height: 100px;
+    width: 500px;
+    margin-top: 10px;
+}
+
+#sendMessage {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 200px;
+    height: 30px;
+    margin: 0;
 }
