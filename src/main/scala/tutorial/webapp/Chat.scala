@@ -3,9 +3,8 @@ package tutorial.webapp
 import org.scalajs.dom
 import org.scalajs.jquery.jQuery
 
-import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel, JSGlobal, ScalaJSDefined}
-import scala.scalajs.js.{Dynamic, JSON}
-import scala.scalajs.concurrent.JSExecutionContext.Implicits.runNow
+import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel}
+import scala.scalajs.js.{JSON}
 import scala.scalajs.js
 
 /**
@@ -19,10 +18,7 @@ object Chat {
     val recipient = jQuery("#dest").value
 
     val ajaxUrl = Util.messageUrl + "/" + recipient
-    dom.ext.Ajax.get(
-      url = ajaxUrl,
-      headers = Map("Content-Type" -> "application/json", "auth" -> dom.window.localStorage.getItem("scalol_token"))
-    ).foreach { xhr =>
+    Util.get(ajaxUrl, null, Util.jsonAndTokenHeaderMap, (xhr: dom.XMLHttpRequest) => {
       if (xhr.status == 200) {
         val messages: js.Array[js.Dynamic] = JSON.parse(xhr.responseText).asInstanceOf[js.Array[js.Dynamic]]
         for (message <- messages) {
@@ -35,7 +31,7 @@ object Chat {
         }
         jQuery("#chatContent").scrollTop(jQuery("#chatContent").apply(0).scrollHeight)
       }
-    }
+    })
 
     val in = jQuery("#inputBox")
     val url = "wss://nixme.ddns.net/connect?token=" + dom.window.localStorage.getItem("scalol_token") + "&to=" + recipient
@@ -55,29 +51,20 @@ object Chat {
     })
     jQuery("#blockButton").click(() => {
       val ajaxUrl = Util.blockUrl + recipient
-      dom.ext.Ajax.get(
-        url = ajaxUrl,
-        headers = Map("Content-Type" -> "application/json", "auth" -> dom.window.localStorage.getItem("scalol_token"))
-      ).foreach { xhr =>
-        if (xhr.status == 200) {
-//          println(xhr.responseText)
-//          jQuery("#blockButton").remove()
-//          jQuery("#blockUnblock").append("<button id=\"unblockButton\" type=\"button\" class=\"btn btn-info\" aria-label=\"Right Align\">Unblock</button>")
+      Util.get(ajaxUrl, null, Util.jsonAndTokenHeaderMap, (xhr: dom.XMLHttpRequest) => {
+        if (xhr == 200) {
+          println(xhr.responseText)
         }
-      }
+      })
     })
     jQuery("#unblockButton").click(() => {
       val ajaxUrl = Util.unblockUrl + recipient
-      dom.ext.Ajax.get(
-        url = ajaxUrl,
-        headers = Map("Content-Type" -> "application/json", "auth" -> dom.window.localStorage.getItem("scalol_token"))
-      ).foreach { xhr =>
-        if (xhr.status == 200) {
-//          println(xhr.responseText)
-//          jQuery("#unblockButton").remove()
-//          jQuery("#blockUnblock").append("<button id=\"blockButton\" type=\"button\" class=\"btn btn-danger\" aria-label=\"Right Align\">Block</button>")
+      Util.get(ajaxUrl, null, Util.jsonAndTokenHeaderMap, (xhr: dom.XMLHttpRequest) => {
+        if (xhr == 200) {
+          println(xhr.responseText)
         }
-      }
+      })
     })
   }
+
 }

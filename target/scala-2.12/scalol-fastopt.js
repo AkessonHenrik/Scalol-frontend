@@ -1545,53 +1545,34 @@ $c_Ltutorial_webapp_Chat$.prototype.tutorial$webapp$Chat$$$anonfun$startTalking$
 $c_Ltutorial_webapp_Chat$.prototype.startTalking__V = (function() {
   var recipient = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#dest").val();
   var ajaxUrl = (($m_Ltutorial_webapp_Util$().messageUrl__T() + "/") + recipient);
-  var jsx$1 = new $c_T2().init___O__O("Content-Type", "application/json");
-  var y = $as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token"));
-  var array = [jsx$1, new $c_T2().init___O__O("auth", y)];
-  var this$6 = new $c_scm_MapBuilder().init___sc_GenMap($m_sci_Map$EmptyMap$());
-  var i = 0;
-  var len = $uI(array.length);
-  while ((i < len)) {
-    var index = i;
-    var arg1 = array[index];
-    this$6.$$plus$eq__T2__scm_MapBuilder($as_T2(arg1));
-    i = ((1 + i) | 0)
-  };
-  var x$2 = $as_sci_Map(this$6.elems$1);
-  var this$7 = $m_Lorg_scalajs_dom_ext_Ajax$();
-  var this$14 = this$7.apply__T__T__Lorg_scalajs_dom_ext_Ajax$InputData__I__sci_Map__Z__T__s_concurrent_Future("GET", ajaxUrl, null, 0, x$2, false, "");
-  var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, recipient$1) {
+  $m_Ltutorial_webapp_Util$().get__T__O__sci_Map__F1__V(ajaxUrl, null, $m_Ltutorial_webapp_Util$().jsonAndTokenHeaderMap__sci_Map(), new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, recipient$1) {
     return (function(xhr$2) {
       if (($uI(xhr$2.status) === 200)) {
         var messages = $g.JSON.parse($as_T(xhr$2.responseText));
-        var i$1 = 0;
-        var len$1 = $uI(messages.length);
-        while ((i$1 < len$1)) {
-          var index$1 = i$1;
-          var arg1$1 = messages[index$1];
-          var x = $as_T($g.JSON.stringify(arg1$1));
-          var this$10 = $m_s_Console$();
-          var this$11 = $as_Ljava_io_PrintStream(this$10.outVar$2.v$1);
-          this$11.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
-          if ($m_sr_BoxesRunTime$().equals__O__O__Z(arg1$1.from, recipient$1)) {
-            var jsx$2 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent");
-            var s = (((("<span class=\"otherMessage\">" + recipient$1) + ":  </span><span>") + arg1$1.content) + "</span><br>");
-            jsx$2.append(s)
+        var i = 0;
+        var len = $uI(messages.length);
+        while ((i < len)) {
+          var index = i;
+          var arg1 = messages[index];
+          var x = $as_T($g.JSON.stringify(arg1));
+          var this$3 = $m_s_Console$();
+          var this$4 = $as_Ljava_io_PrintStream(this$3.outVar$2.v$1);
+          this$4.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+          if ($m_sr_BoxesRunTime$().equals__O__O__Z(arg1.from, recipient$1)) {
+            var jsx$1 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent");
+            var s = (((("<span class=\"otherMessage\">" + recipient$1) + ":  </span><span>") + arg1.content) + "</span><br>");
+            jsx$1.append(s)
           } else {
-            var jsx$3 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent");
-            var s$1 = (("<span class=\"otherMessage\">You:  </span><span>" + arg1$1.content) + "</span><br>");
-            jsx$3.append(s$1)
+            var jsx$2 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent");
+            var s$1 = (("<span class=\"otherMessage\">You:  </span><span>" + arg1.content) + "</span><br>");
+            jsx$2.append(s$1)
           };
-          i$1 = ((1 + i$1) | 0)
+          i = ((1 + i) | 0)
         };
-        return (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent").scrollTop($uI((0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent")[0].scrollHeight))
-      } else {
-        return (void 0)
+        (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent").scrollTop($uI((0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent")[0].scrollHeight))
       }
     })
-  })(this, recipient));
-  var executor = $m_sjs_concurrent_JSExecutionContext$Implicits$().runNow$1;
-  $f_s_concurrent_Future__foreach__F1__s_concurrent_ExecutionContext__V(this$14, f, executor);
+  })(this, recipient)));
   var $in = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#inputBox");
   var url = ((("wss://nixme.ddns.net/connect?token=" + $as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token"))) + "&to=") + recipient);
   var socket = new $g.WebSocket(url);
@@ -1605,64 +1586,40 @@ $c_Ltutorial_webapp_Chat$.prototype.startTalking__V = (function() {
       var newMessage = $as_T($in$1.val());
       socket$1.send(newMessage);
       $in$1.val("");
-      var jsx$4 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent");
+      var jsx$3 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent");
       var s$2 = (("<span class=\"userMessage\">You: </span><span>" + newMessage) + "</span><br>");
-      jsx$4.append(s$2);
+      jsx$3.append(s$2);
       return (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent").scrollTop($uI((0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent")[0].scrollHeight))
     })
   })(this, $in, socket));
   (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#blockButton").click((function(this$3$1, recipient$2) {
     return (function() {
       var ajaxUrl$1 = (("" + $m_Ltutorial_webapp_Util$().blockUrl__T()) + recipient$2);
-      var jsx$5 = new $c_T2().init___O__O("Content-Type", "application/json");
-      var y$1 = $as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token"));
-      var array$1 = [jsx$5, new $c_T2().init___O__O("auth", y$1)];
-      var this$21 = new $c_scm_MapBuilder().init___sc_GenMap($m_sci_Map$EmptyMap$());
-      var i$2 = 0;
-      var len$2 = $uI(array$1.length);
-      while ((i$2 < len$2)) {
-        var index$2 = i$2;
-        var arg1$3 = array$1[index$2];
-        this$21.$$plus$eq__T2__scm_MapBuilder($as_T2(arg1$3));
-        i$2 = ((1 + i$2) | 0)
-      };
-      var x$8 = $as_sci_Map(this$21.elems$1);
-      var this$22 = $m_Lorg_scalajs_dom_ext_Ajax$();
-      var this$23 = this$22.apply__T__T__Lorg_scalajs_dom_ext_Ajax$InputData__I__sci_Map__Z__T__s_concurrent_Future("GET", ajaxUrl$1, null, 0, x$8, false, "");
-      var f$1 = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this$1) {
+      $m_Ltutorial_webapp_Util$().get__T__O__sci_Map__F1__V(ajaxUrl$1, null, $m_Ltutorial_webapp_Util$().jsonAndTokenHeaderMap__sci_Map(), new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this$1) {
         return (function(xhr$2$1) {
-          $uI(xhr$2$1.status)
+          if ($m_sr_BoxesRunTime$().equals__O__O__Z(xhr$2$1, 200)) {
+            var x$1 = $as_T(xhr$2$1.responseText);
+            var this$9 = $m_s_Console$();
+            var this$10 = $as_Ljava_io_PrintStream(this$9.outVar$2.v$1);
+            this$10.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x$1 + "\n"))
+          }
         })
-      })(this$3$1));
-      var executor$1 = $m_sjs_concurrent_JSExecutionContext$Implicits$().runNow$1;
-      $f_s_concurrent_Future__foreach__F1__s_concurrent_ExecutionContext__V(this$23, f$1, executor$1)
+      })(this$3$1)))
     })
   })(this, recipient));
   (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#unblockButton").click((function(this$4$1, recipient$3) {
     return (function() {
       var ajaxUrl$2 = (("" + $m_Ltutorial_webapp_Util$().unblockUrl__T()) + recipient$3);
-      var jsx$6 = new $c_T2().init___O__O("Content-Type", "application/json");
-      var y$2 = $as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token"));
-      var array$2 = [jsx$6, new $c_T2().init___O__O("auth", y$2)];
-      var this$29 = new $c_scm_MapBuilder().init___sc_GenMap($m_sci_Map$EmptyMap$());
-      var i$3 = 0;
-      var len$3 = $uI(array$2.length);
-      while ((i$3 < len$3)) {
-        var index$3 = i$3;
-        var arg1$4 = array$2[index$3];
-        this$29.$$plus$eq__T2__scm_MapBuilder($as_T2(arg1$4));
-        i$3 = ((1 + i$3) | 0)
-      };
-      var x$14 = $as_sci_Map(this$29.elems$1);
-      var this$30 = $m_Lorg_scalajs_dom_ext_Ajax$();
-      var this$31 = this$30.apply__T__T__Lorg_scalajs_dom_ext_Ajax$InputData__I__sci_Map__Z__T__s_concurrent_Future("GET", ajaxUrl$2, null, 0, x$14, false, "");
-      var f$2 = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this$2) {
+      $m_Ltutorial_webapp_Util$().get__T__O__sci_Map__F1__V(ajaxUrl$2, null, $m_Ltutorial_webapp_Util$().jsonAndTokenHeaderMap__sci_Map(), new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this$2) {
         return (function(xhr$2$2) {
-          $uI(xhr$2$2.status)
+          if ($m_sr_BoxesRunTime$().equals__O__O__Z(xhr$2$2, 200)) {
+            var x$2 = $as_T(xhr$2$2.responseText);
+            var this$12 = $m_s_Console$();
+            var this$13 = $as_Ljava_io_PrintStream(this$12.outVar$2.v$1);
+            this$13.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x$2 + "\n"))
+          }
         })
-      })(this$4$1));
-      var executor$2 = $m_sjs_concurrent_JSExecutionContext$Implicits$().runNow$1;
-      $f_s_concurrent_Future__foreach__F1__s_concurrent_ExecutionContext__V(this$31, f$2, executor$2)
+      })(this$4$1)))
     })
   })(this, recipient))
 });
@@ -2644,6 +2601,21 @@ $c_Ltutorial_webapp_Util$.prototype.blockUrl__T = (function() {
 $c_Ltutorial_webapp_Util$.prototype.$$js$exported$meth$insertUsername__O = (function() {
   this.insertUsername__V()
 });
+$c_Ltutorial_webapp_Util$.prototype.jsonAndTokenHeaderMap__sci_Map = (function() {
+  var jsx$1 = new $c_T2().init___O__O("Content-Type", "application/json");
+  var y = $as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token"));
+  var array = [jsx$1, new $c_T2().init___O__O("auth", y)];
+  var this$6 = new $c_scm_MapBuilder().init___sc_GenMap($m_sci_Map$EmptyMap$());
+  var i = 0;
+  var len = $uI(array.length);
+  while ((i < len)) {
+    var index = i;
+    var arg1 = array[index];
+    this$6.$$plus$eq__T2__scm_MapBuilder($as_T2(arg1));
+    i = ((1 + i) | 0)
+  };
+  return $as_sci_Map(this$6.elems$1)
+});
 $c_Ltutorial_webapp_Util$.prototype.postUrl__T = (function() {
   return "https://nixme.ddns.net/posts"
 });
@@ -2669,6 +2641,17 @@ $c_Ltutorial_webapp_Util$.prototype.loadNavbar__V = (function() {
 });
 $c_Ltutorial_webapp_Util$.prototype.downvoteUrl__T = (function() {
   return "https://nixme.ddns.net/downvote"
+});
+$c_Ltutorial_webapp_Util$.prototype.get__T__O__sci_Map__F1__V = (function(url, data, headers, callback) {
+  var this$1 = $m_Lorg_scalajs_dom_ext_Ajax$();
+  var this$2 = this$1.apply__T__T__Lorg_scalajs_dom_ext_Ajax$InputData__I__sci_Map__Z__T__s_concurrent_Future("GET", url, null, 0, headers, false, "");
+  var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, callback$1) {
+    return (function(xhr$2) {
+      callback$1.apply__O__O(xhr$2)
+    })
+  })(this, callback));
+  var executor = $m_sjs_concurrent_JSExecutionContext$Implicits$().runNow$1;
+  $f_s_concurrent_Future__foreach__F1__s_concurrent_ExecutionContext__V(this$2, f, executor)
 });
 $c_Ltutorial_webapp_Util$.prototype.messageUrl__T = (function() {
   return "https://nixme.ddns.net/messages"

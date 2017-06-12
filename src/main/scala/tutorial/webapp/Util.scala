@@ -8,6 +8,24 @@ import scala.concurrent.Future
 import scala.scalajs.js
 import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel, JSGlobal, ScalaJSDefined}
 import scala.scalajs.js
+import scala.concurrent.ExecutionContext.Implicits.global._
+import org.scalajs.dom
+import org.scalajs.jquery.jQuery
+import tutorial.webapp.Login.usernameElement
+import tutorial.webapp.Main.parse
+
+import scala.scalajs.js
+import scala.scalajs.js.JSON
+import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel}
+import scala.concurrent.ExecutionContext.Implicits.global._
+import org.scalajs._
+import org.scalajs.dom.ext.Ajax
+import org.scalajs.jquery.jQuery
+
+import scala.scalajs.js
+import scala.util.{Failure, Success}
+import scala.scalajs.concurrent.JSExecutionContext.Implicits.runNow
+import scala.scalajs.js.JSON
 
 /**
   * Created by henrik on 19/05/17.
@@ -37,6 +55,8 @@ object Util {
 
   def unblockUrl: String = url + "/unblock_user/"
 
+  def jsonAndTokenHeaderMap = Map("Content-Type" -> "application/json", "auth" -> dom.window.localStorage.getItem("scalol_token"))
+
   @JSExport
   def loadNavbar(): Unit = {
     if (dom.window.localStorage.getItem("scalol_token") == null) {
@@ -59,8 +79,11 @@ object Util {
     jQuery("#modifyProfile").append(dom.window.localStorage.getItem("scalol_username"))
   }
 
-  def get(url: String, data: Any, headers: Map[String, String], callback: Future[dom.XMLHttpRequest] => Unit) {
-
+  def get(url: String, data: Any, headers: Map[String, String], callback: dom.XMLHttpRequest => Unit) {
+    dom.ext.Ajax.get(
+      url = url,
+      headers = headers
+    ).foreach { xhr => callback(xhr) }
   }
 
   def post(url: String, data: Any, headers: Map[String, String], callback: Future[dom.XMLHttpRequest] => Unit) {
