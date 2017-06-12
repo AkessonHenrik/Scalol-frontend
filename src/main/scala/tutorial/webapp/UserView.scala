@@ -24,12 +24,8 @@ object UserView {
 
   def getUser(username: String): Unit = {
     // Get user & posts
-    val xhr = new dom.XMLHttpRequest()
     val url = Util.userUrl + "/" + username
-    xhr.open("GET",
-      url
-    )
-    xhr.onload = { (e: dom.Event) =>
+    Util.get(url, null, null, (xhr: dom.XMLHttpRequest) => {
       if (xhr.status == 200) {
         println(JSON.stringify(xhr.response))
         val response = JSON.parse(xhr.response.toString)
@@ -45,7 +41,6 @@ object UserView {
           "<div class=\"alert alert-danger\">\n  <strong>User not found</strong></div>"
         )
       }
-    }
-    xhr.send()
+    })
   }
 }

@@ -1,10 +1,11 @@
 package tutorial.webapp
 
 import org.scalajs.dom
+import org.scalajs.dom.raw.CloseEvent
 import org.scalajs.jquery.jQuery
 
 import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel}
-import scala.scalajs.js.{JSON}
+import scala.scalajs.js.JSON
 import scala.scalajs.js
 
 /**
@@ -42,8 +43,14 @@ object Chat {
         jQuery("#chatContent").scrollTop(jQuery("#chatContent").apply(0).scrollHeight)
       }
     }
+    socket.onclose = { (e: CloseEvent) => {
+      jQuery("#chatContent").append("<span class=\"socketClosed\">This user has blocked you. The connection has been closed </span><br>")
+      jQuery("#userInput").remove()
+    }
+    }
     jQuery("#sendMessage").click(() => {
       val newMessage: String = in.value.asInstanceOf[String]
+
       socket.send(newMessage)
       in.value("")
       jQuery("#chatContent").append("<span class=\"userMessage\">" + "You: </span><span>" + newMessage + "</span><br>")
@@ -52,7 +59,7 @@ object Chat {
     jQuery("#blockButton").click(() => {
       val ajaxUrl = Util.blockUrl + recipient
       Util.get(ajaxUrl, null, Util.jsonAndTokenHeaderMap, (xhr: dom.XMLHttpRequest) => {
-        if (xhr == 200) {
+        if (xhr.status == 200) {
           println(xhr.responseText)
         }
       })
@@ -60,7 +67,7 @@ object Chat {
     jQuery("#unblockButton").click(() => {
       val ajaxUrl = Util.unblockUrl + recipient
       Util.get(ajaxUrl, null, Util.jsonAndTokenHeaderMap, (xhr: dom.XMLHttpRequest) => {
-        if (xhr == 200) {
+        if (xhr.status == 200) {
           println(xhr.responseText)
         }
       })

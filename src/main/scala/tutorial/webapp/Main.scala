@@ -19,9 +19,6 @@ object Main {
   lazy val passwordElement = jQuery("#password")
   lazy val repeatPasswordElement = jQuery("#repeatPassword")
   lazy val submitElement = jQuery("#submitButton")
-  lazy val searchElement = jQuery("#searcher")
-  var searching = false
-  lazy val searchField = dom.document.createElement("input")
   var lowestId: Int = -1
   var posts: js.Array[Post] = new js.Array[Post]()
 
@@ -43,59 +40,40 @@ object Main {
 
   @JSExportTopLevel("upvote")
   def upvote(id: Int): Unit = {
-    println("Upvote " + id)
-    val xhr = new dom.XMLHttpRequest()
-    xhr.open("GET",
-      Util.upvoteUrl + "/" + id
-    )
-    xhr.setRequestHeader("auth", dom.window.localStorage.getItem("scalol_token"))
-    xhr.onload = { (e: dom.Event) =>
+    val url = Util.upvoteUrl + "/" + id
+    Util.get(url, null, Util.jsonAndTokenHeaderMap, (xhr: dom.XMLHttpRequest) => {
       if (xhr.status == 200) {
         println(xhr.response.toString)
       }
-    }
-    xhr.send()
+    })
   }
 
   @JSExportTopLevel("downvote")
   def downvote(id: Int): Unit = {
-    println("Downvote: " + id)
-    var xhr = new dom.XMLHttpRequest()
-    println(xhr)
-    xhr.open("GET",
-      Util.downvoteUrl + "/" + id
-    )
-    xhr.setRequestHeader("auth", dom.window.localStorage.getItem("scalol_token"))
-    xhr.onload = { (e: dom.Event) =>
+    val url = Util.downvoteUrl + "/" + id
+    Util.get(url, null, Util.jsonAndTokenHeaderMap, (xhr: dom.XMLHttpRequest) => {
       if (xhr.status == 200) {
         println(xhr.response.toString)
       }
-    }
-    xhr.send()
+    })
   }
 
-  @JSExportTopLevel("loadmore")
+  @JSExport("loadmore")
   def loadmore(): Unit = {
-    val xhr = new dom.XMLHttpRequest()
     var url = ""
-    if (this.lowestId == -1) {
+    if (lowestId == -1) {
       url = Util.postUrl
     } else {
       url = Util.postUrl + "?offset=" + (this.lowestId - 1) + "&number=2"
     }
-    xhr.open("GET",
-      url
-    )
-    xhr.onload = { (e: dom.Event) =>
+
+    Util.get(url, null, null, (xhr: dom.XMLHttpRequest) => {
       if (xhr.status == 200) {
         val jsPosts: js.Array[js.Dynamic] = JSON.parse(xhr.response.toString).asInstanceOf[js.Array[js.Dynamic]]
-        println("Lowest id is = " + this.lowestId)
         if (this.lowestId == -1) this.lowestId = jsPosts.apply(0).id.asInstanceOf[Int]
-        println("Now lowest id is " + this.lowestId)
         for (jsPost <- jsPosts) {
           if (jsPost.id.asInstanceOf[Int] < this.lowestId) {
             this.lowestId = jsPost.id.asInstanceOf[Int]
-            println("Now lowest id is " + this.lowestId)
           }
 
           val postToAdd = parse(jsPost, "post")
@@ -103,9 +81,7 @@ object Main {
             jQuery("#posts").append(postToAdd.toHtml)
         }
       }
-    }
-    xhr.send()
-
+    })
   }
 
   def parse(obj: js.Dynamic, typeOfObject: String): HtmlObject = {
@@ -113,7 +89,6 @@ object Main {
       case "post" => new Post(obj.id, obj.score.asInstanceOf[Int], obj.title, obj.owner, obj.nsfw.asInstanceOf[Boolean], obj.image_path)
       // case "user" => new User()
       case "comment" => new Comment(obj.username.asInstanceOf[String], obj.content.asInstanceOf[String])
-      case "message" => new Message()
     }
   }
 
@@ -172,8 +147,4 @@ class User(username: String, mail: String) extends HtmlObject {
 
 class Comment(username: String, content: String) extends HtmlObject {
   override def toHtml: String = "<div class=\"othercomment\"><h2>" + username + ": </h2><p>" + content + "</p></div>"
-}
-
-class Message extends HtmlObject {
-  override def toHtml: String = ???
 }

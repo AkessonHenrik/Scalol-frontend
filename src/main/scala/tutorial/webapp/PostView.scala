@@ -11,6 +11,7 @@ import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel}
 import scala.concurrent.ExecutionContext.Implicits.global._
 import org.scalajs._
 import org.scalajs.dom.ext.Ajax
+import org.scalajs.dom.raw.XMLHttpRequest
 import org.scalajs.jquery.jQuery
 
 import scala.scalajs.js
@@ -44,32 +45,23 @@ object PostView {
 
   def getPost(postId: String): Unit = {
     // Get post
-    val xhr = new dom.XMLHttpRequest()
     val url = Util.postUrl + "/" + postId
-    xhr.open("GET",
-      url
-    )
-    xhr.onload = { (e: dom.Event) =>
+    Util.get(url, null, null, (xhr: dom.XMLHttpRequest) => {
       if (xhr.status == 200) {
         val jsPost: js.Dynamic = JSON.parse(xhr.response.toString)
         println("Post: " + JSON.stringify(jsPost))
         val postToAdd = parse(jsPost, "post")
         jQuery("#post").append(postToAdd.toHtml)
       }
-    }
-
-    xhr.send()
+    })
   }
 
   def getComments(postId: String): Unit = {
     // Get comments
-    val xhr = new dom.XMLHttpRequest()
     val url = Util.commentUrl + "/" + postId
-    xhr.open("GET",
-      url
-    )
-    xhr.onload = { (e: dom.Event) =>
+    Util.get(url, null, null, (xhr: XMLHttpRequest) => {
       if (xhr.status == 200) {
+        println(xhr.responseText)
         val jsComments: js.Array[js.Dynamic] = JSON.parse(xhr.response.toString).asInstanceOf[js.Array[js.Dynamic]]
         println(JSON.stringify(jsComments))
         for (jsComment <- jsComments) {
@@ -78,27 +70,22 @@ object PostView {
       } else {
         println("Comments response: " + xhr.response.toString)
       }
-    }
-    xhr.send()
+
+    })
   }
 
   @JSExport
   def postComment(): Unit = {
-    println("getComments of " + postId)
     val commentData = jQuery("#commentInput").value
     val dataString = new CommentData(postId, commentData.toString).toString;
     println("Data string = " + dataString)
-    dom.ext.Ajax.post(
-      url = Util.commentUrl, // + "/" + postId,
-      data = dataString,
-      headers = Map("Content-Type" -> "application/json", "auth" -> dom.window.localStorage.getItem("scalol_token"))
-    ).foreach { xhr =>
+    Util.post(Util.commentUrl, dataString, Util.jsonAndTokenHeaderMap, (xhr: dom.XMLHttpRequest) => {
       if (xhr.status == 200) {
         val x = JSON.parse(xhr.responseText)
         println(x)
         dom.window.location.href = "./posts.html?" + postId
       }
-    }
+    })
   }
 }
 

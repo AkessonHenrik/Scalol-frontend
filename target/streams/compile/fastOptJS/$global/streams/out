@@ -1,16 +1,16 @@
 [0m[[0minfo[0m] [0mFast optimizing /home/henrik/Documents/Scalol-frontend/target/scala-2.12/scalol-fastopt.js[0m
-[0m[[0mdebug[0m] [0mLinker: Compute reachability: 82508 us[0m
-[0m[[0mdebug[0m] [0mLinker: Assemble LinkedClasses: 14001 us[0m
-[0m[[0mdebug[0m] [0mBasic Linking: 99113 us[0m
+[0m[[0mdebug[0m] [0mLinker: Compute reachability: 50159 us[0m
+[0m[[0mdebug[0m] [0mLinker: Assemble LinkedClasses: 12783 us[0m
+[0m[[0mdebug[0m] [0mBasic Linking: 64851 us[0m
 [0m[[0mdebug[0m] [0mInc. optimizer: Batch mode: false[0m
-[0m[[0mdebug[0m] [0mInc. optimizer: Incremental part: 5977 us[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: Incremental part: 14586 us[0m
 [0m[[0mdebug[0m] [0mInc. optimizer: Optimizing 0 methods.[0m
-[0m[[0mdebug[0m] [0mInc. optimizer: Optimizer part: 102 us[0m
-[0m[[0mdebug[0m] [0mInc. optimizer: 7963 us[0m
-[0m[[0mdebug[0m] [0mRefiner: Compute reachability: 48039 us[0m
-[0m[[0mdebug[0m] [0mRefiner: Assemble LinkedClasses: 2716 us[0m
-[0m[[0mdebug[0m] [0mRefiner: 50861 us[0m
-[0m[[0mdebug[0m] [0mEmitter: Class tree cache stats: reused: 537 -- invalidated: 1[0m
-[0m[[0mdebug[0m] [0mEmitter: Method tree cache stats: resued: 809 -- invalidated: 0[0m
-[0m[[0mdebug[0m] [0mEmitter (write output): 29360 us[0m
-[0m[[0mdebug[0m] [0mGlobal IR cache stats: reused: 30 -- invalidated: 1 -- trees read: 1[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: Optimizer part: 130 us[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: 18505 us[0m
+[0m[[0mdebug[0m] [0mRefiner: Compute reachability: 49004 us[0m
+[0m[[0mdebug[0m] [0mRefiner: Assemble LinkedClasses: 3502 us[0m
+[0m[[0mdebug[0m] [0mRefiner: 52670 us[0m
+[0m[[0mdebug[0m] [0mEmitter: Class tree cache stats: reused: 534 -- invalidated: 0[0m
+[0m[[0mdebug[0m] [0mEmitter: Method tree cache stats: resued: 800 -- invalidated: 0[0m
+[0m[[0mdebug[0m] [0mEmitter (write output): 23183 us[0m
+[0m[[0mdebug[0m] [0mGlobal IR cache stats: reused: 29 -- invalidated: 0 -- trees read: 0[0m

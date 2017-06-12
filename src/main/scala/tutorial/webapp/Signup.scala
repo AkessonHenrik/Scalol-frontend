@@ -20,15 +20,12 @@ object Signup {
   lazy val passwordElement = jQuery("#password")
   lazy val repeatPasswordElement = jQuery("#repeatPassword")
   lazy val submitElement = jQuery("#signupButton")
-  lazy val searchElement = jQuery("#searcher")
-  var searching = false
-  lazy val searchField = dom.document.createElement("input")
 
   def checkValidity(): Boolean = {
     passwordElement.value.equals(repeatPasswordElement.value)
   }
 
-  var alert: Boolean = false;
+  var alert: Boolean = false
 
   @JSExport
   def signup() = {
@@ -43,18 +40,12 @@ object Signup {
               alert = false
               jQuery("#error").removeClass("alert alert-danger")
             }
-            println(usernameElement.value)
             dom.window.localStorage.setItem("scalol_username", usernameElement.value.toString)
             val credentials = new SignupData(emailElement.value.toString, usernameElement.value.toString, passwordElement.value.toString)
-            println("==========")
-            println(credentials)
-            println("==========")
-
-            dom.ext.Ajax.post(
-              url = Util.userUrl,
-              data = credentials.toString,
-              headers = Map("Content-Type" -> "application/json")
-            ).foreach { xhr =>
+            val url = Util.userUrl
+            val data = credentials.toString
+            val headers = Map("Content-Type" -> "application/json")
+            Util.post(url, data, headers, (xhr: dom.XMLHttpRequest) => {
               if (xhr.status == 200) {
                 val x = JSON.parse(xhr.responseText)
                 println(x.token)
@@ -66,7 +57,7 @@ object Signup {
                 )
                 dom.window.location.href = "./index.html"
               }
-            }
+            })
           } else if (!alert) {
             alert = true
             jQuery("#error").append("<div class=\"alert alert-danger\" role=\"alert\">" + "Passwords don't match, try again" + "</div>")

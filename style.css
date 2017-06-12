@@ -229,9 +229,14 @@
     margin: 0;
 }
 
-#blockUnblock {
+#blockButton, #unblockButton {
     position: absolute;
     left: 80%;
     top: 50%;
     transform: translate(0, -50%);
+}
+
+.socketClosed {
+    font-size: 15px;
+    color: red;
 }

@@ -12,7 +12,7 @@ import scala.concurrent.ExecutionContext.Implicits.global._
 import org.scalajs.dom
 import org.scalajs.jquery.jQuery
 import tutorial.webapp.Login.usernameElement
-import tutorial.webapp.Main.parse
+import tutorial.webapp.Main.{loggedIn, parse}
 
 import scala.scalajs.js
 import scala.scalajs.js.JSON
@@ -23,7 +23,7 @@ import org.scalajs.dom.ext.Ajax
 import org.scalajs.jquery.jQuery
 
 import scala.scalajs.js
-import scala.util.{Failure, Success}
+import scala.util.{Failure, Success, Try}
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.runNow
 import scala.scalajs.js.JSON
 
@@ -79,19 +79,50 @@ object Util {
     jQuery("#modifyProfile").append(dom.window.localStorage.getItem("scalol_username"))
   }
 
-  def get(url: String, data: Any, headers: Map[String, String], callback: dom.XMLHttpRequest => Unit) {
-    dom.ext.Ajax.get(
-      url = url,
-      headers = headers
-    ).foreach { xhr => callback(xhr) }
+  def get(url: String, data: js.Any, headers: Map[String, String], callback: dom.XMLHttpRequest => Unit): Unit = {
+    println("get " + url)
+    val xhr = new dom.XMLHttpRequest()
+    xhr.open("GET",
+      url
+    )
+    if (headers != null)
+      for (header <- headers) {
+        xhr.setRequestHeader(header._1, header._2)
+      }
+    xhr.onload = { (e: dom.Event) =>
+      if (xhr.status == 200) {
+        callback(xhr)
+      }
+    }
+    xhr.send()
   }
 
-  def post(url: String, data: Any, headers: Map[String, String], callback: Future[dom.XMLHttpRequest] => Unit) {
-
+  def post(url: String, data: js.Any, headers: Map[String, String], callback: dom.XMLHttpRequest => Unit) {
+    val xhr = new dom.XMLHttpRequest()
+    xhr.open("POST",
+      url
+    )
+    for (header <- headers) {
+      xhr.setRequestHeader(header._1, header._2)
+    }
+    xhr.onload = { (e: dom.Event) =>
+      callback(xhr)
+    }
+    xhr.send(data)
   }
 
-  def patch(url: String, data: Any, headers: Map[String, String], callback: Future[dom.XMLHttpRequest] => Unit) {
-
+  def patch(url: String, data: scala.scalajs.js.Any, headers: Map[String, String], callback: dom.XMLHttpRequest => Unit) {
+    val xhr = new dom.XMLHttpRequest()
+    xhr.open("PATCH",
+      url
+    )
+    for ((key, value) <- headers) {
+      xhr.setRequestHeader(key, value)
+    }
+    xhr.onload = { (e: dom.Event) =>
+      callback(xhr)
+    }
+    xhr.send(data)
   }
 
 }
