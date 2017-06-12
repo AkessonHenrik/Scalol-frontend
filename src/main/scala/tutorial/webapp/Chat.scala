@@ -53,5 +53,31 @@ object Chat {
       jQuery("#chatContent").append("<span class=\"userMessage\">" + "You: </span><span>" + newMessage + "</span><br>")
       jQuery("#chatContent").scrollTop(jQuery("#chatContent").apply(0).scrollHeight)
     })
+    jQuery("#blockButton").click(() => {
+      val ajaxUrl = Util.blockUrl + recipient
+      dom.ext.Ajax.get(
+        url = ajaxUrl,
+        headers = Map("Content-Type" -> "application/json", "auth" -> dom.window.localStorage.getItem("scalol_token"))
+      ).foreach { xhr =>
+        if (xhr.status == 200) {
+//          println(xhr.responseText)
+//          jQuery("#blockButton").remove()
+//          jQuery("#blockUnblock").append("<button id=\"unblockButton\" type=\"button\" class=\"btn btn-info\" aria-label=\"Right Align\">Unblock</button>")
+        }
+      }
+    })
+    jQuery("#unblockButton").click(() => {
+      val ajaxUrl = Util.unblockUrl + recipient
+      dom.ext.Ajax.get(
+        url = ajaxUrl,
+        headers = Map("Content-Type" -> "application/json", "auth" -> dom.window.localStorage.getItem("scalol_token"))
+      ).foreach { xhr =>
+        if (xhr.status == 200) {
+//          println(xhr.responseText)
+//          jQuery("#unblockButton").remove()
+//          jQuery("#blockUnblock").append("<button id=\"blockButton\" type=\"button\" class=\"btn btn-danger\" aria-label=\"Right Align\">Block</button>")
+        }
+      }
+    })
   }
 }

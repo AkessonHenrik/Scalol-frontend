@@ -174,7 +174,7 @@
 
 .otherMessage, .userMessage {
     word-wrap: break-word;
-    display:block;
+    display: block;
 
     margin: 2px;
 }
@@ -227,4 +227,11 @@
     width: 200px;
     height: 30px;
     margin: 0;
+}
+
+#blockUnblock {
+    position: absolute;
+    left: 80%;
+    top: 50%;
+    transform: translate(0, -50%);
 }
