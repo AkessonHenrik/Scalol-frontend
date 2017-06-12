@@ -84,7 +84,6 @@
                     }).then(function (xhr) {
                         return createPost(xhr.location)
                     }).then(function () {
-                        window.location.href = "./index.html"
                     })
                 }
             } else if ($("#urlRadio").is(":checked")) {
@@ -116,6 +115,7 @@
                 processData: false,
                 success: function (msg) {
                     $("#results").append("The result =" + msg);
+                    window.location.href = "./index.html"
                 }
             });
         }
