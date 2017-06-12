@@ -1,0 +1,3 @@
+sbt reload
+reload
+run

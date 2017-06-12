@@ -83,7 +83,8 @@ var $linkingInfo = {
 
   "assumingES6": false,
 
-  "linkerVersion": "0.6.16"
+  "linkerVersion": "0.6.17",
+  "globalThis": this
 };
 $g["Object"]["freeze"]($linkingInfo);
 $g["Object"]["freeze"]($linkingInfo["semantics"]);
@@ -604,15 +605,15 @@ var $systemIdentityHashCode =
 // is/as for hijacked boxed classes (the non-trivial ones)
 
 var $isByte = function(v) {
-  return (v << 24 >> 24) === v && 1/v !== 1/-0;
+  return typeof v === "number" && (v << 24 >> 24) === v && 1/v !== 1/-0;
 };
 
 var $isShort = function(v) {
-  return (v << 16 >> 16) === v && 1/v !== 1/-0;
+  return typeof v === "number" && (v << 16 >> 16) === v && 1/v !== 1/-0;
 };
 
 var $isInt = function(v) {
-  return (v | 0) === v && 1/v !== 1/-0;
+  return typeof v === "number" && (v | 0) === v && 1/v !== 1/-0;
 };
 
 var $isFloat = function(v) {
@@ -4709,9 +4710,6 @@ $c_Ltutorial_webapp_Main$.prototype.upvote__I__V = (function(id) {
 $c_Ltutorial_webapp_Main$.prototype.loggedIn__Z = (function() {
   return ($as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token")) !== null)
 });
-$c_Ltutorial_webapp_Main$.prototype.tutorial$webapp$Main$$$anonfun$main$2__Lorg_scalajs_dom_raw_CloseEvent__Lorg_scalajs_jquery_JQuery = (function(e) {
-  return (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#notifications").append("<span class=\"socketClosed\">The connection has been closed </span><br>")
-});
 $c_Ltutorial_webapp_Main$.prototype.main__V = (function() {
   if (this.loggedIn__Z()) {
     var url = ("wss://nixme.ddns.net/notification?token=" + $as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token")));
@@ -4723,6 +4721,9 @@ $c_Ltutorial_webapp_Main$.prototype.main__V = (function() {
       return $m_Ltutorial_webapp_Main$().tutorial$webapp$Main$$$anonfun$main$2__Lorg_scalajs_dom_raw_CloseEvent__Lorg_scalajs_jquery_JQuery(arg1$2$1)
     })
   }
+});
+$c_Ltutorial_webapp_Main$.prototype.tutorial$webapp$Main$$$anonfun$main$2__Lorg_scalajs_dom_raw_CloseEvent__Lorg_scalajs_jquery_JQuery = (function(e) {
+  return (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#notifications").append("<span class=\"socketClosed\">The connection has been closed </span><br>")
 });
 $c_Ltutorial_webapp_Main$.prototype.downvote__I__V = (function(id) {
   var url = (($m_Ltutorial_webapp_Util$().downvoteUrl__T() + "/") + id);
