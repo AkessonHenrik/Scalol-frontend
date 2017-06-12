@@ -34,7 +34,7 @@ object EditProfile {
         }
       })
     } else {
-      jQuery("#error").append("<div class=\"alert alert-danger\" role=\"alert\">" + "Passwords don't match, try again" + "</div>")
+      Util.showError("Passwords don't match", "try again")
     }
   }
 
@@ -49,7 +49,7 @@ object EditProfile {
           println(JSON.parse(xhr.responseText))
           Main.logout()
         } else {
-          jQuery("#error").append("<div class=\"alert alert-danger\" role=\"alert\">" + xhr.responseText + "</div>")
+          Util.showError(xhr.responseText, null)
         }
     }
   }

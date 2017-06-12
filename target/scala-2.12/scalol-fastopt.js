@@ -1725,7 +1725,7 @@ $c_Ltutorial_webapp_EditProfile$.prototype.$delete__V = (function() {
   };
   var x$2 = $as_sci_Map(this$4.elems$1);
   var this$5 = $m_Lorg_scalajs_dom_ext_Ajax$();
-  var this$10 = this$5.apply__T__T__Lorg_scalajs_dom_ext_Ajax$InputData__I__sci_Map__Z__T__s_concurrent_Future("DELETE", x$1, null, 0, x$2, false, "");
+  var this$9 = this$5.apply__T__T__Lorg_scalajs_dom_ext_Ajax$InputData__I__sci_Map__Z__T__s_concurrent_Future("DELETE", x$1, null, 0, x$2, false, "");
   var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this) {
     return (function(xhr$2) {
       if (($uI(xhr$2.status) === 200)) {
@@ -1733,17 +1733,14 @@ $c_Ltutorial_webapp_EditProfile$.prototype.$delete__V = (function() {
         var this$7 = $m_s_Console$();
         var this$8 = $as_Ljava_io_PrintStream(this$7.outVar$2.v$1);
         this$8.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
-        $m_Ltutorial_webapp_Main$().logout__V();
-        return (void 0)
+        $m_Ltutorial_webapp_Main$().logout__V()
       } else {
-        var jsx$1 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#error");
-        var s = (("<div class=\"alert alert-danger\" role=\"alert\">" + $as_T(xhr$2.responseText)) + "</div>");
-        return jsx$1.append(s)
+        $m_Ltutorial_webapp_Util$().showError__T__T__V($as_T(xhr$2.responseText), null)
       }
     })
   })(this));
   var executor = $m_sjs_concurrent_JSExecutionContext$Implicits$().runNow$1;
-  $f_s_concurrent_Future__foreach__F1__s_concurrent_ExecutionContext__V(this$10, f, executor)
+  $f_s_concurrent_Future__foreach__F1__s_concurrent_ExecutionContext__V(this$9, f, executor)
 });
 $c_Ltutorial_webapp_EditProfile$.prototype.$$js$exported$meth$delete__O = (function() {
   this.$delete__V()
@@ -1774,7 +1771,7 @@ $c_Ltutorial_webapp_EditProfile$.prototype.update__V = (function() {
       })
     })(this, newUsername)))
   } else {
-    (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#error").append("<div class=\"alert alert-danger\" role=\"alert\">Passwords don't match, try again</div>")
+    $m_Ltutorial_webapp_Util$().showError__T__T__V("Passwords don't match", "try again")
   }
 });
 $c_Ltutorial_webapp_EditProfile$.prototype["delete"] = (function() {
