@@ -1541,11 +1541,20 @@ $c_Ltutorial_webapp_Chat$.prototype.predefinedChat__V = (function() {
     var thiz = $objectToString($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().location);
     var jsx$1 = jsx$2.decodeURIComponent($as_T(thiz.substring(startIndex)));
     var predefinedUser = $as_T(jsx$1);
-    if (($uI(predefinedUser.length) > 1)) {
+    if (($uI(predefinedUser.length) > 0)) {
       (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#dest").val(predefinedUser);
       this.startTalking__V()
     }
   }
+});
+$c_Ltutorial_webapp_Chat$.prototype.tutorial$webapp$Chat$$$anonfun$startTalking$3__Lorg_scalajs_dom_raw_MessageEvent__sjs_js_Dynamic__Lorg_scalajs_jquery_JQuery = (function(e, recipient$1) {
+  var jsx$1 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent");
+  var thiz$1 = $objectToString(e.data);
+  var thiz = $objectToString(e.data);
+  var beginIndex = ((1 + $uI(thiz.indexOf("]"))) | 0);
+  var s = (((("<span class=\"otherMessage\">" + recipient$1) + ": ") + $as_T(thiz$1.substring(beginIndex))) + "</span><br>");
+  jsx$1.append(s);
+  return (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent").scrollTop($uI((0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent")[0].scrollHeight))
 });
 $c_Ltutorial_webapp_Chat$.prototype.startTalking__V = (function() {
   var recipient = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#dest").val();
@@ -1631,15 +1640,6 @@ $c_Ltutorial_webapp_Chat$.prototype.startTalking__V = (function() {
       })(this$4$1)))
     })
   })(this, recipient))
-});
-$c_Ltutorial_webapp_Chat$.prototype.tutorial$webapp$Chat$$$anonfun$startTalking$3__Lorg_scalajs_dom_raw_MessageEvent__sjs_js_Dynamic__Lorg_scalajs_jquery_JQuery = (function(e, recipient$1) {
-  var jsx$1 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent");
-  var thiz$1 = $objectToString(e.data);
-  var thiz = $objectToString(e.data);
-  var beginIndex = ((1 + $uI(thiz.indexOf("]"))) | 0);
-  var s = (((("<span class=\"otherMessage\">" + recipient$1) + ":  </span><span>") + $as_T(thiz$1.substring(beginIndex))) + "</span><br>");
-  jsx$1.append(s);
-  return (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent").scrollTop($uI((0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent")[0].scrollHeight))
 });
 $c_Ltutorial_webapp_Chat$.prototype.$$js$exported$meth$predefinedChat__O = (function() {
   this.predefinedChat__V()

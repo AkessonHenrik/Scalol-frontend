@@ -24,7 +24,7 @@ object Chat {
     val startIndex: Int = (dom.window.location.toString.indexOf('?') + 1)
     if (startIndex > 0) {
       val predefinedUser: String = js.URIUtils.decodeURIComponent(dom.window.location.toString.substring(startIndex)).toString
-      if (predefinedUser.length > 1) {
+      if (predefinedUser.length > 0) {
         jQuery("#dest").value(predefinedUser)
         startTalking()
       }
@@ -58,7 +58,7 @@ object Chat {
     val socket = new dom.WebSocket(url)
     socket.onmessage = {
       (e: dom.MessageEvent) => {
-        jQuery("#chatContent").append("<span class=\"otherMessage\">" + recipient + ":  </span><span>" + e.data.toString.substring(e.data.toString.indexOf("]") + 1) + "</span><br>")
+        jQuery("#chatContent").append("<span class=\"otherMessage\">" + recipient + ": " + e.data.toString.substring(e.data.toString.indexOf("]") + 1) + "</span><br>")
         jQuery("#chatContent").scrollTop(jQuery("#chatContent").apply(0).scrollHeight)
       }
     }
