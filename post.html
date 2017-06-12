@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+<div id="error"></div>
 <div id="scalolNavbar"></div>
 <div id="wrapper">
 
@@ -44,53 +45,60 @@
 
         if ($("#postTitle").val() === "") {
             console.log("Empty title")
-            alert("Please specify a title")
+            $("#error").append("<div class=\"err alert alert-danger\"><strong>Please specify a title</strong></div>")
         } else {
             if ($("#fileRadio").is(":checked")) {
                 var thisData = new FormData();
                 thisData.append('picture', $('#file')[0].files[0]);
-                $.ajax({
-                    url: 'https://nixme.ddns.net/upload',
-                    type: 'POST',
-                    beforeSend: function (xhr) {
-                        xhr.setRequestHeader('auth', localStorage["scalol_token"]);
-                    },
+                if ($('#file').val() === '') {
+                    $(".err").remove();
+                    $("#error").append("<div class=\"err alert alert-danger\"><strong>Please specify a file</strong></div>")
+                } else {
+                    $.ajax({
+                        url: 'https://nixme.ddns.net/upload',
+                        type: 'POST',
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader('auth', localStorage["scalol_token"]);
+                        },
 
-                    data: thisData,
+                        data: thisData,
 
-                    cache: false,
-                    contentType: false,
-                    processData: false,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
 
-                    xhr: function () {
-                        var myXhr = $.ajaxSettings.xhr();
-                        if (myXhr.upload) {
-                            myXhr.upload.addEventListener('progress', function (e) {
-                                if (e.lengthComputable) {
-                                    $('progress').attr({
-                                        value: e.loaded,
-                                        max: e.total
-                                    });
-                                }
-                            }, false);
+                        xhr: function () {
+                            var myXhr = $.ajaxSettings.xhr();
+                            if (myXhr.upload) {
+                                myXhr.upload.addEventListener('progress', function (e) {
+                                    if (e.lengthComputable) {
+                                        $('progress').attr({
+                                            value: e.loaded,
+                                            max: e.total
+                                        });
+                                    }
+                                }, false);
+                            }
+                            return myXhr;
                         }
-                        return myXhr;
-                    }
-                }).then(function (xhr) {
-                    return createPost(xhr.location)
-                }).then(function () {
-//                window.location.href = "./index.html"
-                })
+                    }).then(function (xhr) {
+                        return createPost(xhr.location)
+                    }).then(function () {
+                        window.location.href = "./index.html"
+                    })
+                }
             } else if ($("#urlRadio").is(":checked")) {
                 createPost($("#imageUrl").val())
             } else {
-                alert("Please choose an upload type [image or url]")
+                $(".err").remove();
+                $("#error").append("<div class=\"err alert alert-danger\"><strong>Please choose an upload type [file or url]</strong></div>")
             }
         }
     });
     function createPost(imageUrl) {
-        if (imageUrl == "") {
-            alert("The specified url does not exist")
+        if (imageUrl.empty) {
+            $('.err').remove();
+            $('#error').append("<div class=\"err alert alert-danger\"><strong>Please specify a file or url</strong></div>")
         } else {
             $.ajax({
                 type: "POST",
@@ -108,7 +116,6 @@
                 processData: false,
                 success: function (msg) {
                     $("#results").append("The result =" + msg);
-                    return;
                 }
             });
         }

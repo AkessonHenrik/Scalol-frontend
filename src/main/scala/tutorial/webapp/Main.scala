@@ -2,7 +2,7 @@ package tutorial.webapp
 
 
 import org.scalajs._
-import org.scalajs.dom.raw.{Blob, File, FileReader}
+import org.scalajs.dom.raw.{Blob, CloseEvent, File, FileReader}
 import org.scalajs.jquery.jQuery
 import tutorial.webapp.Main.nextElement
 
@@ -10,9 +10,11 @@ import scala.scalajs.js
 import js.Dynamic._
 import scala.scalajs.js.annotation.{JSExport, JSExportTopLevel, JSGlobal, ScalaJSDefined}
 import scala.scalajs.js.JSON
+import scala.scalajs.js.JSApp
+
 
 @JSExportTopLevel("Main")
-object Main {
+object Main extends js.JSApp {
   lazy val nextElement = jQuery("#next")
   lazy val emailElement = jQuery("#email")
   lazy val usernameElement = jQuery("#username")
@@ -24,10 +26,21 @@ object Main {
 
   def loggedIn(): Boolean = dom.window.localStorage.getItem("scalol_token") != null
 
-  @js.native
-  @JSExport
   def main(): Unit = {
-    loadmore()
+    if (loggedIn()) {
+      val url = "wss://nixme.ddns.net/notification?token=" + dom.window.localStorage.getItem("scalol_token")
+      val socket = new dom.WebSocket(url)
+      socket.onmessage = {
+        (e: dom.MessageEvent) => {
+          jQuery("#notifications").append("<p>" + e.data.toString + "</p>")
+          jQuery("#notifications").scrollTop(jQuery("#chatContent").apply(0).scrollHeight)
+        }
+      }
+      socket.onclose = { (e: CloseEvent) => {
+        jQuery("#notifications").append("<span class=\"socketClosed\">The connection has been closed </span><br>")
+      }
+      }
+    }
   }
 
   @JSExportTopLevel("logout")
@@ -58,7 +71,7 @@ object Main {
     })
   }
 
-  @JSExport("loadmore")
+  @JSExport
   def loadmore(): Unit = {
     var url = ""
     if (lowestId == -1) {

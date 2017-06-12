@@ -1619,7 +1619,8 @@ $c_Ltutorial_webapp_Chat$.prototype.startTalking__V = (function() {
             var x$2 = $as_T(xhr$2$2.responseText);
             var this$12 = $m_s_Console$();
             var this$13 = $as_Ljava_io_PrintStream(this$12.outVar$2.v$1);
-            this$13.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x$2 + "\n"))
+            this$13.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x$2 + "\n"));
+            $this$2.startTalking__V()
           }
         })
       })(this$4$1)))
@@ -1628,7 +1629,7 @@ $c_Ltutorial_webapp_Chat$.prototype.startTalking__V = (function() {
 });
 $c_Ltutorial_webapp_Chat$.prototype.tutorial$webapp$Chat$$$anonfun$startTalking$4__Lorg_scalajs_dom_raw_CloseEvent__Lorg_scalajs_jquery_JQuery = (function(e) {
   (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent").append("<span class=\"socketClosed\">This user has blocked you. The connection has been closed </span><br>");
-  return (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#userInput").remove()
+  return (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#userInput :input").prop("disabled", true)
 });
 $c_Ltutorial_webapp_Chat$.prototype.startTalking = (function() {
   return this.$$js$exported$meth$startTalking__O()
@@ -1933,136 +1934,6 @@ var $d_Ltutorial_webapp_LoginData = new $TypeData().initClass({
   O: 1
 });
 $c_Ltutorial_webapp_LoginData.prototype.$classData = $d_Ltutorial_webapp_LoginData;
-/** @constructor */
-function $c_Ltutorial_webapp_Main$() {
-  $c_O.call(this);
-  this.nextElement$1 = null;
-  this.emailElement$1 = null;
-  this.usernameElement$1 = null;
-  this.passwordElement$1 = null;
-  this.repeatPasswordElement$1 = null;
-  this.submitElement$1 = null;
-  this.lowestId$1 = 0;
-  this.posts$1 = null;
-  this.bitmap$0$1 = 0
-}
-$c_Ltutorial_webapp_Main$.prototype = new $h_O();
-$c_Ltutorial_webapp_Main$.prototype.constructor = $c_Ltutorial_webapp_Main$;
-/** @constructor */
-function $h_Ltutorial_webapp_Main$() {
-  /*<skip>*/
-}
-$h_Ltutorial_webapp_Main$.prototype = $c_Ltutorial_webapp_Main$.prototype;
-$c_Ltutorial_webapp_Main$.prototype.init___ = (function() {
-  $n_Ltutorial_webapp_Main$ = this;
-  this.lowestId$1 = (-1);
-  this.posts$1 = [];
-  return this
-});
-$c_Ltutorial_webapp_Main$.prototype.$$js$exported$meth$loadmore__O = (function() {
-  this.loadmore__V()
-});
-$c_Ltutorial_webapp_Main$.prototype.upvote__I__V = (function(id) {
-  var url = (($m_Ltutorial_webapp_Util$().upvoteUrl__T() + "/") + id);
-  $m_Ltutorial_webapp_Util$().get__T__sjs_js_Any__sci_Map__F1__V(url, null, $m_Ltutorial_webapp_Util$().jsonAndTokenHeaderMap__sci_Map(), new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this) {
-    return (function(xhr$2) {
-      if (($uI(xhr$2.status) === 200)) {
-        var x = $objectToString(xhr$2.response);
-        var this$2 = $m_s_Console$();
-        var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-        this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"))
-      }
-    })
-  })(this)))
-});
-$c_Ltutorial_webapp_Main$.prototype.loggedIn__Z = (function() {
-  return ($as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token")) !== null)
-});
-$c_Ltutorial_webapp_Main$.prototype.downvote__I__V = (function(id) {
-  var url = (($m_Ltutorial_webapp_Util$().downvoteUrl__T() + "/") + id);
-  $m_Ltutorial_webapp_Util$().get__T__sjs_js_Any__sci_Map__F1__V(url, null, $m_Ltutorial_webapp_Util$().jsonAndTokenHeaderMap__sci_Map(), new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this) {
-    return (function(xhr$2) {
-      if (($uI(xhr$2.status) === 200)) {
-        var x = $objectToString(xhr$2.response);
-        var this$2 = $m_s_Console$();
-        var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-        this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"))
-      }
-    })
-  })(this)))
-});
-$c_Ltutorial_webapp_Main$.prototype.loadmore__V = (function() {
-  var url = "";
-  if ((this.lowestId$1 === (-1))) {
-    url = $m_Ltutorial_webapp_Util$().postUrl__T()
-  } else {
-    url = ((($m_Ltutorial_webapp_Util$().postUrl__T() + "?offset=") + (((-1) + this.lowestId$1) | 0)) + "&number=2")
-  };
-  $m_Ltutorial_webapp_Util$().get__T__sjs_js_Any__sci_Map__F1__V(url, null, null, new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this) {
-    return (function(xhr$2) {
-      if (($uI(xhr$2.status) === 200)) {
-        var jsPosts = $g.JSON.parse($objectToString(xhr$2.response));
-        if (($this.lowestId$1 === (-1))) {
-          $this.lowestId$1 = $uI(jsPosts[0].id)
-        };
-        var i = 0;
-        var len = $uI(jsPosts.length);
-        while ((i < len)) {
-          var index = i;
-          var arg1 = jsPosts[index];
-          if (($uI(arg1.id) < $this.lowestId$1)) {
-            $this.lowestId$1 = $uI(arg1.id)
-          };
-          var postToAdd = $this.parse__sjs_js_Dynamic__T__Ltutorial_webapp_HtmlObject(arg1, "post");
-          if ((!((!$this.loggedIn__Z()) && $uZ(arg1.nsfw)))) {
-            var jsx$1 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#posts");
-            var s = postToAdd.toHtml__T();
-            jsx$1.append(s)
-          };
-          i = ((1 + i) | 0)
-        }
-      }
-    })
-  })(this)))
-});
-$c_Ltutorial_webapp_Main$.prototype.logout__V = (function() {
-  $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.removeItem("scalol_token");
-  $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.removeItem("scalol_username");
-  $m_Ltutorial_webapp_Util$().loadNavbar__V();
-  $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().location.href = "./index.html"
-});
-$c_Ltutorial_webapp_Main$.prototype.$$js$exported$meth$main__O = (function() {
-  this.loadmore__V()
-});
-$c_Ltutorial_webapp_Main$.prototype.parse__sjs_js_Dynamic__T__Ltutorial_webapp_HtmlObject = (function(obj, typeOfObject) {
-  if ((typeOfObject === "post")) {
-    return new $c_Ltutorial_webapp_Post().init___sjs_js_Dynamic__I__sjs_js_Dynamic__sjs_js_Dynamic__Z__sjs_js_Dynamic(obj.id, $uI(obj.score), obj.title, obj.owner, $uZ(obj.nsfw), obj.image_path)
-  } else if ((typeOfObject === "comment")) {
-    return new $c_Ltutorial_webapp_Comment().init___T__T($as_T(obj.username), $as_T(obj.content))
-  } else {
-    throw new $c_s_MatchError().init___O(typeOfObject)
-  }
-});
-$c_Ltutorial_webapp_Main$.prototype.loadmore = (function() {
-  return this.$$js$exported$meth$loadmore__O()
-});
-$c_Ltutorial_webapp_Main$.prototype.main = (function() {
-  return this.$$js$exported$meth$main__O()
-});
-var $d_Ltutorial_webapp_Main$ = new $TypeData().initClass({
-  Ltutorial_webapp_Main$: 0
-}, false, "tutorial.webapp.Main$", {
-  Ltutorial_webapp_Main$: 1,
-  O: 1
-});
-$c_Ltutorial_webapp_Main$.prototype.$classData = $d_Ltutorial_webapp_Main$;
-var $n_Ltutorial_webapp_Main$ = (void 0);
-function $m_Ltutorial_webapp_Main$() {
-  if ((!$n_Ltutorial_webapp_Main$)) {
-    $n_Ltutorial_webapp_Main$ = new $c_Ltutorial_webapp_Main$().init___()
-  };
-  return $n_Ltutorial_webapp_Main$
-}
 /** @constructor */
 function $c_Ltutorial_webapp_PostView$() {
   $c_O.call(this);
@@ -4793,6 +4664,158 @@ var $d_Ltutorial_webapp_Comment = new $TypeData().initClass({
   Ltutorial_webapp_HtmlObject: 1
 });
 $c_Ltutorial_webapp_Comment.prototype.$classData = $d_Ltutorial_webapp_Comment;
+/** @constructor */
+function $c_Ltutorial_webapp_Main$() {
+  $c_O.call(this);
+  this.nextElement$1 = null;
+  this.emailElement$1 = null;
+  this.usernameElement$1 = null;
+  this.passwordElement$1 = null;
+  this.repeatPasswordElement$1 = null;
+  this.submitElement$1 = null;
+  this.lowestId$1 = 0;
+  this.posts$1 = null;
+  this.bitmap$0$1 = 0
+}
+$c_Ltutorial_webapp_Main$.prototype = new $h_O();
+$c_Ltutorial_webapp_Main$.prototype.constructor = $c_Ltutorial_webapp_Main$;
+/** @constructor */
+function $h_Ltutorial_webapp_Main$() {
+  /*<skip>*/
+}
+$h_Ltutorial_webapp_Main$.prototype = $c_Ltutorial_webapp_Main$.prototype;
+$c_Ltutorial_webapp_Main$.prototype.init___ = (function() {
+  $n_Ltutorial_webapp_Main$ = this;
+  this.lowestId$1 = (-1);
+  this.posts$1 = [];
+  return this
+});
+$c_Ltutorial_webapp_Main$.prototype.$$js$exported$meth$loadmore__O = (function() {
+  this.loadmore__V()
+});
+$c_Ltutorial_webapp_Main$.prototype.upvote__I__V = (function(id) {
+  var url = (($m_Ltutorial_webapp_Util$().upvoteUrl__T() + "/") + id);
+  $m_Ltutorial_webapp_Util$().get__T__sjs_js_Any__sci_Map__F1__V(url, null, $m_Ltutorial_webapp_Util$().jsonAndTokenHeaderMap__sci_Map(), new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this) {
+    return (function(xhr$2) {
+      if (($uI(xhr$2.status) === 200)) {
+        var x = $objectToString(xhr$2.response);
+        var this$2 = $m_s_Console$();
+        var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
+        this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"))
+      }
+    })
+  })(this)))
+});
+$c_Ltutorial_webapp_Main$.prototype.loggedIn__Z = (function() {
+  return ($as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token")) !== null)
+});
+$c_Ltutorial_webapp_Main$.prototype.tutorial$webapp$Main$$$anonfun$main$2__Lorg_scalajs_dom_raw_CloseEvent__Lorg_scalajs_jquery_JQuery = (function(e) {
+  return (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#notifications").append("<span class=\"socketClosed\">The connection has been closed </span><br>")
+});
+$c_Ltutorial_webapp_Main$.prototype.main__V = (function() {
+  if (this.loggedIn__Z()) {
+    var url = ("wss://nixme.ddns.net/notification?token=" + $as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token")));
+    var socket = new $g.WebSocket(url);
+    socket.onmessage = (function(arg1$2) {
+      return $m_Ltutorial_webapp_Main$().tutorial$webapp$Main$$$anonfun$main$1__Lorg_scalajs_dom_raw_MessageEvent__Lorg_scalajs_jquery_JQuery(arg1$2)
+    });
+    socket.onclose = (function(arg1$2$1) {
+      return $m_Ltutorial_webapp_Main$().tutorial$webapp$Main$$$anonfun$main$2__Lorg_scalajs_dom_raw_CloseEvent__Lorg_scalajs_jquery_JQuery(arg1$2$1)
+    })
+  }
+});
+$c_Ltutorial_webapp_Main$.prototype.downvote__I__V = (function(id) {
+  var url = (($m_Ltutorial_webapp_Util$().downvoteUrl__T() + "/") + id);
+  $m_Ltutorial_webapp_Util$().get__T__sjs_js_Any__sci_Map__F1__V(url, null, $m_Ltutorial_webapp_Util$().jsonAndTokenHeaderMap__sci_Map(), new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this) {
+    return (function(xhr$2) {
+      if (($uI(xhr$2.status) === 200)) {
+        var x = $objectToString(xhr$2.response);
+        var this$2 = $m_s_Console$();
+        var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
+        this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"))
+      }
+    })
+  })(this)))
+});
+$c_Ltutorial_webapp_Main$.prototype.loadmore__V = (function() {
+  var url = "";
+  if ((this.lowestId$1 === (-1))) {
+    url = $m_Ltutorial_webapp_Util$().postUrl__T()
+  } else {
+    url = ((($m_Ltutorial_webapp_Util$().postUrl__T() + "?offset=") + (((-1) + this.lowestId$1) | 0)) + "&number=2")
+  };
+  $m_Ltutorial_webapp_Util$().get__T__sjs_js_Any__sci_Map__F1__V(url, null, null, new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this) {
+    return (function(xhr$2) {
+      if (($uI(xhr$2.status) === 200)) {
+        var jsPosts = $g.JSON.parse($objectToString(xhr$2.response));
+        if (($this.lowestId$1 === (-1))) {
+          $this.lowestId$1 = $uI(jsPosts[0].id)
+        };
+        var i = 0;
+        var len = $uI(jsPosts.length);
+        while ((i < len)) {
+          var index = i;
+          var arg1 = jsPosts[index];
+          if (($uI(arg1.id) < $this.lowestId$1)) {
+            $this.lowestId$1 = $uI(arg1.id)
+          };
+          var postToAdd = $this.parse__sjs_js_Dynamic__T__Ltutorial_webapp_HtmlObject(arg1, "post");
+          if ((!((!$this.loggedIn__Z()) && $uZ(arg1.nsfw)))) {
+            var jsx$1 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#posts");
+            var s = postToAdd.toHtml__T();
+            jsx$1.append(s)
+          };
+          i = ((1 + i) | 0)
+        }
+      }
+    })
+  })(this)))
+});
+$c_Ltutorial_webapp_Main$.prototype.tutorial$webapp$Main$$$anonfun$main$1__Lorg_scalajs_dom_raw_MessageEvent__Lorg_scalajs_jquery_JQuery = (function(e) {
+  var jsx$1 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#notifications");
+  var s = (("<p>" + $objectToString(e.data)) + "</p>");
+  jsx$1.append(s);
+  return (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#notifications").scrollTop($uI((0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent")[0].scrollHeight))
+});
+$c_Ltutorial_webapp_Main$.prototype.logout__V = (function() {
+  $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.removeItem("scalol_token");
+  $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.removeItem("scalol_username");
+  $m_Ltutorial_webapp_Util$().loadNavbar__V();
+  $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().location.href = "./index.html"
+});
+$c_Ltutorial_webapp_Main$.prototype.$$js$exported$meth$main__O = (function() {
+  this.main__V()
+});
+$c_Ltutorial_webapp_Main$.prototype.parse__sjs_js_Dynamic__T__Ltutorial_webapp_HtmlObject = (function(obj, typeOfObject) {
+  if ((typeOfObject === "post")) {
+    return new $c_Ltutorial_webapp_Post().init___sjs_js_Dynamic__I__sjs_js_Dynamic__sjs_js_Dynamic__Z__sjs_js_Dynamic(obj.id, $uI(obj.score), obj.title, obj.owner, $uZ(obj.nsfw), obj.image_path)
+  } else if ((typeOfObject === "comment")) {
+    return new $c_Ltutorial_webapp_Comment().init___T__T($as_T(obj.username), $as_T(obj.content))
+  } else {
+    throw new $c_s_MatchError().init___O(typeOfObject)
+  }
+});
+$c_Ltutorial_webapp_Main$.prototype.main = (function() {
+  return this.$$js$exported$meth$main__O()
+});
+$c_Ltutorial_webapp_Main$.prototype.loadmore = (function() {
+  return this.$$js$exported$meth$loadmore__O()
+});
+var $d_Ltutorial_webapp_Main$ = new $TypeData().initClass({
+  Ltutorial_webapp_Main$: 0
+}, false, "tutorial.webapp.Main$", {
+  Ltutorial_webapp_Main$: 1,
+  O: 1,
+  sjs_js_JSApp: 1
+});
+$c_Ltutorial_webapp_Main$.prototype.$classData = $d_Ltutorial_webapp_Main$;
+var $n_Ltutorial_webapp_Main$ = (void 0);
+function $m_Ltutorial_webapp_Main$() {
+  if ((!$n_Ltutorial_webapp_Main$)) {
+    $n_Ltutorial_webapp_Main$ = new $c_Ltutorial_webapp_Main$().init___()
+  };
+  return $n_Ltutorial_webapp_Main$
+}
 /** @constructor */
 function $c_Ltutorial_webapp_Post() {
   $c_O.call(this);
@@ -13278,7 +13301,14 @@ $c_sjs_js_WrappedArray.prototype.$classData = $d_sjs_js_WrappedArray;
 $e.Chat = $m_Ltutorial_webapp_Chat$();
 $e.EditProfile = $m_Ltutorial_webapp_EditProfile$();
 $e.Login = $m_Ltutorial_webapp_Login$();
+$e.PostView = $m_Ltutorial_webapp_PostView$();
+$e.Signup = $m_Ltutorial_webapp_Signup$();
+$e.UserView = $m_Ltutorial_webapp_UserView$();
+$e.Util = $m_Ltutorial_webapp_Util$();
 $e.Main = $m_Ltutorial_webapp_Main$();
+$e.tutorial = ($e.tutorial || {});
+$e.tutorial.webapp = ($e.tutorial.webapp || {});
+$e.tutorial.webapp.Main = $m_Ltutorial_webapp_Main$;
 $e.downvote = (function(arg$1) {
   var prep0 = $uI(arg$1);
   $m_Ltutorial_webapp_Main$().downvote__I__V(prep0)
@@ -13290,9 +13320,6 @@ $e.upvote = (function(arg$1) {
 $e.logout = (function() {
   $m_Ltutorial_webapp_Main$().logout__V()
 });
-$e.PostView = $m_Ltutorial_webapp_PostView$();
-$e.Signup = $m_Ltutorial_webapp_Signup$();
-$e.UserView = $m_Ltutorial_webapp_UserView$();
-$e.Util = $m_Ltutorial_webapp_Util$();
+$m_Ltutorial_webapp_Main$().main__V();
 }).call(this);
 //# sourceMappingURL=scalol-fastopt.js.map

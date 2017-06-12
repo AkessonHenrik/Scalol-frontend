@@ -24,6 +24,9 @@
 <div id="recipient">
     <input style="margin-top: 100px" id="dest" placeholder="User to chat with">
     <button id="submitChat" onclick="Chat.startTalking()">Start chatting</button>
+    <button id="blockButton" type="button" class="btn btn-danger" aria-label="Right Align">Block</button>
+    <button id="unblockButton" type="button" class="btn btn-info" aria-label="Right Align">Unblock</button>
+
 </div>
 <div id="chatContent">
 
@@ -32,10 +35,6 @@
     <textarea id="inputBox" type="text"></textarea><br>
     <button id="sendMessage">Send</button>
 </div>
-<button id="blockButton" type="button" class="btn btn-danger"
-        aria-label="Right Align">Block
-</button>
-<button id="unblockButton" type="button" class="btn btn-info" aria-label="Right Align">Unblock</button>
 <script>
     Util.loadNavbar()
 </script>

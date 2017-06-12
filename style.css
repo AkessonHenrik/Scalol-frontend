@@ -230,13 +230,33 @@
 }
 
 #blockButton, #unblockButton {
-    position: absolute;
-    left: 80%;
-    top: 50%;
-    transform: translate(0, -50%);
+    width: 80px;
 }
 
 .socketClosed {
     font-size: 15px;
     color: red;
+}
+#notifications {
+    position: fixed;
+    left: 80%;
+    top: 30%;
+    width: 250px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    height: 500px;
+    background-color: #428bca;
+    color: white;
+    font-size: 15px;
+    overflow-y: scroll;
+}
+
+#error {
+    position: absolute;
+    top: 10%;
+    width: 300px;
+    left: 50%;
+    transform: translate(-50%, 0);
+
 }

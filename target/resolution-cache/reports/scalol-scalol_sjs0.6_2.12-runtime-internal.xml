@@ -7,7 +7,7 @@
 		revision="1.0"
 		conf="runtime-internal"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool, phantom-js-jetty"
-		date="20170611215856"/>
+		date="20170612160337"/>
 	<dependencies>
 		<module organisation="io.scalajs.npm" name="form-data_sjs0.6_2.12">
 			<revision name="0.4.0-pre5" status="release" pubdate="20170423150619" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/scalajs-io/scalajs-io" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="8">

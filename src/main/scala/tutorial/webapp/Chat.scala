@@ -45,7 +45,7 @@ object Chat {
     }
     socket.onclose = { (e: CloseEvent) => {
       jQuery("#chatContent").append("<span class=\"socketClosed\">This user has blocked you. The connection has been closed </span><br>")
-      jQuery("#userInput").remove()
+      jQuery("#userInput :input").prop("disabled", true)
     }
     }
     jQuery("#sendMessage").click(() => {
@@ -69,6 +69,7 @@ object Chat {
       Util.get(ajaxUrl, null, Util.jsonAndTokenHeaderMap, (xhr: dom.XMLHttpRequest) => {
         if (xhr.status == 200) {
           println(xhr.responseText)
+          startTalking()
         }
       })
     })
