@@ -1528,20 +1528,24 @@ function $h_Ltutorial_webapp_Chat$() {
   /*<skip>*/
 }
 $h_Ltutorial_webapp_Chat$.prototype = $c_Ltutorial_webapp_Chat$.prototype;
-$c_Ltutorial_webapp_Chat$.prototype.init___ = (function() {
-  return this
-});
 $c_Ltutorial_webapp_Chat$.prototype.$$js$exported$meth$startTalking__O = (function() {
   this.startTalking__V()
 });
-$c_Ltutorial_webapp_Chat$.prototype.tutorial$webapp$Chat$$$anonfun$startTalking$3__Lorg_scalajs_dom_raw_MessageEvent__sjs_js_Dynamic__Lorg_scalajs_jquery_JQuery = (function(e, recipient$1) {
-  var jsx$1 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent");
-  var thiz$1 = $objectToString(e.data);
-  var thiz = $objectToString(e.data);
-  var beginIndex = ((1 + $uI(thiz.indexOf("]"))) | 0);
-  var s = (((("<span class=\"otherMessage\">" + recipient$1) + ":  </span><span>") + $as_T(thiz$1.substring(beginIndex))) + "</span><br>");
-  jsx$1.append(s);
-  return (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent").scrollTop($uI((0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent")[0].scrollHeight))
+$c_Ltutorial_webapp_Chat$.prototype.init___ = (function() {
+  return this
+});
+$c_Ltutorial_webapp_Chat$.prototype.predefinedChat__V = (function() {
+  var startIndex = ((1 + $m_sjsr_RuntimeString$().indexOf__T__I__I($objectToString($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().location), 63)) | 0);
+  if ((startIndex > 0)) {
+    var jsx$2 = $g;
+    var thiz = $objectToString($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().location);
+    var jsx$1 = jsx$2.decodeURIComponent($as_T(thiz.substring(startIndex)));
+    var predefinedUser = $as_T(jsx$1);
+    if (($uI(predefinedUser.length) > 1)) {
+      (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#dest").val(predefinedUser);
+      this.startTalking__V()
+    }
+  }
 });
 $c_Ltutorial_webapp_Chat$.prototype.startTalking__V = (function() {
   var recipient = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#dest").val();
@@ -1561,11 +1565,11 @@ $c_Ltutorial_webapp_Chat$.prototype.startTalking__V = (function() {
           this$4.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
           if ($m_sr_BoxesRunTime$().equals__O__O__Z(arg1.from, recipient$1)) {
             var jsx$1 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent");
-            var s = (((("<span class=\"otherMessage\">" + recipient$1) + ":  </span><span>") + arg1.content) + "</span><br>");
+            var s = (((("<span class=\"otherMessage\">" + recipient$1) + ":  ") + arg1.content) + "</span><br>");
             jsx$1.append(s)
           } else {
             var jsx$2 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent");
-            var s$1 = (("<span class=\"otherMessage\">You:  </span><span>" + arg1.content) + "</span><br>");
+            var s$1 = (("<span class=\"myMessage\">You: " + arg1.content) + "</span><br>");
             jsx$2.append(s$1)
           };
           i = ((1 + i) | 0)
@@ -1628,12 +1632,27 @@ $c_Ltutorial_webapp_Chat$.prototype.startTalking__V = (function() {
     })
   })(this, recipient))
 });
+$c_Ltutorial_webapp_Chat$.prototype.tutorial$webapp$Chat$$$anonfun$startTalking$3__Lorg_scalajs_dom_raw_MessageEvent__sjs_js_Dynamic__Lorg_scalajs_jquery_JQuery = (function(e, recipient$1) {
+  var jsx$1 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent");
+  var thiz$1 = $objectToString(e.data);
+  var thiz = $objectToString(e.data);
+  var beginIndex = ((1 + $uI(thiz.indexOf("]"))) | 0);
+  var s = (((("<span class=\"otherMessage\">" + recipient$1) + ":  </span><span>") + $as_T(thiz$1.substring(beginIndex))) + "</span><br>");
+  jsx$1.append(s);
+  return (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent").scrollTop($uI((0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent")[0].scrollHeight))
+});
+$c_Ltutorial_webapp_Chat$.prototype.$$js$exported$meth$predefinedChat__O = (function() {
+  this.predefinedChat__V()
+});
 $c_Ltutorial_webapp_Chat$.prototype.tutorial$webapp$Chat$$$anonfun$startTalking$4__Lorg_scalajs_dom_raw_CloseEvent__Lorg_scalajs_jquery_JQuery = (function(e) {
   (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent").append("<span class=\"socketClosed\">This user has blocked you. The connection has been closed </span><br>");
   return (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#userInput :input").prop("disabled", true)
 });
 $c_Ltutorial_webapp_Chat$.prototype.startTalking = (function() {
   return this.$$js$exported$meth$startTalking__O()
+});
+$c_Ltutorial_webapp_Chat$.prototype.predefinedChat = (function() {
+  return this.$$js$exported$meth$predefinedChat__O()
 });
 var $d_Ltutorial_webapp_Chat$ = new $TypeData().initClass({
   Ltutorial_webapp_Chat$: 0
@@ -1691,21 +1710,8 @@ $h_Ltutorial_webapp_EditProfile$.prototype = $c_Ltutorial_webapp_EditProfile$.pr
 $c_Ltutorial_webapp_EditProfile$.prototype.init___ = (function() {
   return this
 });
-$c_Ltutorial_webapp_EditProfile$.prototype.tutorial$webapp$EditProfile$$$anonfun$update$3__Lorg_scalajs_dom_raw_Event__T__Lorg_scalajs_dom_raw_XMLHttpRequest__O = (function(e, newUsername$1, xhr$1) {
-  if (($uI(xhr$1.status) === 200)) {
-    var x = $g.JSON.parse($as_T(xhr$1.responseText));
-    var this$2 = $m_s_Console$();
-    var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-    this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
-    $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.setItem("scalol_username", newUsername$1);
-    $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().location.href = "./index.html";
-    return (void 0)
-  } else {
-    return (void 0)
-  }
-});
 $c_Ltutorial_webapp_EditProfile$.prototype.$delete__V = (function() {
-  var x$2 = $m_Ltutorial_webapp_Util$().userUrl__T();
+  var x$1 = $m_Ltutorial_webapp_Util$().userUrl__T();
   var y = $as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token"));
   var array = [new $c_T2().init___O__O("auth", y)];
   var this$4 = new $c_scm_MapBuilder().init___sc_GenMap($m_sci_Map$EmptyMap$());
@@ -1717,9 +1723,9 @@ $c_Ltutorial_webapp_EditProfile$.prototype.$delete__V = (function() {
     this$4.$$plus$eq__T2__scm_MapBuilder($as_T2(arg1));
     i = ((1 + i) | 0)
   };
-  var x$3 = $as_sci_Map(this$4.elems$1);
+  var x$2 = $as_sci_Map(this$4.elems$1);
   var this$5 = $m_Lorg_scalajs_dom_ext_Ajax$();
-  var this$10 = this$5.apply__T__T__Lorg_scalajs_dom_ext_Ajax$InputData__I__sci_Map__Z__T__s_concurrent_Future("DELETE", x$2, null, 0, x$3, false, "");
+  var this$10 = this$5.apply__T__T__Lorg_scalajs_dom_ext_Ajax$InputData__I__sci_Map__Z__T__s_concurrent_Future("DELETE", x$1, null, 0, x$2, false, "");
   var f = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this) {
     return (function(xhr$2) {
       if (($uI(xhr$2.status) === 200)) {
@@ -1754,47 +1760,19 @@ $c_Ltutorial_webapp_EditProfile$.prototype.update__V = (function() {
     var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
     this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((newUsername + "\n"));
     var newEmail = $objectToString((0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#newEmail").val());
-    var url = $m_Ltutorial_webapp_Util$().userUrl__T();
-    var jsx$1 = new $c_T2().init___O__O("Content-Type", "application/json");
-    var y = $as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token"));
-    var array = [jsx$1, new $c_T2().init___O__O("auth", y)];
-    var this$9 = new $c_scm_MapBuilder().init___sc_GenMap($m_sci_Map$EmptyMap$());
-    var i = 0;
-    var len = $uI(array.length);
-    while ((i < len)) {
-      var index = i;
-      var arg1 = array[index];
-      this$9.$$plus$eq__T2__scm_MapBuilder($as_T2(arg1));
-      i = ((1 + i) | 0)
-    };
-    var headers = $as_sci_Map(this$9.elems$1);
-    var xhr = new $g.XMLHttpRequest();
-    xhr.open("PATCH", url);
-    var p = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this) {
-      return (function(check$ifrefutable$1$2) {
-        var check$ifrefutable$1 = $as_T2(check$ifrefutable$1$2);
-        return (check$ifrefutable$1 !== null)
-      })
-    })(this));
-    new $c_sc_TraversableLike$WithFilter().init___sc_TraversableLike__F1(headers, p).foreach__F1__V(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$2$1, xhr$1) {
-      return (function(x$1$2) {
-        var x$1 = $as_T2(x$1$2);
-        if ((x$1 !== null)) {
-          var key = $as_T(x$1.$$und1$f);
-          var value = $as_T(x$1.$$und2$f);
-          xhr$1.setRequestHeader(key, value)
-        } else {
-          throw new $c_s_MatchError().init___O(x$1)
+    var data = new $c_Ltutorial_webapp_SignupData().init___T__T__T(newEmail, newUsername, newPassword).toString__T();
+    $m_Ltutorial_webapp_Util$().patch__T__sjs_js_Any__sci_Map__F1__V($m_Ltutorial_webapp_Util$().userUrl__T(), data, $m_Ltutorial_webapp_Util$().jsonAndTokenHeaderMap__sci_Map(), new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, newUsername$1) {
+      return (function(xhr$2) {
+        if (($uI(xhr$2.status) === 200)) {
+          var x = $g.JSON.parse($as_T(xhr$2.responseText));
+          var this$6 = $m_s_Console$();
+          var this$7 = $as_Ljava_io_PrintStream(this$6.outVar$2.v$1);
+          this$7.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
+          $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.setItem("scalol_username", newUsername$1);
+          $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().location.href = "./index.html"
         }
       })
-    })(this, xhr)));
-    xhr.onload = (function(newUsername$1, xhr$1$1) {
-      return (function(arg1$2) {
-        return $m_Ltutorial_webapp_EditProfile$().tutorial$webapp$EditProfile$$$anonfun$update$3__Lorg_scalajs_dom_raw_Event__T__Lorg_scalajs_dom_raw_XMLHttpRequest__O(arg1$2, newUsername$1, xhr$1$1)
-      })
-    })(newUsername, xhr);
-    var s = new $c_Ltutorial_webapp_SignupData().init___T__T__T(newEmail, newUsername, newPassword).toString__T();
-    xhr.send(s)
+    })(this, newUsername)))
   } else {
     (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#error").append("<div class=\"alert alert-danger\" role=\"alert\">Passwords don't match, try again</div>")
   }
@@ -1876,6 +1854,8 @@ $c_Ltutorial_webapp_Login$.prototype.login__V = (function() {
         $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.setItem("scalol_token", $objectToString(response.token));
         $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.setItem("scalol_username", $objectToString($this.usernameElement__Lorg_scalajs_jquery_JQuery().val()));
         $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().location.href = "./index.html"
+      } else {
+        $m_Ltutorial_webapp_Util$().showError__T__T__V("Invalid credentials", "try again")
       }
     })
   })(this)))
@@ -2005,11 +1985,10 @@ $c_Ltutorial_webapp_PostView$.prototype.getComments__T__V = (function(postId) {
           jsx$1.append(s);
           i = ((1 + i) | 0)
         }
+      } else if (($uI(xhr$2.status) === 404)) {
+        $m_Ltutorial_webapp_Util$().showError__T__T__V("Post not found", null)
       } else {
-        var x$2 = ("Comments response: " + $objectToString(xhr$2.response));
-        var this$10 = $m_s_Console$();
-        var this$11 = $as_Ljava_io_PrintStream(this$10.outVar$2.v$1);
-        this$11.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x$2 + "\n"))
+        $m_Ltutorial_webapp_Util$().showError__T__T__V("An unexpected error occurred", "try again later")
       }
     })
   })(this)))
@@ -2037,6 +2016,10 @@ $c_Ltutorial_webapp_PostView$.prototype.getPost__T__V = (function(postId) {
         var jsx$1 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#post");
         var s = postToAdd.toHtml__T();
         jsx$1.append(s)
+      } else if (($uI(xhr$2.status) === 404)) {
+        $m_Ltutorial_webapp_Util$().showError__T__T__V("Post not found", null)
+      } else {
+        $m_Ltutorial_webapp_Util$().showError__T__T__V("An unexpected error occurred", "try again later")
       }
     })
   })(this)))
@@ -2120,13 +2103,10 @@ $c_Ltutorial_webapp_Signup$.prototype.signup__Lorg_scalajs_jquery_JQuery = (func
                   $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().location.href = "./index.html"
                 }
               })
-            })($this$1)));
-            return (void 0)
+            })($this$1)))
           } else if ((!$this$1.alert$1)) {
             $this$1.alert$1 = true;
-            return (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#error").append("<div class=\"alert alert-danger\" role=\"alert\">Passwords don't match, try again</div>")
-          } else {
-            return (void 0)
+            $m_Ltutorial_webapp_Util$().showError__T__T__V("Passwords don't match", "try again")
           }
         })
       })($this))
@@ -2299,7 +2279,9 @@ $c_Ltutorial_webapp_UserView$.prototype.getUser__T__V = (function(username) {
           i = ((1 + i) | 0)
         }
       } else if (($uI(xhr$2.status) === 404)) {
-        (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#info").append("<div class=\"alert alert-danger\">\n  <strong>User not found</strong></div>")
+        $m_Ltutorial_webapp_Util$().showError__T__T__V("User not found", null)
+      } else {
+        $m_Ltutorial_webapp_Util$().showError__T__T__V("Unexpected error", "try again later")
       }
     })
   })(this)))
@@ -2344,14 +2326,10 @@ $c_Ltutorial_webapp_Util$.prototype.upvoteUrl__T = (function() {
 $c_Ltutorial_webapp_Util$.prototype.$$js$exported$prop$postUrl__O = (function() {
   return this.postUrl__T()
 });
-$c_Ltutorial_webapp_Util$.prototype.tutorial$webapp$Util$$$anonfun$get$2__Lorg_scalajs_dom_raw_Event__F1__Lorg_scalajs_dom_raw_XMLHttpRequest__O = (function(e, callback$1, xhr$1) {
+$c_Ltutorial_webapp_Util$.prototype.tutorial$webapp$Util$$$anonfun$get$2__Lorg_scalajs_dom_raw_Event__F1__Lorg_scalajs_dom_raw_XMLHttpRequest__O = (function(x$2, callback$1, xhr$1) {
   return (($uI(xhr$1.status) === 200) ? callback$1.apply__O__O(xhr$1) : (void 0))
 });
 $c_Ltutorial_webapp_Util$.prototype.get__T__sjs_js_Any__sci_Map__F1__V = (function(url, data, headers, callback) {
-  var x = ("get " + url);
-  var this$2 = $m_s_Console$();
-  var this$3 = $as_Ljava_io_PrintStream(this$2.outVar$2.v$1);
-  this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
   var xhr = new $g.XMLHttpRequest();
   xhr.open("GET", url);
   if ((headers !== null)) {
@@ -2372,11 +2350,16 @@ $c_Ltutorial_webapp_Util$.prototype.get__T__sjs_js_Any__sci_Map__F1__V = (functi
 $c_Ltutorial_webapp_Util$.prototype.$$js$exported$meth$insertUsername__O = (function() {
   this.insertUsername__V()
 });
+$c_Ltutorial_webapp_Util$.prototype.unblockUrl__T = (function() {
+  return "https://nixme.ddns.net/unblock_user/"
+});
 $c_Ltutorial_webapp_Util$.prototype.blockUrl__T = (function() {
   return "https://nixme.ddns.net/block_user/"
 });
-$c_Ltutorial_webapp_Util$.prototype.unblockUrl__T = (function() {
-  return "https://nixme.ddns.net/unblock_user/"
+$c_Ltutorial_webapp_Util$.prototype.showError__T__T__V = (function(strong, normal) {
+  var jsx$1 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#error");
+  var s = (((("<div class=\"alert alert-danger\" role=\"alert\"><strong>" + strong) + " </strong>") + normal) + "</div>");
+  jsx$1.append(s)
 });
 $c_Ltutorial_webapp_Util$.prototype.post__T__sjs_js_Any__sci_Map__F1__V = (function(url, data, headers, callback) {
   var xhr = new $g.XMLHttpRequest();
@@ -2394,9 +2377,6 @@ $c_Ltutorial_webapp_Util$.prototype.post__T__sjs_js_Any__sci_Map__F1__V = (funct
   })(callback, xhr);
   xhr.send(data)
 });
-$c_Ltutorial_webapp_Util$.prototype.postUrl__T = (function() {
-  return "https://nixme.ddns.net/posts"
-});
 $c_Ltutorial_webapp_Util$.prototype.jsonAndTokenHeaderMap__sci_Map = (function() {
   var jsx$1 = new $c_T2().init___O__O("Content-Type", "application/json");
   var y = $as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token"));
@@ -2412,11 +2392,39 @@ $c_Ltutorial_webapp_Util$.prototype.jsonAndTokenHeaderMap__sci_Map = (function()
   };
   return $as_sci_Map(this$6.elems$1)
 });
-$c_Ltutorial_webapp_Util$.prototype.commentUrl__T = (function() {
-  return "https://nixme.ddns.net/comments"
+$c_Ltutorial_webapp_Util$.prototype.postUrl__T = (function() {
+  return "https://nixme.ddns.net/posts"
+});
+$c_Ltutorial_webapp_Util$.prototype.patch__T__sjs_js_Any__sci_Map__F1__V = (function(url, data, headers, callback) {
+  var xhr = new $g.XMLHttpRequest();
+  xhr.open("PATCH", url);
+  var p = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this) {
+    return (function(check$ifrefutable$1$2) {
+      var check$ifrefutable$1 = $as_T2(check$ifrefutable$1$2);
+      return (check$ifrefutable$1 !== null)
+    })
+  })(this));
+  new $c_sc_TraversableLike$WithFilter().init___sc_TraversableLike__F1(headers, p).foreach__F1__V(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$2, xhr$1) {
+    return (function(x$4$2) {
+      var x$4 = $as_T2(x$4$2);
+      if ((x$4 !== null)) {
+        var key = $as_T(x$4.$$und1$f);
+        var value = $as_T(x$4.$$und2$f);
+        xhr$1.setRequestHeader(key, value)
+      } else {
+        throw new $c_s_MatchError().init___O(x$4)
+      }
+    })
+  })(this, xhr)));
+  xhr.onload = (function(callback$3, xhr$3) {
+    return (function(arg1$2) {
+      callback$3.apply__O__O(xhr$3)
+    })
+  })(callback, xhr);
+  xhr.send(data)
 });
 $c_Ltutorial_webapp_Util$.prototype.loadNavbar__V = (function() {
-  if (($as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_token")) === null)) {
+  if ((!$m_Ltutorial_webapp_Main$().loggedIn__Z())) {
     (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#scalolNavbar").load("./navbar.html");
     (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#logout").click((function($this) {
       return (function(x$1$2) {
@@ -2432,22 +2440,25 @@ $c_Ltutorial_webapp_Util$.prototype.loadNavbar__V = (function() {
     (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#scalolNavbar").load("./loggednavbar.html")
   }
 });
+$c_Ltutorial_webapp_Util$.prototype.commentUrl__T = (function() {
+  return "https://nixme.ddns.net/comments"
+});
 $c_Ltutorial_webapp_Util$.prototype.downvoteUrl__T = (function() {
   return "https://nixme.ddns.net/downvote"
 });
 $c_Ltutorial_webapp_Util$.prototype.messageUrl__T = (function() {
   return "https://nixme.ddns.net/messages"
 });
-$c_Ltutorial_webapp_Util$.prototype.$$js$exported$meth$loadNavbar__O = (function() {
-  this.loadNavbar__V()
-});
-$c_Ltutorial_webapp_Util$.prototype.authUrl__T = (function() {
-  return "https://nixme.ddns.net/auth"
-});
 $c_Ltutorial_webapp_Util$.prototype.insertUsername__V = (function() {
   var jsx$1 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#modifyProfile");
   var s = $as_T($m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.getItem("scalol_username"));
   jsx$1.append(s)
+});
+$c_Ltutorial_webapp_Util$.prototype.authUrl__T = (function() {
+  return "https://nixme.ddns.net/auth"
+});
+$c_Ltutorial_webapp_Util$.prototype.$$js$exported$meth$loadNavbar__O = (function() {
+  this.loadNavbar__V()
 });
 $c_Ltutorial_webapp_Util$.prototype.insertUsername = (function() {
   return this.$$js$exported$meth$insertUsername__O()
@@ -4668,15 +4679,7 @@ $c_Ltutorial_webapp_Comment.prototype.$classData = $d_Ltutorial_webapp_Comment;
 /** @constructor */
 function $c_Ltutorial_webapp_Main$() {
   $c_O.call(this);
-  this.nextElement$1 = null;
-  this.emailElement$1 = null;
-  this.usernameElement$1 = null;
-  this.passwordElement$1 = null;
-  this.repeatPasswordElement$1 = null;
-  this.submitElement$1 = null;
-  this.lowestId$1 = 0;
-  this.posts$1 = null;
-  this.bitmap$0$1 = 0
+  this.lowestId$1 = 0
 }
 $c_Ltutorial_webapp_Main$.prototype = new $h_O();
 $c_Ltutorial_webapp_Main$.prototype.constructor = $c_Ltutorial_webapp_Main$;
@@ -4686,9 +4689,7 @@ function $h_Ltutorial_webapp_Main$() {
 }
 $h_Ltutorial_webapp_Main$.prototype = $c_Ltutorial_webapp_Main$.prototype;
 $c_Ltutorial_webapp_Main$.prototype.init___ = (function() {
-  $n_Ltutorial_webapp_Main$ = this;
   this.lowestId$1 = (-1);
-  this.posts$1 = [];
   return this
 });
 $c_Ltutorial_webapp_Main$.prototype.$$js$exported$meth$loadmore__O = (function() {
@@ -4743,7 +4744,7 @@ $c_Ltutorial_webapp_Main$.prototype.loadmore__V = (function() {
   if ((this.lowestId$1 === (-1))) {
     url = $m_Ltutorial_webapp_Util$().postUrl__T()
   } else {
-    url = ((($m_Ltutorial_webapp_Util$().postUrl__T() + "?offset=") + (((-1) + this.lowestId$1) | 0)) + "&number=2")
+    url = ((($m_Ltutorial_webapp_Util$().postUrl__T() + "?offset=") + (((-1) + this.lowestId$1) | 0)) + "&number=10")
   };
   $m_Ltutorial_webapp_Util$().get__T__sjs_js_Any__sci_Map__F1__V(url, null, null, new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this) {
     return (function(xhr$2) {
@@ -4773,10 +4774,19 @@ $c_Ltutorial_webapp_Main$.prototype.loadmore__V = (function() {
   })(this)))
 });
 $c_Ltutorial_webapp_Main$.prototype.tutorial$webapp$Main$$$anonfun$main$1__Lorg_scalajs_dom_raw_MessageEvent__Lorg_scalajs_jquery_JQuery = (function(e) {
-  var jsx$1 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#notifications");
-  var s = (("<p>" + $objectToString(e.data)) + "</p>");
-  jsx$1.append(s);
-  return (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#notifications").scrollTop($uI((0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#chatContent")[0].scrollHeight))
+  var content = $objectToString(e.data);
+  var endIndex = $uI(content.indexOf(" wants to chat with you"));
+  var username = $as_T(content.substring(0, endIndex));
+  if (($uI(username.length) > 0)) {
+    var jsx$1 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#notifications");
+    var s = (((("<p><a class=\"redirect\" href=\"./chat.html?" + username) + "\">") + content) + "</a></p>");
+    jsx$1.append(s)
+  } else {
+    var jsx$2 = (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#notifications");
+    var s$1 = (("<p>" + content) + "</p>");
+    jsx$2.append(s$1)
+  };
+  return (0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#notifications").scrollTop($uI((0, $m_Lorg_scalajs_jquery_package$().jQuery$1)("#notifications")[0].scrollHeight))
 });
 $c_Ltutorial_webapp_Main$.prototype.logout__V = (function() {
   $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().localStorage.removeItem("scalol_token");
@@ -4844,7 +4854,7 @@ $c_Ltutorial_webapp_Post.prototype.init___sjs_js_Dynamic__I__sjs_js_Dynamic__sjs
   return this
 });
 $c_Ltutorial_webapp_Post.prototype.toHtml__T = (function() {
-  var stringToBuild = "<div class=\"post\">";
+  var stringToBuild = (("<div id=\"post" + this.argId$1) + "\" class=\"post\">");
   stringToBuild = (stringToBuild + "<div class=\"postContent\">");
   stringToBuild = ((stringToBuild + ((("<a href=\"./posts.html?" + this.argId$1) + "\"><h1 class=\"postTitle\">") + this.argTitle$1)) + "</h1></a>");
   if ($is_T(this.argOwner$1)) {

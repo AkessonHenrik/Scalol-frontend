@@ -37,9 +37,9 @@ object UserView {
             jQuery("#posts").append(postToAdd.toHtml)
         }
       } else if(xhr.status == 404) {
-        jQuery("#info").append(
-          "<div class=\"alert alert-danger\">\n  <strong>User not found</strong></div>"
-        )
+        Util.showError("User not found", null)
+      } else {
+        Util.showError("Unexpected error", "try again later")
       }
     })
   }

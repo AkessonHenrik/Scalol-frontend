@@ -34,6 +34,8 @@ object Login {
           "scalol_username", usernameElement.value.toString
         )
         dom.window.location.href = "./index.html"
+      } else {
+        Util.showError("Invalid credentials", "try again")
       }
     })
   }

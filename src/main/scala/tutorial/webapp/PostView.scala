@@ -52,6 +52,10 @@ object PostView {
         println("Post: " + JSON.stringify(jsPost))
         val postToAdd = parse(jsPost, "post")
         jQuery("#post").append(postToAdd.toHtml)
+      } else if (xhr.status == 404) {
+        Util.showError("Post not found", null)
+      } else {
+        Util.showError("An unexpected error occurred", "try again later")
       }
     })
   }
@@ -67,11 +71,15 @@ object PostView {
         for (jsComment <- jsComments) {
           jQuery("#comments").append(parse(jsComment, "comment").toHtml)
         }
+      } else if (xhr.status == 404) {
+        Util.showError("Post not found", null)
       } else {
-        println("Comments response: " + xhr.response.toString)
+        Util.showError("An unexpected error occurred", "try again later")
       }
 
-    })
+    }
+
+    )
   }
 
   @JSExport

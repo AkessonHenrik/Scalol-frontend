@@ -172,18 +172,23 @@
     margin-top: 5px !important;
 }
 
-.otherMessage, .userMessage {
+.otherMessage, .myMessage {
     word-wrap: break-word;
     display: block;
 
     margin: 2px;
 }
-
+.otherMessage {
+    text-align: right;
+}
+.myMessage {
+    text-align: left;
+}
 .otherMessage {
     color: #00695C;
 }
 
-.userMessage {
+.myMessage {
     color: #039BE5;
 }
 
@@ -259,4 +264,8 @@
     left: 50%;
     transform: translate(-50%, 0);
 
+}
+
+.redirect {
+    color: white;
 }

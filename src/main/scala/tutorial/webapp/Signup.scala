@@ -60,7 +60,7 @@ object Signup {
             })
           } else if (!alert) {
             alert = true
-            jQuery("#error").append("<div class=\"alert alert-danger\" role=\"alert\">" + "Passwords don't match, try again" + "</div>")
+            Util.showError("Passwords don't match", "try again")
           }
         }
       }
