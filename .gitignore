@@ -1,6 +1,7 @@
 gson-2.6.2.jar
 node_modules/
-project/
+project/project/
+project/target/
 src/main/java/
 src/main/scala-2.12/
 src/test/
